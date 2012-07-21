@@ -7,5 +7,10 @@ import com.teamboid.twitterapi.status.Status;
  */
 public interface Twitter {
 
+    void getAuthorization(String consumerKey, String consumerSecret,
+                             String accessToken, String accessSecret);
+
     Status[] getPublicTimeline() throws Exception;
+
+    Status[] getHomeTimeline(Paging paging) throws Exception;
 }

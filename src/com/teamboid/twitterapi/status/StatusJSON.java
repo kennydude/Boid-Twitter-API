@@ -27,7 +27,6 @@ import java.util.Calendar;
 public class StatusJSON implements Status {
 
     public StatusJSON(JSONObject json) throws Exception {
-        System.out.println("Parsing: " + json.toString(4));
         _createdAt = Time.getTwitterDate(json.getString("created_at"));
         _truncated = json.getBoolean("truncated");
         _favorited = json.getBoolean("favorited");
