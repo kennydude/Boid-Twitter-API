@@ -4,14 +4,17 @@ import com.teamboid.twitterapi.search.SearchQuery;
 import com.teamboid.twitterapi.search.SearchResult;
 import com.teamboid.twitterapi.status.Status;
 import com.teamboid.twitterapi.user.User;
+import org.scribe.oauth.OAuthService;
 
 /**
  * The main class used within this library, used for authenticating an account and performing API actions on Twitter.
  */
 public interface Twitter {
 
-    void getAuthorization(String consumerKey, String consumerSecret,
-                             String accessToken, String accessSecret);
+    //OAuth Methods
+    String getAccessToken();
+
+    String getAccessSecret();
 
     //TIME METHODS
     Status[] getPublicTimeline() throws Exception;

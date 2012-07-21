@@ -9,11 +9,11 @@ import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 
 /**
- * Handles the authentication of Twitter accounts use OAuth.
+ * @author Aidan Follestad
  */
-public class TwitterAuth {
+public class Authorizer {
 
-    private TwitterAuth(String consumer, String secret, String callback) {
+    private Authorizer(String consumer, String secret, String callback) {
         service = new ServiceBuilder().provider(TwitterApi.class).apiKey(consumer)
                 .apiSecret(secret).callback(callback).build();
     }
@@ -21,8 +21,29 @@ public class TwitterAuth {
     private OAuthService service;
     private Token token;
 
-    public static TwitterAuth create(String consumer, String secret, String callback) {
-        return new TwitterAuth(consumer, secret, callback);
+    /**
+     * Intializes a new Authorizer for generating authenticated {@link Twitter} instances.
+     * @param consumer The OAuth consumer of your application that's registered on dev.twitter.com.
+     * @param secret The OAuth secret of your application that's registered on dev.twitter.com.
+     * @param callback The callback URL called after the user authorizes their account on the web page returned from getUrl().
+     * @return A new Authorizer instance
+     */
+    public static Authorizer create(String consumer, String secret, String callback) {
+        return new Authorizer(consumer, secret, callback);
+    }
+
+    /**
+     * This method is used to get an authorized {@link Twitter} instance if you had already gotten
+     * authorization previously and stored the returned access token.
+     * @param accessKey The access key previously stored.
+     * @param accessSecret The access secret preeviously stored.
+     * @return An authenticated Twitter instance.
+     */
+    public Twitter getAuthorizedInstance(String accessKey, String accessSecret) {
+        TwitterBase toReturn = new TwitterBase();
+        toReturn.token = new Token(accessKey, accessSecret);
+        toReturn.oauth = service;
+        return toReturn;
     }
 
     /**

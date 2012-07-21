@@ -11,17 +11,22 @@ import com.teamboid.twitterapi.user.UserJSON;
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.TwitterApi;
 import org.scribe.model.Token;
+import org.scribe.oauth.OAuthService;
 
 import java.net.URLEncoder;
 
 public class TwitterBase extends RequestHandler implements Twitter {
 
     @Override
-    public void getAuthorization(String consumerKey, String consumerSecret,
-                                 String accessToken, String accessSecret) {
-        super.token = new Token(accessToken, accessSecret);
-        super.oauth = new ServiceBuilder().provider(TwitterApi.class).apiKey(consumerKey)
-                .apiSecret(consumerSecret).build();
+    public String getAccessToken() {
+        if(super.token == null) return null;
+        return super.token.getToken();
+    }
+
+    @Override
+    public String getAccessSecret() {
+        if(super.token == null) return null;
+        return super.token.getSecret();
     }
 
     @Override
