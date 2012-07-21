@@ -1,15 +1,149 @@
 package com.teamboid.twitterapi.search;
 
+import com.teamboid.twitterapi.entity.hashtag.HashtagEntity;
+import com.teamboid.twitterapi.entity.hashtag.HashtagEntityJSON;
+import com.teamboid.twitterapi.entity.media.MediaEntity;
+import com.teamboid.twitterapi.entity.media.MediaEntityJSON;
+import com.teamboid.twitterapi.entity.mention.MentionEntity;
+import com.teamboid.twitterapi.entity.mention.MentionEntityJSON;
+import com.teamboid.twitterapi.entity.url.UrlEntity;
+import com.teamboid.twitterapi.entity.url.UrlEntityJSON;
+import com.teamboid.twitterapi.status.GeoLocation;
+import com.teamboid.twitterapi.utilities.Time;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class TweetJSON implements Tweet {
 
-    public TweetJSON(JSONObject json) {
-
+    public TweetJSON(JSONObject json) throws Exception {
+        _createdAt = Time.getTwitterSearchDate(json.getString("created_at"));
+        if (!json.isNull("entities")) {
+            JSONObject entities = json.getJSONObject("entities");
+            JSONArray urls = entities.optJSONArray("urls");
+            if (urls != null) {
+                ArrayList<UrlEntity> toSet = new ArrayList<UrlEntity>();
+                for (int i = 0; i < urls.length(); i++) {
+                    toSet.add(new UrlEntityJSON(urls.getJSONObject(i)));
+                }
+                _urlEntities = toSet.toArray(new UrlEntity[0]);
+            }
+            JSONArray hashtags = entities.optJSONArray("hashtags");
+            if (hashtags != null) {
+                ArrayList<HashtagEntity> toSet = new ArrayList<HashtagEntity>();
+                for (int i = 0; i < urls.length(); i++) {
+                    toSet.add(new HashtagEntityJSON(urls.getJSONObject(i)));
+                }
+                _hashtagEntities = toSet.toArray(new HashtagEntity[0]);
+            }
+            JSONArray mentions = entities.optJSONArray("user_mentions");
+            if (mentions != null) {
+                ArrayList<MentionEntity> toSet = new ArrayList<MentionEntity>();
+                for (int i = 0; i < urls.length(); i++) {
+                    toSet.add(new MentionEntityJSON(urls.getJSONObject(i)));
+                }
+                _mentionEntities = toSet.toArray(new MentionEntity[0]);
+            }
+            JSONArray media = entities.optJSONArray("media");
+            if (media != null) {
+                ArrayList<MediaEntity> toSet = new ArrayList<MediaEntity>();
+                for (int i = 0; i < urls.length(); i++) {
+                    toSet.add(new MediaEntityJSON(urls.getJSONObject(i)));
+                }
+                _mediaEntities = toSet.toArray(new MediaEntity[0]);
+            }
+        }
+        _fromUser = json.getString("from_user");
+        _fromUserId = json.getLong("from_user_id");
+        if(!json.isNull("geo")) {
+            _geo = new GeoLocation(json.getJSONObject("geo"));
+        }
+        _id = json.getLong("id");
+        _langCode = json.getString("iso_language_code");
+        if(!json.isNull("metadata")) {
+            JSONObject metadata = json.getJSONObject("metadata");
+            if(!metadata.isNull("recent_retweets")) {
+                _recentRetweets = metadata.getInt("recent_retweets");
+            }
+            _resultType = SearchQuery.ResultType.valueOf(metadata.getString("result_type").toUpperCase());
+        }
+        _profileImageUrl = json.getString("profile_image_url");
+        _source = json.getString("source");
+        if(!json.isNull("text")) {
+            _text = json.getString("text");
+        }
+        if(!json.isNull("to_user_id")) {
+            _toUserId = json.getLong("to_user_id");
+        }
     }
+
+    private Calendar _createdAt;
+    private String _profileImageUrl;
+    private long _fromUserId;
+    private String _fromUser;
+    private String _text;
+    private long _toUserId;
+    private long _id;
+    private GeoLocation _geo;
+    private String _langCode;
+    private String _source;
+    private int _recentRetweets;
+    private SearchQuery.ResultType _resultType;
+    private UrlEntity[] _urlEntities;
+    private MediaEntity[] _mediaEntities;
+    private HashtagEntity[] _hashtagEntities;
+    private MentionEntity[] _mentionEntities;
+
+    @Override
+    public Calendar getCreatedAt() { return _createdAt; }
+
+    @Override
+    public String getProfileImageUrl() { return _profileImageUrl; }
+
+    @Override
+    public long getFromUserId() { return _fromUserId; }
+
+    @Override
+    public String getFromUser() { return _fromUser; }
+
+    @Override
+    public String getText() { return _text; }
+
+    @Override
+    public long getToUserId() { return _toUserId; }
+
+    @Override
+    public long getId() { return _id; }
+
+    @Override
+    public GeoLocation getGeo() { return _geo; }
+
+    @Override
+    public String getIsoLanguageCode() { return _langCode; }
+
+    @Override
+    public String getSource() { return _source; }
+
+    @Override
+    public int getRecentRetweets() { return _recentRetweets; }
+
+    @Override
+    public SearchQuery.ResultType getResultType() { return _resultType; }
+
+    @Override
+    public UrlEntity[] getUrlEntities() { return _urlEntities; }
+
+    @Override
+    public MediaEntity[] getMediaEntities() { return _mediaEntities; }
+
+    @Override
+    public HashtagEntity[] getHashtagEntities() { return  _hashtagEntities; }
+
+    @Override
+    public MentionEntity[] getMentionEntities() { return _mentionEntities; }
+
 
     public static Tweet[] createStatusList(JSONArray array) throws Exception {
         ArrayList<Tweet> toReturn = new ArrayList<Tweet>();

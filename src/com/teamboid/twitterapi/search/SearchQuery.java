@@ -15,12 +15,12 @@ import java.util.Locale;
  */
 public class SearchQuery {
 
-    private SearchQuery(String query, Paging paging) {
+    public SearchQuery(String query, Paging paging) {
         _query = query;
         _paging = paging;
         _resultType = ResultType.DEFAULT;
     }
-    private SearchQuery(String query, GeoCode geo, Paging paging, ResultType resultType, Date until) {
+    public SearchQuery(String query, Paging paging, GeoCode geo, ResultType resultType, Date until) {
         _query = query;
         _geo = geo;
         _paging = paging;
@@ -57,7 +57,7 @@ public class SearchQuery {
 
     public String getUrl() {
         try {
-            String url = Urls.SEARCH_QUERY + "?" + URLEncoder.encode(_query, "UTF8");
+            String url = Urls.SEARCH_QUERY + "?q=" + URLEncoder.encode(_query, "UTF8");
             if(_geo != null) {
                 url += ("&" + _geo.getLatitude() + "," + _geo.getLongitude() + "," +
                         _geo.getDistance() + _geo.getUnit().name().toLowerCase());

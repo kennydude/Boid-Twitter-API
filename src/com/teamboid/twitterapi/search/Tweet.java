@@ -1,5 +1,9 @@
 package com.teamboid.twitterapi.search;
 
+import com.teamboid.twitterapi.entity.hashtag.HashtagEntity;
+import com.teamboid.twitterapi.entity.media.MediaEntity;
+import com.teamboid.twitterapi.entity.mention.MentionEntity;
+import com.teamboid.twitterapi.entity.url.UrlEntity;
 import com.teamboid.twitterapi.status.GeoLocation;
 
 import java.util.Calendar;
@@ -28,4 +32,16 @@ public interface Tweet {
     String getIsoLanguageCode();
 
     String getSource();
+
+    int getRecentRetweets();
+
+    SearchQuery.ResultType getResultType();
+
+    UrlEntity[] getUrlEntities();
+
+    MediaEntity[] getMediaEntities();
+
+    HashtagEntity[] getHashtagEntities();
+
+    MentionEntity[] getMentionEntities();
 }

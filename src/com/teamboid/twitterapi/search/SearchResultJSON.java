@@ -1,6 +1,5 @@
 package com.teamboid.twitterapi.search;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -15,7 +14,9 @@ public class SearchResultJSON implements SearchResult {
         _page = json.getInt("page");
         _query = json.getString("query");
         _refreshUrl = json.getString("refresh_url");
-        _results = TweetJSON.createStatusList(json.getJSONArray("results"));
+        if(!json.isNull("results")) {
+            _results = TweetJSON.createStatusList(json.getJSONArray("results"));
+        }
         _resultsPerPage = json.getInt("results_per_page");
         _sinceId = json.getLong("since_id");
     }

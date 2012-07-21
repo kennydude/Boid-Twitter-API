@@ -1,6 +1,8 @@
 package com.teamboid.twitterapi.client;
 
 import com.teamboid.twitterapi.search.SearchQuery;
+import com.teamboid.twitterapi.search.SearchResult;
+import com.teamboid.twitterapi.search.SearchResultJSON;
 import com.teamboid.twitterapi.search.Tweet;
 import com.teamboid.twitterapi.status.Status;
 import com.teamboid.twitterapi.status.StatusJSON;
@@ -10,7 +12,9 @@ import org.scribe.builder.ServiceBuilder;
 import org.scribe.builder.api.TwitterApi;
 import org.scribe.model.Token;
 
-public class TwitterBase extends RequestHandler implements Twitter, TimelineMethods, StatusMethods, SearchMethods {
+import java.net.URLEncoder;
+
+public class TwitterBase extends RequestHandler implements Twitter {
 
     @Override
     public void getAuthorization(String consumerKey, String consumerSecret,
@@ -107,7 +111,15 @@ public class TwitterBase extends RequestHandler implements Twitter, TimelineMeth
     }
 
     @Override
-    public Tweet[] search(SearchQuery query) {
-        return new Tweet[0];  //To change body of implemented methods use File | Settings | File Templates.
+    public SearchResult search(SearchQuery query) throws Exception {
+        return new SearchResultJSON(getAuth(query.getUrl()));
+    }
+
+    @Override
+    public User[] searchUsers(String query, int page, int perPage) throws Exception {
+        String url = Urls.SEARCH_USERS + "&query=" + URLEncoder.encode(query, "UTF8");
+        if(page > 0) url += "&page=" + page;
+        if(perPage > 0) url += "&per_page=" + perPage;
+        return UserJSON.createUserList(getArrayAuth(url));
     }
 }
