@@ -18,6 +18,11 @@ import java.net.URLEncoder;
 public class TwitterBase extends RequestHandler implements Twitter {
 
     @Override
+    public User verifyCredentials() throws Exception {
+        return new UserJSON(getAuth(Urls.VERIFY_CREDENTIALS));
+    }
+
+    @Override
     public String getAccessToken() {
         if(super.token == null) return null;
         return super.token.getToken();

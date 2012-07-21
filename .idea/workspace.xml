@@ -6,7 +6,11 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9f412002-acd0-4134-9f77-25605c86c48e" name="Default" comment="" />
+    <list default="true" id="9f412002-acd0-4134-9f77-25605c86c48e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java" />
+    </list>
     <ignored path="Boid Twitter API.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,10 +67,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Authorizer.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Authorizer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/auth/Authorizer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0036036037">
+            <state line="65" column="19" selection-start="2733" selection-end="2733" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="docComment;class#Authorizer#0" expanded="false" />
                 <element signature="method#Authorizer#0;class#Authorizer#0" expanded="false" />
@@ -74,7 +78,41 @@
                 <element signature="docComment;method#getUrl#0;class#Authorizer#0" expanded="false" />
                 <element signature="method#getUrl#0;class#Authorizer#0" expanded="false" />
                 <element signature="docComment;method#finish#0;class#Authorizer#0" expanded="false" />
-                <element signature="method#finish#0;class#Authorizer#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Twitter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="46" selection-start="471" selection-end="471" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TwitterBase.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="21" column="31" selection-start="782" selection-end="782" vertical-scroll-proportion="0.22818792">
+              <folding>
+                <element signature="method#getPublicTimeline#0;class#TwitterBase#0" expanded="false" />
+                <element signature="method#getHomeTimeline#0;class#TwitterBase#0" expanded="false" />
+                <element signature="method#getMentions#0;class#TwitterBase#0" expanded="false" />
+                <element signature="method#getUserTimeline#0;class#TwitterBase#0" expanded="false" />
+                <element signature="method#getUserTimeline#1;class#TwitterBase#0" expanded="false" />
+                <element signature="method#getUserTimeline#2;class#TwitterBase#0" expanded="false" />
+                <element signature="method#getRetweetsOfMe#0;class#TwitterBase#0" expanded="false" />
+                <element signature="method#showStatus#0;class#TwitterBase#0" expanded="false" />
+                <element signature="method#retweetStatus#0;class#TwitterBase#0" expanded="false" />
+                <element signature="method#destroyStatus#0;class#TwitterBase#0" expanded="false" />
+                <element signature="method#showUser#0;class#TwitterBase#0" expanded="false" />
+                <element signature="method#showUser#1;class#TwitterBase#0" expanded="false" />
+                <element signature="method#getRetweets#0;class#TwitterBase#0" expanded="false" />
+                <element signature="method#getRetweetedBy#0;class#TwitterBase#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -99,24 +137,24 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/utilities/Time.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/Tweet.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TimelineMethods.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/StatusMethods.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/SearchMethods.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/SearchQuery.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/SearchResultJSON.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/TweetJSON.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/auth/Authorizer.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="52" />
+    <option name="y" value="24" />
     <option name="width" value="1301" />
-    <option name="height" value="716" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -193,6 +231,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="twitterapi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Boid Twitter API" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Boid Twitter API" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="twitterapi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -407,8 +467,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="52" width="1301" height="716" extended-state="7" />
-    <editor active="true" />
+    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -424,7 +484,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16839585" sideWeight="0.6700337" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16839585" sideWeight="0.6700337" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -566,48 +626,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="111" selection-start="1637" selection-end="1637" vertical-scroll-proportion="0.46655232">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="24" selection-start="655" selection-end="655" vertical-scroll-proportion="0.29565218">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="16" selection-start="491" selection-end="491" vertical-scroll-proportion="0.45637584">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="44" selection-start="777" selection-end="777" vertical-scroll-proportion="0.22818792">
-          <folding>
-            <element signature="method#getPublicTimeline#0;class#TwitterBase#0" expanded="false" />
-            <element signature="method#getHomeTimeline#0;class#TwitterBase#0" expanded="false" />
-            <element signature="method#getMentions#0;class#TwitterBase#0" expanded="false" />
-            <element signature="method#getUserTimeline#0;class#TwitterBase#0" expanded="false" />
-            <element signature="method#getUserTimeline#1;class#TwitterBase#0" expanded="false" />
-            <element signature="method#getUserTimeline#2;class#TwitterBase#0" expanded="false" />
-            <element signature="method#getRetweetsOfMe#0;class#TwitterBase#0" expanded="false" />
-            <element signature="method#showStatus#0;class#TwitterBase#0" expanded="false" />
-            <element signature="method#retweetStatus#0;class#TwitterBase#0" expanded="false" />
-            <element signature="method#destroyStatus#0;class#TwitterBase#0" expanded="false" />
-            <element signature="method#showUser#0;class#TwitterBase#0" expanded="false" />
-            <element signature="method#showUser#1;class#TwitterBase#0" expanded="false" />
-            <element signature="method#getRetweets#0;class#TwitterBase#0" expanded="false" />
-            <element signature="method#getRetweetedBy#0;class#TwitterBase#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -655,7 +677,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/auth/Authorizer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0036036037">
+        <state line="65" column="19" selection-start="2733" selection-end="2733" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="docComment;class#Authorizer#0" expanded="false" />
             <element signature="method#Authorizer#0;class#Authorizer#0" expanded="false" />
@@ -663,7 +685,44 @@
             <element signature="docComment;method#getUrl#0;class#Authorizer#0" expanded="false" />
             <element signature="method#getUrl#0;class#Authorizer#0" expanded="false" />
             <element signature="docComment;method#finish#0;class#Authorizer#0" expanded="false" />
-            <element signature="method#finish#0;class#Authorizer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="46" selection-start="471" selection-end="471" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="1640" selection-end="1640" vertical-scroll-proportion="0.49571183">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="31" selection-start="782" selection-end="782" vertical-scroll-proportion="0.22818792">
+          <folding>
+            <element signature="method#getPublicTimeline#0;class#TwitterBase#0" expanded="false" />
+            <element signature="method#getHomeTimeline#0;class#TwitterBase#0" expanded="false" />
+            <element signature="method#getMentions#0;class#TwitterBase#0" expanded="false" />
+            <element signature="method#getUserTimeline#0;class#TwitterBase#0" expanded="false" />
+            <element signature="method#getUserTimeline#1;class#TwitterBase#0" expanded="false" />
+            <element signature="method#getUserTimeline#2;class#TwitterBase#0" expanded="false" />
+            <element signature="method#getRetweetsOfMe#0;class#TwitterBase#0" expanded="false" />
+            <element signature="method#showStatus#0;class#TwitterBase#0" expanded="false" />
+            <element signature="method#retweetStatus#0;class#TwitterBase#0" expanded="false" />
+            <element signature="method#destroyStatus#0;class#TwitterBase#0" expanded="false" />
+            <element signature="method#showUser#0;class#TwitterBase#0" expanded="false" />
+            <element signature="method#showUser#1;class#TwitterBase#0" expanded="false" />
+            <element signature="method#getRetweets#0;class#TwitterBase#0" expanded="false" />
+            <element signature="method#getRetweetedBy#0;class#TwitterBase#0" expanded="false" />
           </folding>
         </state>
       </provider>

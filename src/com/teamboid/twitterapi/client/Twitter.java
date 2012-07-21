@@ -11,6 +11,8 @@ import org.scribe.oauth.OAuthService;
  */
 public interface Twitter {
 
+    User verifyCredentials() throws Exception;
+
     //OAuth Methods
     String getAccessToken();
 
