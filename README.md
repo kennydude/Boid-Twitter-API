@@ -16,8 +16,11 @@ String url = auth.getUrl();
  * This URL should now be opened in the web browser, it will show Twitter's authentication page
  * where the user logs in and clicks "Authorize." The web browser will then redirect to your
  * callback URL. Your app should intercept this callback.
+ *
+ * An example of the callback: myapp://callback?oauth_token=[oauth_token]&oauth_verifier=[oauth_verifier]
  */
 
+//
 // 'oauth_verifier' should be replaced with the 'oauth_verifier' query parameter sent through
 // the callback from the web browser. You now are logged in.
 Twitter twitter = auth.finish("oauth_verifier");
