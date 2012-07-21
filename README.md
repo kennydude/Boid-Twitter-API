@@ -71,3 +71,21 @@ Chances are, you'll wanna get information about the user after they log in.
 User user = twitter.verifyCredentials();
 System.out.println("Successfully authenticated " + user.getName() + " (@" + user.getScreenName() + ")!");
 ```
+Updating your Status
+----------------------
+One of the main functions of Twitter is tweeting, this is done by updating your status. There is two ways of doing this, one is very simple, and one is very detailed.
+
+```java
+twitter.updateStatus("I'm tweeting using Boid for Android's Twitter API library!");
+```
+As you can see, it only has one parameter and that parameter is a string, so it's very quick and easy. There's a more detailed version of this however.
+
+```java
+twitter.updateStatus(StatusUpdate.create(
+                "I'm tweeting using Boid for Android's Twitter API library!",  //Text
+                226787752644079617l,  //In-reply-to status ID
+                new GeoLocation(123424.0, 676424.0),  //Location
+                true,   //Display exact coordinates
+                null));  //Twitter place ID
+```
+This more detailed version includes the text of the Tweet, the optional in_reply_to_status_id (the ID of another tweet that this tweet is in reply to), the current location of the user (e.g. from GPS on a phone), whether or not to display exact coordinates when location is attached (as opposed to the name of the place), and the Twitter place ID that corresponds with the current location of the user.
