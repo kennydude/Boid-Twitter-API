@@ -40,25 +40,31 @@ public class RequestHandler {
     protected JSONObject getAuth(String url) throws Exception {
         OAuthRequest request = new OAuthRequest(Verb.GET, url);
         oauth.signRequest(token, request);
-        //TODO make sure this uses the correct encoding
-        Response response = request.send();
-        return new JSONObject(response.getBody());
+        String body = request.send().getBody();
+        if(body.contains("\"error\":")) {
+            throw new TwitterException(new JSONObject(body));
+        }
+        return new JSONObject(body);
     }
     protected JSONArray getArrayAuth(String url) throws Exception {
-        System.out.println("Requesting array from: " + url);
         OAuthRequest request = new OAuthRequest(Verb.GET, url);
         oauth.signRequest(token, request);
-        //TODO make sure this uses the correct encoding
-        Response response = request.send();
-        return new JSONArray(response.getBody());
+        String body = request.send().getBody();
+        if(body.contains("\"error\":")) {
+            throw new TwitterException(new JSONObject(body));
+        }
+        return new JSONArray(body);
     }
-    protected JSONObject postAuth(String url, List<BasicNameValuePair> bodyParams) throws JSONException {
+    protected JSONObject postAuth(String url, List<BasicNameValuePair> bodyParams) throws Exception {
         OAuthRequest request = new OAuthRequest(Verb.POST, url);
         for(BasicNameValuePair pair : bodyParams) {
             request.addBodyParameter(pair.getName(), pair.getValue());
         }
         oauth.signRequest(token, request);
-        Response response = request.send();
-        return new JSONObject(response.getBody());
+        String body = request.send().getBody();
+        if(body.contains("\"error\":")) {
+            throw new TwitterException(new JSONObject(body));
+        }
+        return new JSONObject(body);
     }
 }

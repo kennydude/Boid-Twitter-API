@@ -7,12 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f412002-acd0-4134-9f77-25605c86c48e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/auth/Authorizer.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/auth/Authorizer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusJSON.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusJSON.java" />
     </list>
     <ignored path="Boid Twitter API.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,71 +66,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TwitterBase.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java">
+      <file leaf-file-name="RequestHandler.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="121" column="15" selection-start="4428" selection-end="4428" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#getPublicTimeline#0;class#TwitterBase#0" expanded="false" />
-                <element signature="method#getHomeTimeline#0;class#TwitterBase#0" expanded="false" />
-                <element signature="method#getMentions#0;class#TwitterBase#0" expanded="false" />
-                <element signature="method#getUserTimeline#0;class#TwitterBase#0" expanded="false" />
-                <element signature="method#getUserTimeline#1;class#TwitterBase#0" expanded="false" />
-                <element signature="method#getUserTimeline#2;class#TwitterBase#0" expanded="false" />
-                <element signature="method#getRetweetsOfMe#0;class#TwitterBase#0" expanded="false" />
-                <element signature="method#showStatus#0;class#TwitterBase#0" expanded="false" />
-                <element signature="method#retweetStatus#0;class#TwitterBase#0" expanded="false" />
-                <element signature="method#destroyStatus#0;class#TwitterBase#0" expanded="false" />
-                <element signature="method#showUser#0;class#TwitterBase#0" expanded="false" />
-                <element signature="method#showUser#1;class#TwitterBase#0" expanded="false" />
-                <element signature="method#getRetweets#0;class#TwitterBase#0" expanded="false" />
-                <element signature="method#getRetweetedBy#0;class#TwitterBase#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Status.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/Status.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="41" selection-start="389" selection-end="389" vertical-scroll-proportion="0.0">
+            <state line="40" column="14" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.3137584">
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StatusJSON.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusJSON.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="12" selection-start="3781" selection-end="3781" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="docComment;class#StatusJSON#0" expanded="false" />
-                <element signature="e#3600#3691#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StatusUpdate.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusUpdate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="82" selection-start="2127" selection-end="2127" vertical-scroll-proportion="0.42024013">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2104#2124#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Twitter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="30" selection-start="1601" selection-end="1601" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -152,7 +88,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/utilities/Time.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/Tweet.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TimelineMethods.java" />
@@ -163,11 +98,12 @@
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/TweetJSON.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/auth/Authorizer.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusJSON.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusUpdate.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterException.java" />
       </list>
     </option>
   </component>
@@ -273,7 +209,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="status" />
+              <option name="myItemId" value="client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -489,14 +425,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329582" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -505,7 +441,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35035914" sideWeight="0.6700337" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22346368" sideWeight="0.670418" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -574,13 +510,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/search/GeoCode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="32" selection-start="444" selection-end="444" vertical-scroll-proportion="0.5419463">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="20" selection-start="148" selection-end="148" vertical-scroll-proportion="0.45637584">
@@ -666,23 +595,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="26" selection-start="676" selection-end="676" vertical-scroll-proportion="0.20411664">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="51" selection-start="777" selection-end="777" vertical-scroll-proportion="0.26243567">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="30" selection-start="1601" selection-end="1601" vertical-scroll-proportion="0.0">
+        <state line="52" column="30" selection-start="1601" selection-end="1601" vertical-scroll-proportion="0.6792453">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -731,11 +646,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusUpdate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="82" selection-start="2127" selection-end="2127" vertical-scroll-proportion="0.42024013">
+        <state line="51" column="26" selection-start="2343" selection-end="2343" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2104#2124#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="51" selection-start="777" selection-end="777" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="60" selection-start="665" selection-end="665" vertical-scroll-proportion="0.71308726">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="14" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.3137584">
+          <folding />
         </state>
       </provider>
     </entry>
