@@ -4,6 +4,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,8 +15,12 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 
+import java.util.List;
+
 /**
  * Handles web requests for {@link TwitterBase}
+ *
+ * @author Aidan Follestad
  */
 public class RequestHandler {
 
@@ -46,5 +51,14 @@ public class RequestHandler {
         //TODO make sure this uses the correct encoding
         Response response = request.send();
         return new JSONArray(response.getBody());
+    }
+    protected JSONObject postAuth(String url, List<BasicNameValuePair> bodyParams) throws JSONException {
+        OAuthRequest request = new OAuthRequest(Verb.POST, url);
+        for(BasicNameValuePair pair : bodyParams) {
+            request.addBodyParameter(pair.getName(), pair.getValue());
+        }
+        oauth.signRequest(token, request);
+        Response response = request.send();
+        return new JSONObject(response.getBody());
     }
 }

@@ -27,48 +27,52 @@ import java.util.Calendar;
 public class StatusJSON implements Status {
 
     public StatusJSON(JSONObject json) throws Exception {
-        _createdAt = Time.getTwitterDate(json.getString("created_at"));
-        _truncated = json.getBoolean("truncated");
-        _favorited = json.getBoolean("favorited");
-        JSONObject entities = json.getJSONObject("entities");
-        JSONArray urls = entities.optJSONArray("urls");
-        if(urls != null) {
-            ArrayList<UrlEntity> toSet = new ArrayList<UrlEntity>();
-            for(int i = 0; i < urls.length(); i++) {
-                toSet.add(new UrlEntityJSON(urls.getJSONObject(i)));
-            }
-            _urlEntities = toSet.toArray(new UrlEntity[0]);
+        if(!json.isNull("created_at")) {
+            _createdAt = Time.getTwitterDate(json.getString("created_at"));
         }
-        JSONArray hashtags = entities.optJSONArray("hashtags");
-        if(hashtags != null) {
-            ArrayList<HashtagEntity> toSet = new ArrayList<HashtagEntity>();
-            for(int i = 0; i < urls.length(); i++) {
-                toSet.add(new HashtagEntityJSON(urls.getJSONObject(i)));
+        _truncated = json.optBoolean("truncated");
+        _favorited = json.optBoolean("favorited");
+        if (!json.isNull("entities")) {
+            JSONObject entities = json.getJSONObject("entities");
+            JSONArray urls = entities.optJSONArray("urls");
+            if (urls != null) {
+                ArrayList<UrlEntity> toSet = new ArrayList<UrlEntity>();
+                for (int i = 0; i < urls.length(); i++) {
+                    toSet.add(new UrlEntityJSON(urls.getJSONObject(i)));
+                }
+                _urlEntities = toSet.toArray(new UrlEntity[0]);
             }
-            _hashtagEntities = toSet.toArray(new HashtagEntity[0]);
-        }
-        JSONArray mentions = entities.optJSONArray("user_mentions");
-        if(mentions != null) {
-            ArrayList<MentionEntity> toSet = new ArrayList<MentionEntity>();
-            for(int i = 0; i < urls.length(); i++) {
-                toSet.add(new MentionEntityJSON(urls.getJSONObject(i)));
+            JSONArray hashtags = entities.optJSONArray("hashtags");
+            if (hashtags != null) {
+                ArrayList<HashtagEntity> toSet = new ArrayList<HashtagEntity>();
+                for (int i = 0; i < urls.length(); i++) {
+                    toSet.add(new HashtagEntityJSON(urls.getJSONObject(i)));
+                }
+                _hashtagEntities = toSet.toArray(new HashtagEntity[0]);
             }
-            _mentionEntities = toSet.toArray(new MentionEntity[0]);
-        }
-        JSONArray media = entities.optJSONArray("media");
-        if(media != null) {
-            ArrayList<MediaEntity> toSet = new ArrayList<MediaEntity>();
-            for(int i = 0; i < urls.length(); i++) {
-                toSet.add(new MediaEntityJSON(urls.getJSONObject(i)));
+            JSONArray mentions = entities.optJSONArray("user_mentions");
+            if (mentions != null) {
+                ArrayList<MentionEntity> toSet = new ArrayList<MentionEntity>();
+                for (int i = 0; i < urls.length(); i++) {
+                    toSet.add(new MentionEntityJSON(urls.getJSONObject(i)));
+                }
+                _mentionEntities = toSet.toArray(new MentionEntity[0]);
             }
-            _mediaEntities = toSet.toArray(new MediaEntity[0]);
+            JSONArray media = entities.optJSONArray("media");
+            if (media != null) {
+                ArrayList<MediaEntity> toSet = new ArrayList<MediaEntity>();
+                for (int i = 0; i < urls.length(); i++) {
+                    toSet.add(new MediaEntityJSON(urls.getJSONObject(i)));
+                }
+                _mediaEntities = toSet.toArray(new MediaEntity[0]);
+            }
         }
         if(!json.isNull("text")) {
             _text = json.getString("text");
         }
-        _id = json.getLong("id");
-        _retweetCount = json.getLong("retweet_count");
-        _retweeted = json.getBoolean("retweeted");
+        _id = json.optLong("id");
+        _retweetCount = json.optLong("retweet_count");
+        _retweeted = json.optBoolean("retweeted");
         if(!json.isNull("geo")) {
             _geo = new GeoLocation(json.getJSONObject("geo"));
         }
@@ -76,10 +80,12 @@ public class StatusJSON implements Status {
         if(!json.isNull("place")) {
             _place = new PlaceJSON(json.getJSONObject("place"));
         }
-        _source = json.getString("source");
+        _source = json.optString("source");
         //TODO Strips the HTML anchor, leaving just the name of the app. Will only work on Android.
         //_sourcePlain = Html.fromHtml(json.getString("source")).toString();
-        _user = new UserJSON(json.getJSONObject("user"));
+        if(!json.isNull("user")) {
+            _user = new UserJSON(json.getJSONObject("user"));
+        }
         _inReplyToScreenName = json.optString("in_reply_to_screen_name");
         _inReplyToStatusId = json.optLong("in_reply_to_status_id");
     }

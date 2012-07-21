@@ -1,8 +1,10 @@
 package com.teamboid.twitterapi.client;
 
+import android.provider.ContactsContract;
 import com.teamboid.twitterapi.search.SearchQuery;
 import com.teamboid.twitterapi.search.SearchResult;
 import com.teamboid.twitterapi.status.Status;
+import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.user.User;
 import org.scribe.oauth.OAuthService;
 
@@ -47,6 +49,10 @@ public interface Twitter {
     Status[] getRetweets(long statusId, int count) throws Exception;
 
     User[] getRetweetedBy(long statusId, Paging paging) throws Exception;
+
+    Status updateStatus(String update) throws Exception;
+
+    Status updateStatus(StatusUpdate update) throws Exception;
 
     //SEARCH METHODS
     SearchResult search(SearchQuery query) throws Exception;

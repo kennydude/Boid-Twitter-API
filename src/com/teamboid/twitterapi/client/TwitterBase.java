@@ -3,15 +3,11 @@ package com.teamboid.twitterapi.client;
 import com.teamboid.twitterapi.search.SearchQuery;
 import com.teamboid.twitterapi.search.SearchResult;
 import com.teamboid.twitterapi.search.SearchResultJSON;
-import com.teamboid.twitterapi.search.Tweet;
 import com.teamboid.twitterapi.status.Status;
 import com.teamboid.twitterapi.status.StatusJSON;
+import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.user.User;
 import com.teamboid.twitterapi.user.UserJSON;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.TwitterApi;
-import org.scribe.model.Token;
-import org.scribe.oauth.OAuthService;
 
 import java.net.URLEncoder;
 
@@ -118,6 +114,17 @@ public class TwitterBase extends RequestHandler implements Twitter {
         String url = Urls.RETWEETED_BY.replace("{id}", Long.toString(statusId));
         if(paging != null) url += paging.getUrlString('?', false);
         return UserJSON.createUserList(getArrayAuth(url));
+    }
+
+    @Override
+    public Status updateStatus(String update) throws Exception {
+        StatusUpdate su = StatusUpdate.create(update, 0, null, false, null);
+        return updateStatus(su);
+    }
+
+    @Override
+    public Status updateStatus(StatusUpdate update) throws Exception {
+        return new StatusJSON(postAuth(Urls.UPDATE_STATUS, update.getBodyParams()));
     }
 
     @Override

@@ -9,6 +9,8 @@ import org.scribe.model.Verifier;
 import org.scribe.oauth.OAuthService;
 
 /**
+ * Used to authenticate accounts and get logged in instances of {@link Twitter}
+ *
  * @author Aidan Follestad
  */
 public class Authorizer {
