@@ -44,3 +44,18 @@ Twitter twitter = auth.getAuthorizedInstance(
 ```
 
 You are now authenticated again for the account you added in the first section.
+
+Retrieving the home timeline
+------------------
+Now that you're logged in, you can start requesting resources from the Twitter API. For an example, here's how you would retrieve your home timeline (list of Tweets from all the people you follow).
+
+```java
+//Retrieve page 1, get 50 tweets.
+Status[] homeTimeline = twitter.getHomeTimeline(new Paging(50, 1));
+for(Status status : homeTimeline) {
+                User user = status.getUser();
+                System.out.println("@" + user.getScreenName() + " -- " + status.getText());
+}
+```
+
+This will retieve the home timeline, and print out each Tweet to the console.
