@@ -38,12 +38,44 @@ public class Paging {
     public long getSinceId() { return _sinceId; }
     public long getMaxId() { return _maxId; }
 
-    public String getUrlString() {
+    public String getUrlString(char startingCharacter, boolean includeSinceMaxId) {
         String toReturn = "";
-        if(_count > 0) toReturn += "&count=" + _count;
-        if(_page > 0) toReturn += "&page=" + _page;
-        if(_sinceId > 0) toReturn += "&since_id=" + _sinceId;
-        if(_maxId > 0) toReturn += "&max_id=" + _maxId;
+        boolean insertedStarting = false;
+        if(_count > 0) {
+            if(!insertedStarting) {
+                toReturn += startingCharacter;
+                insertedStarting = true;
+            } else toReturn += "&";
+            toReturn += "count=" + _count;
+        }
+        if(_page > 0) {
+            if(!insertedStarting) {
+                toReturn += startingCharacter;
+                insertedStarting = true;
+            } else toReturn += "&";
+            toReturn += "page=" + _page;
+        }
+        if(includeSinceMaxId) {
+            if(_sinceId > 0) {
+                if(!insertedStarting) {
+                    toReturn += startingCharacter;
+                    insertedStarting = true;
+                } else toReturn += "&";
+                toReturn += "since_id=" + _sinceId;
+            }
+            if(_maxId > 0) {
+                if(!insertedStarting) {
+                    toReturn += startingCharacter;
+                    insertedStarting = true;
+                } else toReturn += "&";
+                toReturn += "max_id=" + _maxId;
+            }
+        }
         return toReturn;
+    }
+
+    @Override
+    public String toString() {
+        return getUrlString('?', true);
     }
 }

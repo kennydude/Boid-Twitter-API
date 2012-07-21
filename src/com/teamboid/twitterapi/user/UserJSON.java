@@ -1,9 +1,11 @@
 package com.teamboid.twitterapi.user;
 
 import com.teamboid.twitterapi.utilities.Time;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -119,4 +121,12 @@ public class UserJSON implements User {
 
     @Override
     public long getFavoritesCount() { return _favoritesCount; }
+
+    public static User[] createUserList(JSONArray array) throws Exception {
+        ArrayList<User> toReturn = new ArrayList<User>();
+        for(int i = 0; i < array.length(); i++) {
+            toReturn.add(new UserJSON(array.getJSONObject(i)));
+        }
+        return toReturn.toArray(new User[0]);
+    }
 }
