@@ -62,3 +62,12 @@ for(Status status : homeTimeline) {
 ```
 
 This will retieve the home timeline, and print out each Tweet to the console.
+
+Getting the current user
+---------------------
+Chances are, you'll wanna get information about the user after they log in.
+
+```java
+User user = twitter.verifyCredentials();
+System.out.println("Successfully authenticated " + user.getName() + " (@" + user.getScreenName() + ")!");
+```
