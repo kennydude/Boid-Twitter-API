@@ -7,13 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f412002-acd0-4134-9f77-25605c86c48e" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/tweet/Tweet.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/Tweet.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/tweet/TweetJSON.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/TweetJSON.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gen/com/teamboid/twitterapi/BuildConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/gen/com/teamboid/twitterapi/R.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable-hdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable-ldpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable-mdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/drawable-xhdpi/ic_launcher.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Paging.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Paging.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/user/UserJSON.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/user/UserJSON.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/Tweet.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/Tweet.java" />
     </list>
     <ignored path="Boid Twitter API.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -82,14 +86,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TweetJSON.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TweetJSON.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/search/TweetJSON.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="39" selection-start="168" selection-end="168" vertical-scroll-proportion="0.24504505">
+            <state line="14" column="65" selection-start="355" selection-end="355" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#345#352#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tweet.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/search/Tweet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="22" selection-start="264" selection-end="264" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="9" selection-start="135" selection-end="135" vertical-scroll-proportion="0.4190141">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,7 +131,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusJSON.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TimelineMethods.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/user/UserJSON.java" />
@@ -119,17 +142,18 @@
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/SearchQuery.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/SearchResults.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/Tweet.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/SearchResult.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/TweetJSON.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/SearchResultJSON.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/TweetJSON.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/Tweet.java" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="66" />
     <option name="y" value="52" />
-    <option name="width" value="913" />
+    <option name="width" value="860" />
     <option name="height" value="716" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -189,90 +213,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Boid Twitter API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Boid Twitter API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Boid Twitter API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="twitterapi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Boid Twitter API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Boid Twitter API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="twitterapi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="status" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Boid Twitter API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Boid Twitter API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="twitterapi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Boid Twitter API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Boid Twitter API" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="twitterapi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="auth" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -487,8 +427,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="66" y="52" width="913" height="716" extended-state="4" />
-    <editor active="true" />
+    <frame x="66" y="52" width="860" height="716" extended-state="4" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -504,7 +444,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2566474" sideWeight="0.6700337" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25985223" sideWeight="0.6700337" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -573,13 +513,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TimelineMethods.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="61" selection-start="580" selection-end="580" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/user/UserJSON.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="126" column="20" selection-start="3896" selection-end="3896" vertical-scroll-proportion="0.82885903">
@@ -660,13 +593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/search/Tweet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="4" selection-start="121" selection-end="121" vertical-scroll-proportion="0.20950705">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusJSON.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="157" column="4" selection-start="5677" selection-end="5994" vertical-scroll-proportion="0.5861423">
@@ -692,11 +618,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/search/TweetJSON.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="39" selection-start="168" selection-end="168" vertical-scroll-proportion="0.24504505">
+        <state line="14" column="65" selection-start="355" selection-end="355" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#345#352#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/search/Tweet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="22" selection-start="264" selection-end="264" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="9" selection-start="135" selection-end="135" vertical-scroll-proportion="0.4190141">
+          <folding />
         </state>
       </provider>
     </entry>
