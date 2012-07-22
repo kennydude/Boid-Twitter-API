@@ -160,3 +160,7 @@ StatusUpdate update = StatusUpdate.create(
     .addMedia(new File("path_to_file"));
 ```
 The 'addMedia(File file)' function returns a StatusUpdate object so you can call the function like a chain. Now you just follow the section above to post the StatusUpdate to Twitter.
+
+Continuing On
+----------------
+Other methods in the library will be pretty easy to figure out once you understand all of the above in this read me. A good place to start is the Twitter interface, it contains all basic functions for using Twitter.
