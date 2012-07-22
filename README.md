@@ -94,7 +94,7 @@ public void processCallback(Intent callback) {
         * If the callback URL was myapp://callback?oauth_token=[oauth_token]&oauth_verifier=[oauth_verifier]
         * Then this function below will set the string to the value [oauth_verifier].
         *
-        * callback.getData() returns the entire URL, getQueryParameter extras the oauth_verifier parameter.
+        * callback.getData() returns the entire URL, getQueryParameter() extracts the oauth_verifier parameter.
         */
         String oauth_verifier = callback.getData().getQueryParameter("oauth_verifier");
         Twitter twitter = auth.getAuthorizedInstance(oauth_verifier);
