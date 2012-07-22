@@ -1,5 +1,7 @@
 package com.teamboid.twitterapi.client;
 
+import com.teamboid.twitterapi.dm.DirectMessage;
+import com.teamboid.twitterapi.dm.DirectMessageJSON;
 import com.teamboid.twitterapi.search.SearchQuery;
 import com.teamboid.twitterapi.search.SearchResult;
 import com.teamboid.twitterapi.search.SearchResultJSON;
@@ -8,8 +10,11 @@ import com.teamboid.twitterapi.status.StatusJSON;
 import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.user.User;
 import com.teamboid.twitterapi.user.UserJSON;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TwitterBase extends RequestHandler implements Twitter {
 
@@ -82,7 +87,7 @@ public class TwitterBase extends RequestHandler implements Twitter {
 
     @Override
     public Status destroyStatus(long statusId) throws Exception {
-        return new StatusJSON(getObject(Urls.DESTROY_STATUS.replace("{id}", Long.toString(statusId))));
+        return new StatusJSON(postObject(Urls.DESTROY_STATUS.replace("{id}", Long.toString(statusId)), null, null));
     }
 
     @Override
@@ -129,9 +134,54 @@ public class TwitterBase extends RequestHandler implements Twitter {
 
     @Override
     public User[] searchUsers(String query, int page, int perPage) throws Exception {
-        String url = Urls.SEARCH_USERS + "&query=" + URLEncoder.encode(query, "UTF8");
+        String url = Urls.SEARCH_USERS + "&query=" + encode(query);
         if(page > 0) url += "&page=" + page;
         if(perPage > 0) url += "&per_page=" + perPage;
         return UserJSON.createUserList(getArray(url));
+    }
+
+    @Override
+    public DirectMessage[] getDirectMessages(Paging paging) throws Exception {
+        String url = Urls.DIRECT_MESSAGES;
+        if(paging != null) url += paging.getUrlString('&', true);
+        return DirectMessageJSON.createMessageList(getArray(url));
+    }
+
+    @Override
+    public DirectMessage[] getSentDirectMessages(Paging paging) throws Exception {
+        String url = Urls.DIRECT_MESSAGES_SENT;
+        if(paging != null) url += paging.getUrlString('&', true);
+        return DirectMessageJSON.createMessageList(getArray(url));
+    }
+
+    @Override
+    public DirectMessage createDirectMessage(String screenName, String text) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("text", encode(text)));
+        pairs.add(new BasicNameValuePair("screen_name", screenName));
+        return new DirectMessageJSON(postObject(Urls.CREATE_DIRECT_MESSAGE, pairs, null));
+    }
+
+    @Override
+    public DirectMessage createDirectMessage(long userId, String text) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("text", encode(text)));
+        pairs.add(new BasicNameValuePair("user_id", Long.toString(userId)));
+        return new DirectMessageJSON(postObject(Urls.CREATE_DIRECT_MESSAGE, pairs, null));
+    }
+
+    @Override
+    public DirectMessage showDirectMessage(long msgId) throws Exception {
+        return new DirectMessageJSON(getObject(Urls.SHOW_DIRECT_MESSAGE.replace("{id}", Long.toString(msgId))));
+    }
+
+    @Override
+    public DirectMessage destroyDirectMessage(long msgId) throws Exception {
+        return new DirectMessageJSON(deleteObject(Urls.DESTROY_DIRECT_MESSAGE.replace("{id}", Long.toString(msgId))));
+    }
+
+    @Override
+    public void getRelatedResults(long statusId) throws Exception {
+        System.out.println(getArray(Urls.RELATED_RESULTS.replace("{id}", Long.toString(statusId))).toString(4));
     }
 }

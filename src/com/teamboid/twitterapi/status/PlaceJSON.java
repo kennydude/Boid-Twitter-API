@@ -14,7 +14,7 @@ public class PlaceJSON implements Place {
      */
     public PlaceJSON(JSONObject json) throws Exception {
         name = json.getString("name");
-        streetAddress = json.getString("street_address");
+        streetAddress = json.optString("street_address");
         countryCode = json.getString("country_code");
         id = json.getString("id");
         country = json.getString("country");

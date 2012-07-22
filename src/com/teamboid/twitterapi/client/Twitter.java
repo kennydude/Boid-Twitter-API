@@ -1,6 +1,7 @@
 package com.teamboid.twitterapi.client;
 
 import android.provider.ContactsContract;
+import com.teamboid.twitterapi.dm.DirectMessage;
 import com.teamboid.twitterapi.search.SearchQuery;
 import com.teamboid.twitterapi.search.SearchResult;
 import com.teamboid.twitterapi.status.Status;
@@ -55,4 +56,20 @@ public interface Twitter {
     SearchResult search(SearchQuery query) throws Exception;
 
     User[] searchUsers(String query, int page, int perPage) throws Exception;
+
+    //DIRECT MESSAGE METHODS
+    DirectMessage[] getDirectMessages(Paging paging) throws Exception;
+
+    DirectMessage[] getSentDirectMessages(Paging paging) throws Exception;
+
+    DirectMessage createDirectMessage(String screenName, String text) throws Exception;
+
+    DirectMessage createDirectMessage(long userId, String text) throws Exception;
+
+    DirectMessage showDirectMessage(long msgId) throws Exception;
+
+    DirectMessage destroyDirectMessage(long msgId) throws Exception;
+
+    //EXPERIMENTAL METHODS
+    void getRelatedResults(long statusId) throws Exception;
 }

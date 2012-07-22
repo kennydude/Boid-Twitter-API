@@ -1,5 +1,6 @@
 package com.teamboid.twitterapi.status;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,11 +14,9 @@ public class GeoLocation {
         longitude = _longitude;
     }
     public GeoLocation(JSONObject json) throws JSONException {
-        String coordinates = json.getString("coordinates");
-        coordinates = coordinates.substring(1, coordinates.length() - 1);
-        String[] point = coordinates.split(",");
-        latitude = Double.parseDouble(point[0]);
-        longitude = Double.parseDouble(point[1]);
+        JSONArray coordinates = json.getJSONArray("coordinates");
+        latitude = coordinates.getDouble(0);
+        longitude = coordinates.getDouble(1);
     }
 
     private double latitude;

@@ -1,5 +1,6 @@
 package com.teamboid.twitterapi.status;
 
+import com.teamboid.twitterapi.client.RequestHandler;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.File;
@@ -78,7 +79,7 @@ public class StatusUpdate {
      */
     public List<BasicNameValuePair> getBodyParams() {
         ArrayList<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
-        pairs.add(new BasicNameValuePair("status", _status));
+        pairs.add(new BasicNameValuePair("status", RequestHandler.encode(_status)));
         if(_inReplyToStatusId > 0) {
             pairs.add(new BasicNameValuePair("in_reply_to_status_id", Long.toString(_inReplyToStatusId)));
         }

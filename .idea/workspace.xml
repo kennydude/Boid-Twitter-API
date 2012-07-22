@@ -8,7 +8,13 @@
   <component name="ChangeListManager">
     <list default="true" id="9f412002-acd0-4134-9f77-25605c86c48e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/auth/Authorizer.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/auth/Authorizer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/GeoLocation.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/GeoLocation.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/PlaceJSON.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/PlaceJSON.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusUpdate.java" afterPath="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusUpdate.java" />
     </list>
     <ignored path="Boid Twitter API.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,13 +72,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Authorizer.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/auth/Authorizer.java">
+      <file leaf-file-name="TwitterBase.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="40" selection-start="2656" selection-end="2677" vertical-scroll-proportion="0.43910807">
+            <state line="179" column="0" selection-start="6944" selection-end="6944" vertical-scroll-proportion="0.62092626">
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#5966#5986#0" expanded="true" />
+                <element signature="e#6381#6401#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Urls.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="0" selection-start="1971" selection-end="1971" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -90,22 +106,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/StatusMethods.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/SearchMethods.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/SearchQuery.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/SearchResultJSON.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/search/TweetJSON.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusJSON.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterException.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusUpdate.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" />
-        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java" />
         <option value="$PROJECT_DIR$/src/com/google/gdata/util/common/base/Preconditions.java" />
         <option value="$PROJECT_DIR$/src/oauth/signpost/OAuthProvider.java" />
         <option value="$PROJECT_DIR$/src/org/apache/commons/codec/StringEncoderComparator.java" />
         <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/auth/Authorizer.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/GeoLocation.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/PlaceJSON.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/dm/DirectMessage.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusJSON.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/dm/DirectMessageJSON.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusUpdate.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java" />
+        <option value="$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java" />
       </list>
     </option>
   </component>
@@ -233,7 +249,33 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="auth" />
+              <option name="myItemId" value="dm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Boid Twitter API" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Boid Twitter API" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="twitterapi" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -499,7 +541,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22346368" sideWeight="0.670418" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25379092" sideWeight="0.670418" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -568,96 +610,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/search/SearchQuery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="36" selection-start="1055" selection-end="1055" vertical-scroll-proportion="0.45637584" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/search/SearchResultJSON.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="63" selection-start="225" selection-end="225" vertical-scroll-proportion="0.19966443" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/search/TweetJSON.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="13" selection-start="3216" selection-end="3216" vertical-scroll-proportion="0.4295302" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/Status.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="41" selection-start="389" selection-end="389" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusJSON.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="12" selection-start="3781" selection-end="3781" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="60" selection-start="665" selection-end="665" vertical-scroll-proportion="0.71308726" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="22" selection-start="475" selection-end="475" vertical-scroll-proportion="0.34991422">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="44" selection-start="1482" selection-end="1482" vertical-scroll-proportion="0.4373928">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="91" selection-start="1125" selection-end="1125" vertical-scroll-proportion="0.17495711">
-          <folding>
-            <element signature="docComment;class#RequestHandler#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="120" column="69" selection-start="4373" selection-end="4373" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusUpdate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="18" selection-start="3061" selection-end="3061" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="docComment;class#StatusUpdate#0" expanded="false" />
-            <element signature="method#StatusUpdate#0;class#StatusUpdate#0" expanded="false" />
-            <element signature="docComment;method#addMedia#0;class#StatusUpdate#0" expanded="false" />
-            <element signature="method#addMedia#0;class#StatusUpdate#0" expanded="false" />
-            <element signature="docComment;method#getBodyParams#0;class#StatusUpdate#0" expanded="false" />
-            <element signature="method#getBodyParams#0;class#StatusUpdate#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/google/gdata/util/common/base/Preconditions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="1" selection-start="639" selection-end="639" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/oauth/signpost/OAuthProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="4" selection-start="615" selection-end="615" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/apache/commons/codec/BinaryDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="13" selection-start="921" selection-end="921" vertical-scroll-proportion="0.19966443">
@@ -674,9 +626,128 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/auth/Authorizer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="40" selection-start="2656" selection-end="2677" vertical-scroll-proportion="0.43910807">
+        <state line="63" column="40" selection-start="2656" selection-end="2677" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/Status.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="56" selection-start="1028" selection-end="1028" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/GeoLocation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="65" selection-start="478" selection-end="478" vertical-scroll-proportion="0.39932886">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/PlaceJSON.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="61" selection-start="252" selection-end="252" vertical-scroll-proportion="0.17114094">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/dm/DirectMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="23" selection-start="509" selection-end="509" vertical-scroll-proportion="0.88828826">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/search/SearchResultJSON.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="13" selection-start="118" selection-end="118" vertical-scroll-proportion="0.22284645">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/utilities/Time.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="41" selection-start="467" selection-end="467" vertical-scroll-proportion="0.35915494">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusJSON.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="163" column="39" selection-start="6006" selection-end="6006" vertical-scroll-proportion="0.5658153">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/dm/DirectMessageJSON.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="47" selection-start="1923" selection-end="1923" vertical-scroll-proportion="0.7328094">
+          <folding>
+            <element signature="docComment;class#DirectMessageJSON#0" expanded="false" />
+            <element signature="method#DirectMessageJSON#0;class#DirectMessageJSON#0" expanded="false" />
+            <element signature="method#getCreatedAt#0;class#DirectMessageJSON#0" expanded="false" />
+            <element signature="method#getSenderScreenName#0;class#DirectMessageJSON#0" expanded="false" />
+            <element signature="method#getSender#0;class#DirectMessageJSON#0" expanded="false" />
+            <element signature="method#getText#0;class#DirectMessageJSON#0" expanded="false" />
+            <element signature="method#getRecipientScreenName#0;class#DirectMessageJSON#0" expanded="false" />
+            <element signature="method#getId#0;class#DirectMessageJSON#0" expanded="false" />
+            <element signature="method#getRecipient#0;class#DirectMessageJSON#0" expanded="false" />
+            <element signature="method#getRecipientId#0;class#DirectMessageJSON#0" expanded="false" />
+            <element signature="method#getSenderId#0;class#DirectMessageJSON#0" expanded="false" />
+            <element signature="e#2021#2036#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Twitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="22" selection-start="2151" selection-end="2151" vertical-scroll-proportion="0.6862416">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/status/StatusUpdate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="81" column="83" selection-start="3336" selection-end="3336" vertical-scroll-proportion="0.7084048">
+          <folding>
+            <element signature="docComment;class#StatusUpdate#0" expanded="false" />
+            <element signature="method#StatusUpdate#0;class#StatusUpdate#0" expanded="false" />
+            <element signature="docComment;method#addMedia#0;class#StatusUpdate#0" expanded="false" />
+            <element signature="method#addMedia#0;class#StatusUpdate#0" expanded="false" />
+            <element signature="docComment;method#getBodyParams#0;class#StatusUpdate#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/RequestHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="119" column="27" selection-start="5016" selection-end="5016" vertical-scroll-proportion="0.6006711">
+          <folding>
+            <element signature="docComment;class#RequestHandler#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/Urls.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="1971" selection-end="1971" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/teamboid/twitterapi/client/TwitterBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="179" column="0" selection-start="6944" selection-end="6944" vertical-scroll-proportion="0.62092626">
+          <folding>
+            <element signature="e#5966#5986#0" expanded="true" />
+            <element signature="e#6381#6401#0" expanded="true" />
           </folding>
         </state>
       </provider>

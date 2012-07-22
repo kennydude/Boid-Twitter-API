@@ -5,6 +5,7 @@ import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.HttpMultipartMode;
@@ -22,6 +23,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
@@ -94,12 +97,27 @@ public class RequestHandler {
             request.setEntity(entity);
         } else {
             httpClient = new DefaultHttpClient();
-            request.setEntity(new UrlEncodedFormEntity(p, HTTP.UTF_8));
+            if(p != null) request.setEntity(new UrlEncodedFormEntity(p, HTTP.UTF_8));
         }
         getConsumer().sign(request);
         HttpResponse response = httpClient.execute(request);
         if(response.getStatusLine().getStatusCode() != 200) {
             throw new Exception("HTTP POST failed; " + response.getStatusLine().getReasonPhrase());
+        }
+        String body = EntityUtils.toString(response.getEntity());
+        if(body.contains("\"error\":")) {
+            throw new TwitterException(new JSONObject(body));
+        }
+        return new JSONObject(body);
+    }
+
+    public JSONObject deleteObject(String url) throws Exception {
+        HttpDelete request = new HttpDelete(url);
+        getConsumer().sign(request);
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpResponse response = httpClient.execute(request);
+        if(response.getStatusLine().getStatusCode() != 200) {
+            throw new Exception("HTTP DELETE failed; " + response.getStatusLine().getReasonPhrase());
         }
         String body = EntityUtils.toString(response.getEntity());
         if(body.contains("\"error\":")) {
@@ -121,5 +139,24 @@ public class RequestHandler {
             throw new TwitterException(new JSONObject(body));
         }
         return new JSONArray(body);
+    }
+
+    public static String encode(String value) {
+        String encoded = null;
+        try { encoded = URLEncoder.encode(value, "UTF-8"); }
+        catch (UnsupportedEncodingException e) { e.printStackTrace(); }
+        StringBuilder buf = new StringBuilder(encoded.length());
+        char focus;
+        for (int i = 0; i < encoded.length(); i++) {
+            focus = encoded.charAt(i);
+            if (focus == '*') buf.append("%2A");
+            else if (focus == '+') buf.append("%20");
+            else if (focus == '%' && (i + 1) < encoded.length()
+                    && encoded.charAt(i + 1) == '7' && encoded.charAt(i + 2) == 'E') {
+                buf.append('~');
+                i += 2;
+            } else buf.append(focus);
+        }
+        return buf.toString();
     }
 }
