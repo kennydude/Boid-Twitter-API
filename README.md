@@ -161,6 +161,29 @@ StatusUpdate update = StatusUpdate.create(
 ```
 The 'addMedia(File file)' function returns a StatusUpdate object so you can call the function like a chain. Now you just follow the section above to post the StatusUpdate to Twitter.
 
+Searching for Tweets
+-----------------------
+Using location while searching isn't necessary, but it's kinda cool to use so it's included in this example:
+
+```java
+GeoCode location = new GeoCode(
+    new GeoLocation(44.9541667, -93.1138889),  //Tweets near St. Paul, MN in the United States
+    5, //Within 5 miles of St. Paul
+    GeoCode.DistanceUnit.MI);  //Indicates 5 miles instead of 5 kilometers
+    
+SearchResult results = twitter.search(new SearchQuery(
+    "#Boid",  //Searches for Tweets using the #Boid hashtag
+    new Paging(25, 1),  //Gets page 1 of 25 Tweets
+    location,  //With location parameters set above
+    SearchQuery.ResultType.POPULAR,  //Gets popular Tweets
+    null));  //The 'until' parameter, we're not gonna use it here
+
+System.out.println("Completed in: " + results.getCompletedIn() + "\n");
+for(Tweet tweet : results.getResults()) {
+    System.out.println("@" + tweet.getFromUser() + ": " + tweet.getText());
+}
+```
+
 Continuing On
 ----------------
 Other methods in the library will be pretty easy to figure out once you understand all of the above in this read me. A good place to start is the Twitter interface, it contains all basic functions for using Twitter.
