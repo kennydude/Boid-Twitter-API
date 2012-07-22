@@ -147,7 +147,7 @@ Attaching a picture or loxation to a status update only requires one simple addi
 update.setMedia(new File("path_to_file"));
 update.setLocation(new GeoLocation(0.0, 0.0));  //latitude and longitude
 ```
-This method returns a StatusUpdate object too, so you can use it like this if you want:
+These methods both return a StatusUpdate object, so you can use call the functions in a chain like this if you want:
 ```java
 StatusUpdate update = StatusUpdate.create(
     "I'm tweeting using Boid for Android's Twitter API library!")
