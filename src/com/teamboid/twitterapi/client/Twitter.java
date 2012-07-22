@@ -109,13 +109,6 @@ public interface Twitter {
 
     /**
      * Composes a Tweet for the authenticated user.
-     * @param update The text of the Status update, must be 140 characters or less.
-     * @throws Exception
-     */
-    Status updateStatus(String update) throws Exception;
-
-    /**
-     * Composes a Tweet for the authenticated user.
      * @throws Exception
      */
     Status updateStatus(StatusUpdate update) throws Exception;

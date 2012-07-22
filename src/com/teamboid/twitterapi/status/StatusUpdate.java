@@ -1,6 +1,7 @@
 package com.teamboid.twitterapi.status;
 
 import com.teamboid.twitterapi.client.RequestHandler;
+import com.teamboid.twitterapi.search.GeoCode;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.File;
@@ -16,12 +17,9 @@ import java.util.List;
  */
 public class StatusUpdate {
 
-    private StatusUpdate(String status, long inReplyTo, GeoLocation location, String placeId, boolean displayCoordinates) {
+    private StatusUpdate(String status, long inReplyTo) {
         _status = status;
         _inReplyToStatusId = inReplyTo;
-        _location = location;
-        _placeId = placeId;
-        _displayCoordinates = displayCoordinates;
     }
 
     private String _status;
@@ -36,29 +34,46 @@ public class StatusUpdate {
      * @param status The text of your status update, typically up to 140 characters. URL encode as necessary. t.co link wrapping may effect character counts.
      * @return a prepared StatusUpdate instance.
      */
-    public static StatusUpdate create(String status) {
-        return new StatusUpdate(status, 0, null, null, false);
-    }
+    public static StatusUpdate create(String status) { return new StatusUpdate(status, 0); }
 
     /**
      * Builds a StatusUpdate instance to pass in {@link com.teamboid.twitterapi.client.Twitter}.updateStatus().
      * @param status The text of your status update, typically up to 140 characters. URL encode as necessary. t.co link wrapping may effect character counts.
      * @param inReplyToStatusId The ID of an existing status that the update is in reply to.
-     * @param location The location this tweet refers to. This parameter will be ignored unless it is inside the range -90.0 to +90.0 (North is positive) inclusive.
-     * @param displayCoordinates Whether or not to put a pin on the exact coordinates a tweet has been sent from.
-     * @param placeid A place in the world. These IDs can be retrieved from GET geo/reverse_geocode.
      * @return a prepared StatusUpdate instance.
      */
-    public static StatusUpdate create(String status, long inReplyToStatusId, GeoLocation location, boolean displayCoordinates, String placeid) {
-        return new StatusUpdate(status, inReplyToStatusId, location, placeid, displayCoordinates);
+    public static StatusUpdate create(String status, long inReplyToStatusId) {
+        return new StatusUpdate(status, inReplyToStatusId);
     }
 
     /**
      * Attaches an image to the status update.
      * @param file The picture file to attach.
      */
-    public StatusUpdate addMedia(File file) {
+    public StatusUpdate setMedia(File file) {
         _media = file;
+        return this;
+    }
+
+    /**
+     * Attaches location to the status update.
+     * @param location The coordinates to attach.
+     */
+    public StatusUpdate setLocation(GeoLocation location) {
+        _location = location;
+        return this;
+    }
+
+    /**
+     * Sets whether or not to display your exact coordinates (when location is also attached) as opposed to your location relative to places.
+     */
+    public StatusUpdate setDisplayCoordinates(boolean displayCoordinates) {
+        _displayCoordinates = displayCoordinates;
+        return this;
+    }
+
+    public StatusUpdate setPlaceId(String placeId) {
+        _placeId = placeId;
         return this;
     }
 
