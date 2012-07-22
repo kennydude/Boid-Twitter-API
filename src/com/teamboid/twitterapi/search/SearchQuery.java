@@ -25,8 +25,10 @@ public class SearchQuery {
         _geo = geo;
         _paging = paging;
         _resultType = resultType;
-        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        _until = sf.format(until);
+        if(until != null) {
+            SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+            _until = sf.format(until);
+        }
     }
 
     private String _query;

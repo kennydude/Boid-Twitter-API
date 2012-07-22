@@ -8,6 +8,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.params.HttpClientParams;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
@@ -64,6 +65,20 @@ public class RequestHandler {
             throw new TwitterException(new JSONObject(body));
         }
         return new JSONObject(body);
+    }
+
+    public HttpResponse getResponse(String url) throws Exception {
+        System.out.println("Requesting: " + url);
+        HttpGet request = new HttpGet(url);
+        getConsumer().sign(request);
+        HttpParams params = new BasicHttpParams();
+        HttpClientParams.setRedirecting(params, false);
+        HttpClient httpClient = new DefaultHttpClient(params);
+        HttpResponse response = httpClient.execute(request);
+        if(response.getStatusLine().getStatusCode() != 302) {
+            throw new Exception("HTTP GET FAILED; " + response.getStatusLine().getReasonPhrase());
+        }
+        return response;
     }
 
     public JSONArray getArray(String url) throws Exception {

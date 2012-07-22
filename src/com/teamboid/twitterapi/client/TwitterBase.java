@@ -10,6 +10,7 @@ import com.teamboid.twitterapi.status.StatusJSON;
 import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.user.User;
 import com.teamboid.twitterapi.user.UserJSON;
+import org.apache.http.HttpResponse;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
@@ -97,6 +98,34 @@ public class TwitterBase extends RequestHandler implements Twitter {
     @Override
     public User showUser(String screenName) throws Exception {
         return new UserJSON(getObject(Urls.SHOW_USER + "&screen_name=" + screenName));
+    }
+
+    @Override
+    public User[] lookupUsers(String[] screenNames) throws Exception {
+        String param = "";
+        for(String name : screenNames) {
+            param += name + ",";
+        }
+        return UserJSON.createUserList(getArray(Urls.LOOKUP_USERS + "?screen_name=" + param));
+    }
+
+    @Override
+    public User[] lookupUsers(long[] userIds) throws Exception {
+        String param = "";
+        for(long id : userIds) {
+            param += Long.toString(id) + ",";
+        }
+        return UserJSON.createUserList(getArray(Urls.LOOKUP_USERS + "?user_id=" + param));
+    }
+
+    @Override
+    public String getUserProfileImage(String screenName, ProfileImageSize size) throws Exception {
+        String url = Urls.GET_PROFILE_IMAGE + "?screen_name=" + screenName;
+        if(size != ProfileImageSize.NORMAL) {
+            url += "&size=" + size.name().toLowerCase();
+        }
+        HttpResponse response = getResponse(url);
+        return response.getHeaders("Location")[0].getValue();
     }
 
     @Override
