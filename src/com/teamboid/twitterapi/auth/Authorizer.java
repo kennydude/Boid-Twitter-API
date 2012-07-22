@@ -58,18 +58,10 @@ public class Authorizer {
     }
 
     /**
-     * The initial step of authentication, returns the URL of Twitter's authorization page that you must open
-     * in the web browser. When they login and click 'Authorize', the callback you specified in the constructor
-     * will be invoked. Make sure your app is set up to receive this callback and use the callback() method.
-     * @return
-     */
-    public String getUrl() throws Exception { return provider.retrieveRequestToken(service, _callback); }
-
-    /**
      * The method called after your receive a callback from the web browser (after using getUrl()).
      * @param verifier The oauth_verifier paramter sent from the browser through the callback.
      */
-    public Twitter finish(String verifier) throws Exception {
+    public Twitter getAuthorizedInstance(String verifier) throws Exception {
         provider.retrieveAccessToken(service, verifier);
         TwitterBase toReturn = new TwitterBase();
         toReturn._accessToken = service.getToken();
@@ -78,4 +70,12 @@ public class Authorizer {
         toReturn._consumerSecret = service.getConsumerSecret();
         return toReturn;
     }
+
+    /**
+     * The initial step of authentication, returns the URL of Twitter's authorization page that you must open
+     * in the web browser. When they login and click 'Authorize', the callback you specified in the constructor
+     * will be invoked. Make sure your app is set up to receive this callback and use the callback() method.
+     * @return
+     */
+    public String getAuthorizeUrl() throws Exception { return provider.retrieveRequestToken(service, _callback); }
 }
