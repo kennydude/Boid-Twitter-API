@@ -70,6 +70,17 @@ public interface Twitter {
 
     DirectMessage destroyDirectMessage(long msgId) throws Exception;
 
+    //FAVORITING METHODS
+    Status[] getFavorites(Paging paging) throws Exception;
+
+    Status[] getFavorites(Paging paging, String screenName) throws Exception;
+
+    Status[] getFavorites(Paging paging, long userId) throws Exception;
+
+    Status createFavorite(long statusId) throws Exception;
+
+    Status destroyFavorite(long statusId) throws Exception;
+
     //EXPERIMENTAL METHODS
     void getRelatedResults(long statusId) throws Exception;
 }

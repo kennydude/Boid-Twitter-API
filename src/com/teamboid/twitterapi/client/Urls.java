@@ -26,8 +26,12 @@ public class Urls {
     public final static String UPDATE_STATUS_MEDIA = "http://upload.twitter.com/1/statuses/update_with_media.json";
 
     public final static String DIRECT_MESSAGES = "http://api.twitter.com/1/direct_messages.json?include_entities=true";
-    public final static String DIRECT_MESSAGES_SENT = "https://api.twitter.com/1/direct_messages/sent.json?include_entities=true";
-    public final static String CREATE_DIRECT_MESSAGE = "https://api.twitter.com/1/direct_messages/new.json";
-    public final static String SHOW_DIRECT_MESSAGE = "https://api.twitter.com/1/direct_messages/show/{id}.json";
+    public final static String DIRECT_MESSAGES_SENT = "http://api.twitter.com/1/direct_messages/sent.json?include_entities=true";
+    public final static String CREATE_DIRECT_MESSAGE = "http://api.twitter.com/1/direct_messages/new.json";
+    public final static String SHOW_DIRECT_MESSAGE = "http://api.twitter.com/1/direct_messages/show/{id}.json";
     public final static String DESTROY_DIRECT_MESSAGE = "http://api.twitter.com/1/direct_messages/destroy/{id}.json";
+
+    public final static String GET_FAVORITES = "http://api.twitter.com/1/favorites.json?include_entities=true";
+    public final static String CREATE_FAVORITE = "http://api.twitter.com/1/favorites/create/{id}.json";
+    public final static String DESTROY_FAVORITE = "http://api.twitter.com/1/favorites/destroy/{id}.json";
 }

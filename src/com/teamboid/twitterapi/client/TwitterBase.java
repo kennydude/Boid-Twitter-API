@@ -12,7 +12,6 @@ import com.teamboid.twitterapi.user.User;
 import com.teamboid.twitterapi.user.UserJSON;
 import org.apache.http.message.BasicNameValuePair;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -178,6 +177,47 @@ public class TwitterBase extends RequestHandler implements Twitter {
     @Override
     public DirectMessage destroyDirectMessage(long msgId) throws Exception {
         return new DirectMessageJSON(deleteObject(Urls.DESTROY_DIRECT_MESSAGE.replace("{id}", Long.toString(msgId))));
+    }
+
+    @Override
+    public Status[] getFavorites(Paging paging) throws Exception {
+        String url = Urls.GET_FAVORITES;
+        if(paging != null) url += paging.getUrlString('&', true);
+        return StatusJSON.createStatusList(getArray(url));
+    }
+
+    @Override
+    public Status[] getFavorites(Paging paging, String screenName) throws Exception {
+        String url = Urls.GET_FAVORITES + "&screen_name=" + screenName;
+        if(paging != null) url += paging.getUrlString('&', true);
+        return StatusJSON.createStatusList(getArray(url));
+    }
+
+    @Override
+    public Status[] getFavorites(Paging paging, long userId) throws Exception {
+        String url = Urls.GET_FAVORITES + "&user_id=" + Long.toString(userId);
+        if(paging != null) url += paging.getUrlString('&', true);
+        return StatusJSON.createStatusList(getArray(url));
+    }
+
+    @Override
+    public Status createFavorite(long statusId) throws Exception {
+        Status toReturn = new StatusJSON(postObject(Urls.CREATE_FAVORITE.replace("{id}", Long.toString(statusId)), null, null));
+        /*
+         * The Status JSON returned from the above HTTP POST doesn't seem to actually change the isFavorited value, so we do that manually.
+         */
+        toReturn.setFavorited(true);
+        return toReturn;
+    }
+
+    @Override
+    public Status destroyFavorite(long statusId) throws Exception {
+        Status toReturn = new StatusJSON(postObject(Urls.DESTROY_FAVORITE.replace("{id}", Long.toString(statusId)), null, null));
+        /*
+         * The Status JSON returned from the above HTTP POST doesn't seem to actually change the isFavorited value, so we do that manually.
+         */
+        toReturn.setFavorited(false);
+        return toReturn;
     }
 
     @Override
