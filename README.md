@@ -7,8 +7,15 @@ Dependencies
 ----------------
 I've included OAuth Signpost and Apache Commons Codec (both are libraries whose JAR files would usually need to be referenced in your project) in the code of the project, so the only JAR dependency you'll need is the Apache HTTP library for Java which can be obtained here: http://hc.apache.org/downloads.cgi. If you're using this library in an Android app, you won't need to download that because Android includes Apache HTTP in the SDK.
 
+Adding the Library to Your Projects
+------------------
+The best way to add Boid-Twitter-API to your application is by exporting the project to a JAR and adding it as a library reference in your project.
+
+You could also copy all of the library's source code into your project, but that's a little inefficient, especially for when the library gets updated. JARs also keep the size of your project down due to the fact the JARs are compressed packages.
+
+
 First Time Authentication
-----------------
+------------------
 
 ```java
 Authorizer auth = Authorizer.create(
