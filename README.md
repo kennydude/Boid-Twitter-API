@@ -101,5 +101,8 @@ update.addMedia(new File("path_to_file"));
 ```
 This method returns a StatusUpdate object too, so you can use it like this if you want:
 ```java
-StatusUpdate update = StatusUpdate.create("I'm tweeting using Boid for Android's Twitter API library!").addMedia(new File("path_to_file"));
+StatusUpdate update = StatusUpdate.create(
+                "I'm tweeting using Boid for Android's Twitter API library!")
+                .addMedia(new File("path_to_file"));
 ```
+The 'addMedia(File file)' function returns a StatusUpdate object so you can call the function like a chain.
