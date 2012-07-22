@@ -169,7 +169,7 @@ SearchResult results = twitter.search(new SearchQuery(
     "#Boid",  //Searches for Tweets using the #Boid hashtag
     new Paging(25, 1),  //Gets page 1 of 25 Tweets
     location,  //With location parameters set above
-    SearchQuery.ResultType.POPULAR,  //Gets popular Tweets
+    SearchQuery.ResultType.RECENT,  //Gets recent Tweets, other options include popular Tweets
     null));  //The 'until' parameter, we're not gonna use it here
 
 System.out.println("Completed in: " + results.getCompletedIn() + "\n");
