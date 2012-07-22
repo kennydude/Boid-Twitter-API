@@ -5,7 +5,7 @@ This library is still a work in progress, when it's at production level it'll be
 
 Dependencies
 ----------------
-I've included OAuth Signpost and the Apache Commons Codec libraries in the code of the project, so the only JAR dependency you'll need is the Apache HTTP library for Java which can be obtained here: http://hc.apache.org/downloads.cgi. If you're using this library in an Android app, you won't need to download that because Android includes Apache HTTP in the SDK.
+I've included OAuth Signpost and Apache Commons Codec (both are libraries whose JAR files would usually need to be referenced in your project) in the code of the project, so the only JAR dependency you'll need is the Apache HTTP library for Java which can be obtained here: http://hc.apache.org/downloads.cgi. If you're using this library in an Android app, you won't need to download that because Android includes Apache HTTP in the SDK.
 
 First Time Authentication
 ----------------
