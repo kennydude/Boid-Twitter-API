@@ -81,11 +81,25 @@ twitter.updateStatus("I'm tweeting using Boid for Android's Twitter API library!
 As you can see, it only has one parameter and that parameter is a string, so it's very quick and easy. There's a more detailed version of this however.
 
 ```java
-twitter.updateStatus(StatusUpdate.create(
+StatusUpdate update = StatusUpdate.create(
                 "I'm tweeting using Boid for Android's Twitter API library!",  //Text
                 226787752644079617l,  //In-reply-to status ID
                 new GeoLocation(123424.0, 676424.0),  //Location
                 true,   //Display exact coordinates
-                null));  //Twitter place ID
+                null)  //Twitter place ID
+twitter.updateStatus(update);
 ```
 This more detailed version includes the text of the Tweet, the optional in_reply_to_status_id (the ID of another tweet that this tweet is in reply to), the current location of the user (e.g. from GPS on a phone), whether or not to display exact coordinates when location is attached (as opposed to the name of the place), and the Twitter place ID that corresponds with the current location of the user.
+
+Attaching Media to Tweets
+------------------------
+Attaching a picture to a status update only requires one simple additional step to the section above. 
+
+```java
+//Replace 'path_to_file' with the full path to an image file on the current device's local storage.
+update.addMedia(new File("path_to_file"));
+```
+This method returns a StatusUpdate object too, so you can use it like this if you want:
+```java
+StatusUpdate update = StatusUpdate.create("I'm tweeting using Boid for Android's Twitter API library!").addMedia(new File("path_to_file"));
+```
