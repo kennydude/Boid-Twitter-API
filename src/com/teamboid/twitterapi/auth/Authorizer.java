@@ -2,11 +2,10 @@ package com.teamboid.twitterapi.auth;
 
 import com.teamboid.twitterapi.client.Twitter;
 import com.teamboid.twitterapi.client.TwitterBase;
-import org.scribe.builder.ServiceBuilder;
-import org.scribe.builder.api.TwitterApi;
-import org.scribe.model.Token;
-import org.scribe.model.Verifier;
-import org.scribe.oauth.OAuthService;
+import oauth.signpost.OAuthConsumer;
+import oauth.signpost.OAuthProvider;
+import oauth.signpost.basic.DefaultOAuthProvider;
+import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 
 /**
  * Used to authenticate accounts and get logged in instances of {@link Twitter}
@@ -16,12 +15,18 @@ import org.scribe.oauth.OAuthService;
 public class Authorizer {
 
     private Authorizer(String consumer, String secret, String callback) {
-        service = new ServiceBuilder().provider(TwitterApi.class).apiKey(consumer)
-                .apiSecret(secret).callback(callback).build();
+        service = new CommonsHttpOAuthConsumer(consumer, secret);
+        provider = new DefaultOAuthProvider(
+                "http://twitter.com/oauth/request_token",
+                "http://twitter.com/oauth/access_token",
+                "http://twitter.com/oauth/authorize");
     }
 
-    private OAuthService service;
-    private Token token;
+    private OAuthProvider provider;
+    private OAuthConsumer service;
+    private String _callback;
+    private String tokenKey;
+    private String tokenSecret;
 
     /**
      * Intializes a new Authorizer for generating authenticated {@link Twitter} instances.
@@ -31,7 +36,9 @@ public class Authorizer {
      * @return A new Authorizer instance
      */
     public static Authorizer create(String consumer, String secret, String callback) {
-        return new Authorizer(consumer, secret, callback);
+        Authorizer toReturn = new Authorizer(consumer, secret, callback);
+        toReturn._callback = callback;
+        return toReturn;
     }
 
     /**
@@ -43,30 +50,32 @@ public class Authorizer {
      */
     public Twitter getAuthorizedInstance(String accessKey, String accessSecret) {
         TwitterBase toReturn = new TwitterBase();
-        toReturn.token = new Token(accessKey, accessSecret);
-        toReturn.oauth = service;
+        toReturn._accessToken = accessKey;
+        toReturn._accessSecret = accessSecret;
+        toReturn._consumer = service.getConsumerKey();
+        toReturn._consumerSecret = service.getConsumerSecret();
         return toReturn;
     }
 
     /**
-     * The intitial step of authentication, returns the URL of Twitter's authorization page that you must open
+     * The initial step of authentication, returns the URL of Twitter's authorization page that you must open
      * in the web browser. When they login and click 'Authorize', the callback you specified in the constructor
      * will be invoked. Make sure your app is set up to receive this callback and use the callback() method.
      * @return
      */
-    public String getUrl() {
-        token = service.getRequestToken();
-        return service.getAuthorizationUrl(token);
-    }
+    public String getUrl() throws Exception { return provider.retrieveRequestToken(service, _callback); }
 
     /**
      * The method called after your receive a callback from the web browser (after using getUrl()).
      * @param verifier The oauth_verifier paramter sent from the browser through the callback.
      */
-    public Twitter finish(String verifier) {
+    public Twitter finish(String verifier) throws Exception {
+        provider.retrieveAccessToken(service, verifier);
         TwitterBase toReturn = new TwitterBase();
-        toReturn.token = service.getAccessToken(token, new Verifier(verifier));
-        toReturn.oauth = service;
+        toReturn._accessToken = service.getToken();
+        toReturn._accessSecret = service.getTokenSecret();
+        toReturn._consumer = service.getConsumerKey();
+        toReturn._consumerSecret = service.getConsumerSecret();
         return toReturn;
     }
 }

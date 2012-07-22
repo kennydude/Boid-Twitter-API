@@ -2,6 +2,7 @@ package com.teamboid.twitterapi.status;
 
 import org.apache.http.message.BasicNameValuePair;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -27,6 +28,16 @@ public class StatusUpdate {
     private GeoLocation _location;
     private String _placeId;
     private boolean _displayCoordinates;
+    private File _media;
+
+    /**
+     * Builds a StatusUpdate instance to pass in {@link com.teamboid.twitterapi.client.Twitter}.updateStatus().
+     * @param status The text of your status update, typically up to 140 characters. URL encode as necessary. t.co link wrapping may effect character counts.
+     * @return a prepared StatusUpdate instance.
+     */
+    public static StatusUpdate create(String status) {
+        return new StatusUpdate(status, 0, null, null, false);
+    }
 
     /**
      * Builds a StatusUpdate instance to pass in {@link com.teamboid.twitterapi.client.Twitter}.updateStatus().
@@ -40,6 +51,27 @@ public class StatusUpdate {
     public static StatusUpdate create(String status, long inReplyToStatusId, GeoLocation location, boolean displayCoordinates, String placeid) {
         return new StatusUpdate(status, inReplyToStatusId, location, placeid, displayCoordinates);
     }
+
+    /**
+     * Attaches an image to the status update.
+     * @param file The picture file to attach.
+     */
+    public StatusUpdate addMedia(File file) {
+        _media = file;
+        return this;
+    }
+
+    public String getStatus() { return _status; }
+
+    public long getInReplyToStatusId() { return _inReplyToStatusId; }
+
+    public GeoLocation getLocation() { return _location; }
+
+    public String getPlaceId() { return _placeId; }
+
+    public boolean getDisplayCoordinates() { return _displayCoordinates; }
+
+    public File getMedia() { return _media; }
 
     /**
      * Builds the body parameters of an HTTP post.

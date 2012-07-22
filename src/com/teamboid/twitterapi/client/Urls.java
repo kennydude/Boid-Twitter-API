@@ -17,4 +17,5 @@ public class Urls {
     public final static String SEARCH_USERS = "http://api.twitter.com/1/users/search.json?include_entities=true";
     public final static String VERIFY_CREDENTIALS = "http://api.twitter.com/1/account/verify_credentials.json?include_entities=true";
     public final static String UPDATE_STATUS = "http://api.twitter.com/1/statuses/update.json";
+    public final static String UPDATE_STATUS_MEDIA = "http://upload.twitter.com/1/statuses/update_with_media.json";
 }

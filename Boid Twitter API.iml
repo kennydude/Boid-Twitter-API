@@ -38,7 +38,8 @@
     </content>
     <orderEntry type="jdk" jdkName="Android 4.1 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Scribe" level="project" />
+    <orderEntry type="library" name="Signpost" level="project" />
+    <orderEntry type="library" name="commons-codec-1.6" level="project" />
   </component>
 </module>
 

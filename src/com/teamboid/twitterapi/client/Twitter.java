@@ -6,7 +6,6 @@ import com.teamboid.twitterapi.search.SearchResult;
 import com.teamboid.twitterapi.status.Status;
 import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.user.User;
-import org.scribe.oauth.OAuthService;
 
 /**
  * The main class used within this library, used for authenticating an account and performing API actions on Twitter.
@@ -21,8 +20,6 @@ public interface Twitter {
     String getAccessSecret();
 
     //TIME METHODS
-    Status[] getPublicTimeline() throws Exception;
-
     Status[] getHomeTimeline(Paging paging) throws Exception;
 
     Status[] getMentions(Paging paging) throws Exception;
