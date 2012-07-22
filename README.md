@@ -18,9 +18,9 @@ First Time Authentication
 
 ```java
 Authorizer auth = Authorizer.create(
-                "5LvP1d0cOmkQleJlbKICtg", //Consumer key
-                "j44kDQMIDuZZEvvCHy046HSurt8avLuGeip2QnOpHKI",  //Consumer secret
-                "myapp://callback");  //Callback URL
+    "5LvP1d0cOmkQleJlbKICtg", //Consumer key
+    "j44kDQMIDuZZEvvCHy046HSurt8avLuGeip2QnOpHKI",  //Consumer secret
+    "myapp://callback");  //Callback URL
 String url = auth.getAuthorizeUrl();
 /**
  * This URL should now be opened in the web browser, it will show Twitter's authentication page
@@ -47,12 +47,12 @@ Once you've saved the access token and secret strings shown in the end of the co
 
 ```java
 Authorizer auth = Authorizer.create(
-                "5LvP1d0cOmkQleJlbKICtg", //Consumer key
-                "j44kDQMIDuZZEvvCHy046HSurt8avLuGeip2QnOpHKI",  //Consumer secret
-                "myapp://callback");  //Callback URL
+    "5LvP1d0cOmkQleJlbKICtg", //Consumer key
+    "j44kDQMIDuZZEvvCHy046HSurt8avLuGeip2QnOpHKI",  //Consumer secret
+    "myapp://callback");  //Callback URL
 Twitter twitter = auth.getAuthorizedInstance(
-                accessToken,  //Insert your access token
-                accessSecret);  //Insert your access secret
+    accessToken,  //Insert your access token
+    accessSecret);  //Insert your access secret
 ```
 
 You are now authenticated again for the account you added in the first section.
@@ -78,28 +78,27 @@ When the activity receives the callback, it can go to multiple places. If the ac
 ```java
 @Override
 public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                processCallback(getIntent());
+    super.onCreate(savedInstanceState);
+    processCallback(getIntent());
 }
 
 @Override
 public void onNewIntent(Intent intent) {
-                super.onNewIntent(intent);
-                processCallback(intent);
+    super.onNewIntent(intent);
+    processCallback(intent);
 }
 
 public void processCallback(Intent callback) {
-                if(callback.getData() != null) {
-                                /**
-                                 * If the callback URL was myapp://callback?oauth_token=[oauth_token]&oauth_verifier=[oauth_verifier]
-                                 * Then this function below will set the string to the value [oauth_verifier].
-                                 *
-                                 * callback.getData() returns the entire URL, getQueryParameter extras the oauth_verifier parameter.
-                                 */
-                                String oauth_verifier = callback.getData().getQueryParameter("oauth_verifier");
-                                Twitter twitter = auth.getAuthorizedInstance(oauth_verifier);
-                                
-                }
+    if(callback.getData() != null) {
+        /**
+        * If the callback URL was myapp://callback?oauth_token=[oauth_token]&oauth_verifier=[oauth_verifier]
+        * Then this function below will set the string to the value [oauth_verifier].
+        *
+        * callback.getData() returns the entire URL, getQueryParameter extras the oauth_verifier parameter.
+        */
+        String oauth_verifier = callback.getData().getQueryParameter("oauth_verifier");
+        Twitter twitter = auth.getAuthorizedInstance(oauth_verifier);
+    }
 }
 ```
 
@@ -111,8 +110,8 @@ Now that you're logged in, you can start requesting resources from the Twitter A
 //Retrieve page 1, get 50 tweets.
 Status[] homeTimeline = twitter.getHomeTimeline(new Paging(50, 1));
 for(Status status : homeTimeline) {
-                User user = status.getUser();
-                System.out.println("@" + user.getScreenName() + " -- " + status.getText());
+    User user = status.getUser();
+    System.out.println("@" + user.getScreenName() + " -- " + status.getText());
 }
 ```
 
@@ -137,11 +136,11 @@ As you can see, it only has one parameter and that parameter is a string, so it'
 
 ```java
 StatusUpdate update = StatusUpdate.create(
-                "I'm tweeting using Boid for Android's Twitter API library!",  //Text
-                226787752644079617l,  //In-reply-to status ID
-                new GeoLocation(123424.0, 676424.0),  //Location
-                true,   //Display exact coordinates
-                null)  //Twitter place ID
+    "I'm tweeting using Boid for Android's Twitter API library!",  //Text
+    226787752644079617l,  //In-reply-to status ID
+    new GeoLocation(123424.0, 676424.0),  //Location
+    true,   //Display exact coordinates
+    null)  //Twitter place ID
 twitter.updateStatus(update);
 ```
 This more detailed version includes the text of the Tweet, the optional in_reply_to_status_id (the ID of another tweet that this tweet is in reply to), the current location of the user (e.g. from GPS on a phone), whether or not to display exact coordinates when location is attached (as opposed to the name of the place), and the Twitter place ID that corresponds with the current location of the user.
@@ -157,7 +156,7 @@ update.addMedia(new File("path_to_file"));
 This method returns a StatusUpdate object too, so you can use it like this if you want:
 ```java
 StatusUpdate update = StatusUpdate.create(
-                "I'm tweeting using Boid for Android's Twitter API library!")
-                .addMedia(new File("path_to_file"));
+    "I'm tweeting using Boid for Android's Twitter API library!")
+    .addMedia(new File("path_to_file"));
 ```
 The 'addMedia(File file)' function returns a StatusUpdate object so you can call the function like a chain. Now you just follow the section above to post the StatusUpdate to Twitter.
