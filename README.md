@@ -61,7 +61,7 @@ Receiving Callbacks on Android
 ---------------------
 If you're wondering how to receive callbacks from the web browser (see the first section, "First Time Authentication") in your Android app, here's a quick tutorial.
 
-You need to define an intent filter for the activity that will receive the callback; in your AndroidManifest.xml, insert an intent filter inside of the <activity /> element represeneting the receiving activity:
+You need to define an intent filter for the activity that will receive the callback; in your AndroidManifest.xml, insert an intent filter inside of the <activity /> element representing the receiving activity:
 
 ```xml
 <intent-filter>
