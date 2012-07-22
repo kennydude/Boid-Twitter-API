@@ -9,7 +9,9 @@ import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.user.User;
 
 /**
- * The main class used within this library, used for authenticating an account and performing API actions on Twitter.
+ * The main class used within this library, used for performing API actions on Twitter.
+ * Use the {@link com.teamboid.twitterapi.auth.Authorizer} to authenticate an account and
+ * get an authorized instance of this class.
  *
  * @author Aidan Follestad
  */
