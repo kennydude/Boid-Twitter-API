@@ -3,6 +3,8 @@ Boid Twitter API
 
 This library is still a work in progress, when it's at production level it'll be implemented in Boid for Twitter (http://www.boidapp.com). Feel free to use this library in your own applications when it reaches a completely usable point. This library was influenced by Twitter4J, but was built from the ground up by me. It's meant to be easier to navigate and more lightweight.
 
+This library's function names are modelled off of the official Twitter API's (which this library wraps around) function names: https://dev.twitter.com/docs/api.
+
 Dependencies
 ----------------
 I've included OAuth Signpost and Apache Commons Codec (both are libraries whose JAR files would usually need to be referenced in your project) in the code of the project, so the only JAR dependency you'll need is the Apache HTTP library for Java which can be obtained here: http://hc.apache.org/downloads.cgi. If you're using this library in an Android app, you won't need to download that because Android includes Apache HTTP in the SDK.
@@ -127,39 +129,33 @@ System.out.println("Successfully authenticated " + user.getName() + " (@" + user
 ```
 Updating your Status
 ----------------------
-One of the main functions of Twitter is tweeting, this is done by updating your status. There is two ways of doing this, one is very simple, and one is very detailed.
-
-```java
-twitter.updateStatus("I'm tweeting using Boid for Android's Twitter API library!");
-```
-As you can see, it only has one parameter and that parameter is a string, so it's very quick and easy. There's a more detailed version of this however.
+One of the main functions of Twitter is tweeting, this is done by updating your status.
 
 ```java
 StatusUpdate update = StatusUpdate.create(
     "I'm tweeting using Boid for Android's Twitter API library!",  //Text
     226787752644079617l,  //In-reply-to status ID
-    new GeoLocation(123424.0, 676424.0),  //Location
-    true,   //Display exact coordinates
-    null)  //Twitter place ID
+);
 twitter.updateStatus(update);
 ```
-This more detailed version includes the text of the Tweet, the optional in_reply_to_status_id (the ID of another tweet that this tweet is in reply to), the current location of the user (e.g. from GPS on a phone), whether or not to display exact coordinates when location is attached (as opposed to the name of the place), and the Twitter place ID that corresponds with the current location of the user.
+The optional in_reply_to_status_id (the ID of another tweet that this tweet is in reply to) parameter can be skipped all together, it's just used to connect your Tweet with another in conversation.
 
-Attaching Media to Tweets
+Attaching Location and Media to Tweets
 ------------------------
-Attaching a picture to a status update only requires one simple additional step to the section above. 
+Attaching a picture or loxation to a status update only requires one simple additional step to the section above. 
 
 ```java
 //Replace 'path_to_file' with the full path to an image file on the current device's local storage.
-update.addMedia(new File("path_to_file"));
+update.setMedia(new File("path_to_file"));
+update.setLocation(new GeoLocation(0.0, 0.0));  //latitude and longitude
 ```
-This method returns a StatusUpdate object too, so you can use it like this if you want:
+These methods both return a StatusUpdate object, so you can use call the functions in a chain like this if you want:
 ```java
 StatusUpdate update = StatusUpdate.create(
     "I'm tweeting using Boid for Android's Twitter API library!")
-    .addMedia(new File("path_to_file"));
+    .setMedia(new File("path_to_file"))
+    .setLocation(new GeoLocation(0.0, 0.0));
 ```
-The 'addMedia(File file)' function returns a StatusUpdate object so you can call the function like a chain. Now you just follow the section above to post the StatusUpdate to Twitter.
 
 Searching for Tweets
 -----------------------
@@ -171,12 +167,14 @@ GeoCode location = new GeoCode(
     5, //Within 5 miles of St. Paul
     GeoCode.DistanceUnit.MI);  //Indicates 5 miles instead of 5 kilometers
     
-SearchResult results = twitter.search(new SearchQuery(
+SearchQuery query = new SearchQuery(
     "#Boid",  //Searches for Tweets using the #Boid hashtag
     new Paging(25, 1),  //Gets page 1 of 25 Tweets
     location,  //With location parameters set above
-    SearchQuery.ResultType.POPULAR,  //Gets popular Tweets
-    null));  //The 'until' parameter, we're not gonna use it here
+    SearchQuery.ResultType.RECENT,  //Gets recent Tweets, other options include popular Tweets
+    null  //The 'until' parameter, we're not gonna use it here
+);
+SearchResult results = twitter.search(query);
 
 System.out.println("Completed in: " + results.getCompletedIn() + "\n");
 for(Tweet tweet : results.getResults()) {
