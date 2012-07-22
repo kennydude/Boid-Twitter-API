@@ -40,4 +40,13 @@ public class Urls {
     public final static String GET_FAVORITES = BASE_API_URL + "/favorites.json?include_entities=true";
     public final static String CREATE_FAVORITE = BASE_API_URL + "/favorites/create/{id}.json";
     public final static String DESTROY_FAVORITE = BASE_API_URL + "/favorites/destroy/{id}.json";
+
+    public final static String GET_FOLLOWERS = BASE_API_URL + "/followers/ids.json";
+    public final static String GET_FRIENDS = BASE_API_URL + "/friends/ids.json";
+    public final static String FRIENDSHIP_EXISTS = BASE_API_URL + "/friendships/exists.json";
+    public final static String INCOMING_FRIENDSHIPS = BASE_API_URL + "/friendships/incoming.json";
+    public final static String OUTGOING_FRIENDSHIPS = BASE_API_URL + "/friendships/outgoing.json";
+    public final static String SHOW_FRIENDSHIP = BASE_API_URL + "/friendships/show.json";
+    public final static String CREATE_FRIENDSHIP = BASE_API_URL + "/friendships/create.json";
+    public final static String DESTROY_FRIENDSHIP = BASE_API_URL + "/friendships/destroy.json";
 }

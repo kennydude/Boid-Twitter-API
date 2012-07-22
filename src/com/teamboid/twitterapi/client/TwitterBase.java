@@ -2,16 +2,22 @@ package com.teamboid.twitterapi.client;
 
 import com.teamboid.twitterapi.dm.DirectMessage;
 import com.teamboid.twitterapi.dm.DirectMessageJSON;
+import com.teamboid.twitterapi.relationship.IDs;
+import com.teamboid.twitterapi.relationship.IDsJSON;
+import com.teamboid.twitterapi.relationship.Relationship;
+import com.teamboid.twitterapi.relationship.RelationshipJSON;
 import com.teamboid.twitterapi.search.SearchQuery;
 import com.teamboid.twitterapi.search.SearchResult;
 import com.teamboid.twitterapi.search.SearchResultJSON;
 import com.teamboid.twitterapi.status.Status;
 import com.teamboid.twitterapi.status.StatusJSON;
 import com.teamboid.twitterapi.status.StatusUpdate;
+import com.teamboid.twitterapi.user.FollowingType;
 import com.teamboid.twitterapi.user.User;
 import com.teamboid.twitterapi.user.UserJSON;
 import org.apache.http.HttpResponse;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -124,8 +130,119 @@ public class TwitterBase extends RequestHandler implements Twitter {
         if(size != ProfileImageSize.NORMAL) {
             url += "&size=" + size.name().toLowerCase();
         }
-        HttpResponse response = getResponse(url);
+        HttpResponse response = getResponse(url, true);
         return response.getHeaders("Location")[0].getValue();
+    }
+
+    @Override
+    public IDs getFriends(String screenName, long cursor) throws Exception {
+        String url = Urls.GET_FRIENDS + "?screen_name=" + screenName;
+        if(cursor >= -1) url += "&cursor=" + Long.toString(cursor);
+        return new IDsJSON(getObject(url));
+    }
+
+    @Override
+    public IDs getFriends(long userId, long cursor) throws Exception {
+        String url = Urls.GET_FRIENDS + "?user_id=" + Long.toString(userId);
+        if(cursor >= -1) url += "&cursor=" + Long.toString(cursor);
+        return new IDsJSON(getObject(url));
+    }
+
+    @Override
+    public IDs getFollowers(String screenName, long cursor) throws Exception {
+        String url = Urls.GET_FOLLOWERS + "?screen_name=" + screenName;
+        if(cursor >= -1) url += "&cursor=" + Long.toString(cursor);
+        return new IDsJSON(getObject(url));
+    }
+
+    @Override
+    public IDs getFollowers(long userId, long cursor) throws Exception {
+        String url = Urls.GET_FOLLOWERS + "?user_id=" + Long.toString(userId);
+        if(cursor >= -1) url += "&cursor=" + Long.toString(cursor);
+        return new IDsJSON(getObject(url));
+    }
+
+    @Override
+    public boolean getFriendshipExists(String fromScreenName, String toScreenName) throws Exception {
+        HttpResponse response = getResponse(Urls.FRIENDSHIP_EXISTS +
+                "?screen_name_a=" + fromScreenName + "&screen_name_b=" + toScreenName, false);
+        return Boolean.parseBoolean(EntityUtils.toString(response.getEntity()));
+    }
+
+    @Override
+    public IDs getFriendshipsIncoming(long cursor) throws Exception {
+        String url = Urls.INCOMING_FRIENDSHIPS;
+        if(cursor >= -1) url += "?cursor=" + Long.toString(cursor);
+        return new IDsJSON(getObject(url));
+    }
+
+    @Override
+    public IDs getFriendshipsOutgoing(long cursor) throws Exception {
+        String url = Urls.OUTGOING_FRIENDSHIPS;
+        if(cursor >= -1) url += "?cursor=" + Long.toString(cursor);
+        return new IDsJSON(getObject(url));
+    }
+
+    @Override
+    public Relationship getRelationship(long fromUserId, long toUserId) throws Exception {
+        String url = Urls.SHOW_FRIENDSHIP +
+                "?source_id=" + Long.toString(fromUserId) + "&target_id=" + Long.toString(toUserId);
+        return new RelationshipJSON(getObject(url));
+    }
+
+    @Override
+    public Relationship getRelationship(String fromScreenName, String toScreenName) throws Exception {
+        String url = Urls.SHOW_FRIENDSHIP +
+                "?source_screen_name=" + fromScreenName + "&target_screen_name=" + toScreenName;
+        return new RelationshipJSON(getObject(url));
+    }
+
+    @Override
+    public User createFriendship(long userId) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("user_id", Long.toString(userId)));
+        User toReturn = new UserJSON(postObject(Urls.CREATE_FRIENDSHIP, pairs, null));
+        /*
+         * The User JSON returned from the above HTTP POST doesn't seem to actually change the isFollowing value, so we do that manually.
+         */
+        toReturn.setFollowingType(FollowingType.FOLLOWING);
+        return toReturn;
+    }
+
+    @Override
+    public User createFriendship(String screenName) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("screen_name", screenName));
+        User toReturn = new UserJSON(postObject(Urls.CREATE_FRIENDSHIP, pairs, null));
+        /*
+         * The User JSON returned from the above HTTP POST doesn't seem to actually change the isFollowing value, so we do that manually.
+         */
+        toReturn.setFollowingType(FollowingType.FOLLOWING);
+        return toReturn;
+    }
+
+    @Override
+    public User destroyFriendship(long userId) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("user_id", Long.toString(userId)));
+        User toReturn = new UserJSON(postObject(Urls.DESTROY_FRIENDSHIP, pairs, null));
+        /*
+         * The User JSON returned from the above HTTP POST doesn't seem to actually change the isFollowing value, so we do that manually.
+         */
+        toReturn.setFollowingType(FollowingType.NOT_FOLLOWING);
+        return toReturn;
+    }
+
+    @Override
+    public User destroyFriendship(String screenName) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("screen_name", screenName));
+        User toReturn = new UserJSON(postObject(Urls.DESTROY_FRIENDSHIP, pairs, null));
+        /*
+         * The User JSON returned from the above HTTP POST doesn't seem to actually change the isFollowing value, so we do that manually.
+         */
+        toReturn.setFollowingType(FollowingType.NOT_FOLLOWING);
+        return toReturn;
     }
 
     @Override

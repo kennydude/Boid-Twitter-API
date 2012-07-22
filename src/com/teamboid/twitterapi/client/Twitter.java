@@ -2,6 +2,8 @@ package com.teamboid.twitterapi.client;
 
 import android.provider.ContactsContract;
 import com.teamboid.twitterapi.dm.DirectMessage;
+import com.teamboid.twitterapi.relationship.IDs;
+import com.teamboid.twitterapi.relationship.Relationship;
 import com.teamboid.twitterapi.search.SearchQuery;
 import com.teamboid.twitterapi.search.SearchResult;
 import com.teamboid.twitterapi.status.Status;
@@ -236,6 +238,100 @@ public interface Twitter {
      * @throws Exception
      */
     String getUserProfileImage(String screenName, ProfileImageSize size) throws Exception;
+
+    /**
+     * Returns {@link IDs} containing every user the specified user is following.
+     * @param screenName The screen name of the user for whom to return results for.
+     * @param cursor Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. To begin paging provide a value of -1 as the cursor. The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.
+     * @throws Exception
+     */
+    IDs getFriends(String screenName, long cursor) throws Exception;
+
+    /**
+     * Returns {@link IDs} containing every user the specified user is following.
+     * @param userId The ID of the user for whom to return results for.
+     * @param cursor Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. To begin paging provide a value of -1 as the cursor. The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.
+     * @throws Exception
+     */
+    IDs getFriends(long userId, long cursor) throws Exception;
+
+    /**
+     * Returns {@link IDs} containing every user following the specified user.
+     * @param screenName The screen name of the user for whom to return results for.
+     * @param cursor Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. To begin paging provide a value of -1 as the cursor. The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.
+     * @throws Exception
+     */
+    IDs getFollowers(String screenName, long cursor) throws Exception;
+
+    /**
+     * Returns {@link IDs} containing every user following the specified user.
+     * @param userId The ID of the user for whom to return results for.
+     * @param cursor Causes the list of connections to be broken into pages of no more than 5000 IDs at a time. The number of IDs returned is not guaranteed to be 5000 as suspended users are filtered out after connections are queried. To begin paging provide a value of -1 as the cursor. The response from the API will include a previous_cursor and next_cursor to allow paging back and forth.
+     * @throws Exception
+     */
+    IDs getFollowers(long userId, long cursor) throws Exception;
+
+    /**
+     * Checks whether or not one user is following another user.
+     * @param fromScreenName Is this user following the other?
+     * @param toScreenName Is this user followed by the other?
+     * @throws Exception
+     */
+    boolean getFriendshipExists(String fromScreenName, String toScreenName) throws Exception;
+
+    /**
+     * Returns {@link IDs} containing every protected user for whom the authenticating user has a pending follow request.
+     * @param cursor Breaks the results into pages. This is recommended for users who are following many users. Provide a value of -1 to begin paging. Provide values as returned in the response body's next_cursor and previous_cursor attributes to page back and forth in the list.
+     * @throws Exception
+     */
+    IDs getFriendshipsIncoming(long cursor) throws Exception;
+
+    /**
+     * Returns {@link IDs} containing every user who has a pending request to follow the authenticating user.
+     * @param cursor Breaks the results into pages. This is recommended for users who are following many users. Provide a value of -1 to begin paging. Provide values as returned in the response body's next_cursor and previous_cursor attributes to page back and forth in the list.
+     * @throws Exception
+     */
+    IDs getFriendshipsOutgoing(long cursor) throws Exception;
+
+    /**
+     * Returns detailed information about the relationship between two users.
+     * @param fromUserId The ID of the source user.
+     * @param toUserId The ID of the target user.
+     * @throws Exception
+     */
+    Relationship getRelationship(long fromUserId, long toUserId) throws Exception;
+
+    /**
+     * Returns detailed information about the relationship between two users.
+     * @param fromUserScreenName The screen name of the source user.
+     * @param toUserScreenName The screen name of the target user.
+     * @throws Exception
+     */
+    Relationship getRelationship(String fromUserScreenName, String toUserScreenName) throws Exception;
+
+    /**
+     * Follows the specified user for the authenticated account.
+     * @param userId The ID of the user to follow.
+     */
+    User createFriendship(long userId) throws Exception;
+
+    /**
+     * Follows the specified user for the authenticated account.
+     * @param screenName The screen name of the user to follow.
+     */
+    User createFriendship(String screenName) throws Exception;
+
+    /**
+     * Un-follows the specified user for the authenticated account.
+     * @param userId The ID of the user to un-follow.
+     */
+    User destroyFriendship(long userId) throws Exception;
+
+    /**
+     * Un-follows the specified user for the authenticated account.
+     * @param screenName The screen name of the user to un-follow.
+     */
+    User destroyFriendship(String screenName) throws Exception;
 
     //TODO
     void getRelatedResults(long statusId) throws Exception;

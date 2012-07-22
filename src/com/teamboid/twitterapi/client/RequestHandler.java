@@ -67,7 +67,7 @@ public class RequestHandler {
         return new JSONObject(body);
     }
 
-    public HttpResponse getResponse(String url) throws Exception {
+    public HttpResponse getResponse(String url, boolean expectRedirect) throws Exception {
         System.out.println("Requesting: " + url);
         HttpGet request = new HttpGet(url);
         getConsumer().sign(request);
@@ -75,8 +75,14 @@ public class RequestHandler {
         HttpClientParams.setRedirecting(params, false);
         HttpClient httpClient = new DefaultHttpClient(params);
         HttpResponse response = httpClient.execute(request);
-        if(response.getStatusLine().getStatusCode() != 302) {
+        if(response.getStatusLine().getStatusCode() != 302 && expectRedirect) {
             throw new Exception("HTTP GET FAILED; " + response.getStatusLine().getReasonPhrase());
+        } else if(response.getStatusLine().getStatusCode() != 200) {
+            throw new Exception("HTTP GET FAILED; " + response.getStatusLine().getReasonPhrase());
+        }
+        String body = EntityUtils.toString(response.getEntity());
+        if(body.contains("\"error\":")) {
+            throw new TwitterException(new JSONObject(body));
         }
         return response;
     }
