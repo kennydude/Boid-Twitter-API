@@ -8,17 +8,17 @@ import org.json.JSONObject;
 public class SearchResultJSON implements SearchResult {
 
     public SearchResultJSON(JSONObject json) throws Exception {
-        _completedIn = json.getDouble("completed_in");
-        _maxId = json.getLong("max_id");
-        _nextPage = json.getString("next_page");
-        _page = json.getInt("page");
-        _query = json.getString("query");
-        _refreshUrl = json.getString("refresh_url");
+        _completedIn = json.optDouble("completed_in");
+        _maxId = json.optLong("max_id");
+        _nextPage = json.optString("next_page");
+        _page = json.optInt("page");
+        _query = json.optString("query");
+        _refreshUrl = json.optString("refresh_url");
         if(!json.isNull("results")) {
             _results = TweetJSON.createStatusList(json.getJSONArray("results"));
         }
-        _resultsPerPage = json.getInt("results_per_page");
-        _sinceId = json.getLong("since_id");
+        _resultsPerPage = json.optInt("results_per_page");
+        _sinceId = json.optLong("since_id");
     }
 
     private double _completedIn;
