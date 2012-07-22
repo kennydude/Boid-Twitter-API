@@ -165,12 +165,14 @@ GeoCode location = new GeoCode(
     5, //Within 5 miles of St. Paul
     GeoCode.DistanceUnit.MI);  //Indicates 5 miles instead of 5 kilometers
     
-SearchResult results = twitter.search(new SearchQuery(
+SearchQuery query = new SearchQuery(
     "#Boid",  //Searches for Tweets using the #Boid hashtag
     new Paging(25, 1),  //Gets page 1 of 25 Tweets
     location,  //With location parameters set above
     SearchQuery.ResultType.RECENT,  //Gets recent Tweets, other options include popular Tweets
-    null));  //The 'until' parameter, we're not gonna use it here
+    null  //The 'until' parameter, we're not gonna use it here
+);
+SearchResult results = twitter.search(query);
 
 System.out.println("Completed in: " + results.getCompletedIn() + "\n");
 for(Tweet tweet : results.getResults()) {
