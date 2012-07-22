@@ -105,4 +105,4 @@ StatusUpdate update = StatusUpdate.create(
                 "I'm tweeting using Boid for Android's Twitter API library!")
                 .addMedia(new File("path_to_file"));
 ```
-The 'addMedia(File file)' function returns a StatusUpdate object so you can call the function like a chain.
+The 'addMedia(File file)' function returns a StatusUpdate object so you can call the function like a chain. Now you just follow the section above to post the StatusUpdate to Twitter.
