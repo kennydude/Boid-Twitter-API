@@ -15,7 +15,7 @@ Authorizer auth = Authorizer.create(
                 "5LvP1d0cOmkQleJlbKICtg", //Consumer key
                 "j44kDQMIDuZZEvvCHy046HSurt8avLuGeip2QnOpHKI",  //Consumer secret
                 "myapp://callback");  //Callback URL
-String url = auth.getUrl();
+String url = auth.getAuthorizeUrl();
 /**
  * This URL should now be opened in the web browser, it will show Twitter's authentication page
  * where the user logs in and clicks "Authorize." The web browser will then redirect to your
@@ -26,7 +26,7 @@ String url = auth.getUrl();
 
 // 'oauth_verifier' should be replaced with the 'oauth_verifier' query parameter sent through
 // the callback from the web browser. You now are logged in.
-Twitter twitter = auth.finish("oauth_verifier");
+Twitter twitter = auth.getAuthorizedInstance("oauth_verifier");
 
 //These values should be saved to local storage, on Android they can be saved using SharedPreferences.
 //These values can be used later to login without going to the authorization page again.
