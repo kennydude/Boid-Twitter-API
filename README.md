@@ -3,6 +3,8 @@ Boid Twitter API
 
 This library is still a work in progress, when it's at production level it'll be implemented in Boid for Twitter (http://www.boidapp.com). Feel free to use this library in your own applications when it reaches a completely usable point. This library was influenced by Twitter4J, but was built from the ground up by me. It's meant to be easier to navigate and more lightweight.
 
+This library's function names are modelled off of the official Twitter API's (which this library wraps around) function names: https://dev.twitter.com/docs/api.
+
 Dependencies
 ----------------
 I've included OAuth Signpost and Apache Commons Codec (both are libraries whose JAR files would usually need to be referenced in your project) in the code of the project, so the only JAR dependency you'll need is the Apache HTTP library for Java which can be obtained here: http://hc.apache.org/downloads.cgi. If you're using this library in an Android app, you won't need to download that because Android includes Apache HTTP in the SDK.
