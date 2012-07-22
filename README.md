@@ -13,7 +13,6 @@ The best way to add Boid-Twitter-API to your application is by exporting the pro
 
 You could also copy all of the library's source code into your project, but that's a little inefficient, especially for when the library gets updated. JARs also keep the size of your project down due to the fact the JARs are compressed packages.
 
-
 First Time Authentication
 ------------------
 
@@ -57,6 +56,52 @@ Twitter twitter = auth.getAuthorizedInstance(
 ```
 
 You are now authenticated again for the account you added in the first section.
+
+Receiving Callbacks on Android
+---------------------
+If you're wondering how to receive callbacks from the web browser (see the first section, "First Time Authentication") in your Android app, here's a quick tutorial.
+
+You need to define an intent filter for the activity that will receive the callback; in your AndroidManifest.xml, insert an intent filter inside of the <activity /> element represeneting the receiving activity:
+
+```xml
+<intent-filter>
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <data android:scheme="myapp" android:host="callback" />
+</intent-filter>
+```
+This intent filter will receive a the URL myapp://callback which is what was passed in Authorizer.create(), you can define whatever callback URL you want. If you already have another intent-filter inside of the activity, don't merge the intent filters, just add another one next to it (it won't work if you combine two intent filters).
+
+When the activity receives the callback, it can go to multiple places. If the activity wasn't previously running, it will be passed to onCreate(Bundle savedInstanceState), otherwise it will be passed to onNewIntent(Intent intent).
+
+```java
+@Override
+public void onCreate(Bundle savedInstanceState) {
+                super.onCreate(savedInstanceState);
+                processCallback(getIntent());
+}
+
+@Override
+public void onNewIntent(Intent intent) {
+                super.onNewIntent(intent);
+                processCallback(intent);
+}
+
+public void processCallback(Intent callback) {
+                if(callback.getData() != null) {
+                                /**
+                                 * If the callback URL was myapp://callback?oauth_token=[oauth_token]&oauth_verifier=[oauth_verifier]
+                                 * Then this function below will set the string to the value [oauth_verifier].
+                                 *
+                                 * callback.getData() returns the entire URL, getQueryParameter extras the oauth_verifier parameter.
+                                 */
+                                String oauth_verifier = callback.getData().getQueryParameter("oauth_verifier");
+                                Twitter twitter = auth.getAuthorizedInstance(oauth_verifier);
+                                
+                }
+}
+```
 
 Retrieving the home timeline
 ------------------
