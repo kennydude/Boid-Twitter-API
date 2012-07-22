@@ -61,7 +61,7 @@ Receiving Callbacks on Android
 ---------------------
 If you're wondering how to receive callbacks from the web browser (see the first section, "First Time Authentication") in your Android app, here's a quick tutorial.
 
-You need to define an intent filter for the activity that will receive the callback; in your AndroidManifest.xml, insert an intent filter inside of the <activity /> element represeneting the receiving activity:
+You need to define an intent filter for the activity that will receive the callback; in your AndroidManifest.xml, insert an intent filter inside of the <activity /> element representing the receiving activity:
 
 ```xml
 <intent-filter>
@@ -94,7 +94,7 @@ public void processCallback(Intent callback) {
         * If the callback URL was myapp://callback?oauth_token=[oauth_token]&oauth_verifier=[oauth_verifier]
         * Then this function below will set the string to the value [oauth_verifier].
         *
-        * callback.getData() returns the entire URL, getQueryParameter extras the oauth_verifier parameter.
+        * callback.getData() returns the entire URL, getQueryParameter() extracts the oauth_verifier parameter.
         */
         String oauth_verifier = callback.getData().getQueryParameter("oauth_verifier");
         Twitter twitter = auth.getAuthorizedInstance(oauth_verifier);
