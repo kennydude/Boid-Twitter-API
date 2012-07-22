@@ -24,7 +24,6 @@ String url = auth.getUrl();
  * An example of the callback: myapp://callback?oauth_token=[oauth_token]&oauth_verifier=[oauth_verifier]
  */
 
-//
 // 'oauth_verifier' should be replaced with the 'oauth_verifier' query parameter sent through
 // the callback from the web browser. You now are logged in.
 Twitter twitter = auth.finish("oauth_verifier");
