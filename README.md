@@ -127,39 +127,33 @@ System.out.println("Successfully authenticated " + user.getName() + " (@" + user
 ```
 Updating your Status
 ----------------------
-One of the main functions of Twitter is tweeting, this is done by updating your status. There is two ways of doing this, one is very simple, and one is very detailed.
-
-```java
-twitter.updateStatus("I'm tweeting using Boid for Android's Twitter API library!");
-```
-As you can see, it only has one parameter and that parameter is a string, so it's very quick and easy. There's a more detailed version of this however.
+One of the main functions of Twitter is tweeting, this is done by updating your status.
 
 ```java
 StatusUpdate update = StatusUpdate.create(
     "I'm tweeting using Boid for Android's Twitter API library!",  //Text
     226787752644079617l,  //In-reply-to status ID
-    new GeoLocation(123424.0, 676424.0),  //Location
-    true,   //Display exact coordinates
-    null)  //Twitter place ID
+);
 twitter.updateStatus(update);
 ```
-This more detailed version includes the text of the Tweet, the optional in_reply_to_status_id (the ID of another tweet that this tweet is in reply to), the current location of the user (e.g. from GPS on a phone), whether or not to display exact coordinates when location is attached (as opposed to the name of the place), and the Twitter place ID that corresponds with the current location of the user.
+The optional in_reply_to_status_id (the ID of another tweet that this tweet is in reply to) parameter can be skipped all together, it's just used to connect your Tweet with another in conversation.
 
-Attaching Media to Tweets
+Attaching Location and Media to Tweets
 ------------------------
-Attaching a picture to a status update only requires one simple additional step to the section above. 
+Attaching a picture or loxation to a status update only requires one simple additional step to the section above. 
 
 ```java
 //Replace 'path_to_file' with the full path to an image file on the current device's local storage.
-update.addMedia(new File("path_to_file"));
+update.setMedia(new File("path_to_file"));
+update.setLocation(new GeoLocation(0.0, 0.0));  //latitude and longitude
 ```
 This method returns a StatusUpdate object too, so you can use it like this if you want:
 ```java
 StatusUpdate update = StatusUpdate.create(
     "I'm tweeting using Boid for Android's Twitter API library!")
-    .addMedia(new File("path_to_file"));
+    .setMedia(new File("path_to_file"))
+    .setLocation(new GeoLocation(0.0, 0.0));
 ```
-The 'addMedia(File file)' function returns a StatusUpdate object so you can call the function like a chain. Now you just follow the section above to post the StatusUpdate to Twitter.
 
 Searching for Tweets
 -----------------------
