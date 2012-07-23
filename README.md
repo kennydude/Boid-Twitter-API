@@ -109,8 +109,11 @@ Retrieving the home timeline
 Now that you're logged in, you can start requesting resources from the Twitter API. For an example, here's how you would retrieve your home timeline (list of Tweets from all the people you follow).
 
 ```java
-//Retrieve page 1, get 50 tweets.
-Status[] homeTimeline = twitter.getHomeTimeline(new Paging(50, 1));
+/**
+ * Get 50 tweets. If you want to paginate, use the constructor that includes since_id and max_id.
+ * This libary does not implement the 'page' (integer) parameter due to this: https://dev.twitter.com/docs/working-with-timelines
+ */
+Status[] homeTimeline = twitter.getHomeTimeline(new Paging(50));
 for(Status status : homeTimeline) {
     User user = status.getUser();
     System.out.println("@" + user.getScreenName() + " -- " + status.getText());
@@ -142,7 +145,9 @@ The optional in_reply_to_status_id (the ID of another tweet that this tweet is i
 
 Attaching Location and Media to Tweets
 ------------------------
-Attaching a picture or loxation to a status update only requires one simple additional step to the section above. 
+Attaching a picture or location to a status update only requires one simple additional step to the section above. 
+
+**NOTE**: Attaching your location will only work if the current account has enabled location by checking "Add location to my Tweets" in their account settings on Twitter's website.
 
 ```java
 //Replace 'path_to_file' with the full path to an image file on the current device's local storage.
@@ -167,9 +172,13 @@ GeoCode location = new GeoCode(
     5, //Within 5 miles of St. Paul
     GeoCode.DistanceUnit.MI);  //Indicates 5 miles instead of 5 kilometers
     
+/**
+ * If you want to paginate, use the Paging constructor that includes since_id and max_id.
+ * This libary does not implement the 'page' (integer) parameter due to this: https://dev.twitter.com/docs/working-with-timelines
+ */
 SearchQuery query = new SearchQuery(
     "#Boid",  //Searches for Tweets using the #Boid hashtag
-    new Paging(25, 1),  //Gets page 1 of 25 Tweets
+    new Paging(25),  //Get 25 Tweets
     location,  //With location parameters set above
     SearchQuery.ResultType.RECENT,  //Gets recent Tweets, other options include popular Tweets
     null  //The 'until' parameter, we're not gonna use it here
