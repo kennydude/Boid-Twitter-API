@@ -1,5 +1,6 @@
 package com.teamboid.twitterapi.client;
 
+import com.teamboid.twitterapi.config.TwitterAPIConfig;
 import com.teamboid.twitterapi.dm.DirectMessage;
 import com.teamboid.twitterapi.relationship.IDs;
 import com.teamboid.twitterapi.relationship.Relationship;
@@ -25,6 +26,12 @@ public interface Twitter {
      * @throws Exception
      */
     User verifyCredentials() throws Exception;
+
+    /**
+     * Gets Twitter's current API configuration, returns useful numbers that many apps need.
+     * @throws Exception
+     */
+    TwitterAPIConfig getAPIConfiguration() throws Exception;
 
     /**
      * Updates the authenticated user's profile picture.

@@ -1,5 +1,7 @@
 package com.teamboid.twitterapi.client;
 
+import com.teamboid.twitterapi.config.TwitterAPIConfig;
+import com.teamboid.twitterapi.config.TwitterAPIConfigJSON;
 import com.teamboid.twitterapi.dm.DirectMessage;
 import com.teamboid.twitterapi.dm.DirectMessageJSON;
 import com.teamboid.twitterapi.relationship.IDs;
@@ -38,6 +40,14 @@ class TwitterBase extends RequestHandler implements Twitter {
     @Override
     public User verifyCredentials() throws Exception {
         return new UserJSON(getObject(Urls.VERIFY_CREDENTIALS));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public TwitterAPIConfig getAPIConfiguration() throws Exception {
+        return new TwitterAPIConfigJSON(getObject(Urls.API_CONFIG));
     }
 
     /**

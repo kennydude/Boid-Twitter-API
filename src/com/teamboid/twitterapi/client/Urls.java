@@ -30,6 +30,8 @@ public class Urls {
     public final static String SEARCH_USERS = "/users/search.json?include_entities=true";
 
     public final static String VERIFY_CREDENTIALS = "/account/verify_credentials.json?include_entities=true";
+    public final static String API_CONFIG = "/help/configuration.json";
+
     public final static String RELATED_RESULTS = "/related_results/show/{id}.json";
 
     public final static String UPDATE_STATUS = "/statuses/update.json";
