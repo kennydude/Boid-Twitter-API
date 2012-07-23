@@ -1,12 +1,8 @@
 package com.teamboid.twitterapi.status;
 
-import com.teamboid.twitterapi.client.RequestHandler;
-import com.teamboid.twitterapi.search.GeoCode;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,7 +92,7 @@ public class StatusUpdate {
      */
     public List<BasicNameValuePair> getBodyParams() {
         ArrayList<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
-        pairs.add(new BasicNameValuePair("status", RequestHandler.encode(_status)));
+        pairs.add(new BasicNameValuePair("status", _status));
         if(_inReplyToStatusId > 0) {
             pairs.add(new BasicNameValuePair("in_reply_to_status_id", Long.toString(_inReplyToStatusId)));
         }

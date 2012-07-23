@@ -6,7 +6,7 @@ import com.teamboid.twitterapi.json.JSONObject;
  * Handles parsing JSON and assigning values to a {@link SearchQuery} interface.
  * @author Aidan Follestad
  */
-class SearchResultJSON implements SearchResult {
+public class SearchResultJSON implements SearchResult {
 
     public SearchResultJSON(JSONObject json) throws Exception {
         _completedIn = json.optDouble("completed_in");

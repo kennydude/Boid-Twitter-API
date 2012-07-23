@@ -22,7 +22,7 @@ import java.util.Calendar;
  *
  * @author Aidan Follestad
  */
-class StatusJSON implements Status {
+public class StatusJSON implements Status {
 
     public StatusJSON(JSONObject json) throws Exception {
         if(!json.isNull("created_at")) {

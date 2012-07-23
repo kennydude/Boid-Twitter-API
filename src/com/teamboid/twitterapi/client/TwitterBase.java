@@ -396,7 +396,7 @@ class TwitterBase extends RequestHandler implements Twitter {
      */
     @Override
     public User[] searchUsers(String query, int page, int perPage) throws Exception {
-        String url = Urls.SEARCH_USERS + "&query=" + encode(query);
+        String url = Urls.SEARCH_USERS + "&query=" + query;
         if(page > 0) url += "&page=" + page;
         if(perPage > 0) url += "&per_page=" + perPage;
         return UserJSON.createUserList(getArray(url));
@@ -428,7 +428,7 @@ class TwitterBase extends RequestHandler implements Twitter {
     @Override
     public DirectMessage createDirectMessage(String screenName, String text) throws Exception {
         List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
-        pairs.add(new BasicNameValuePair("text", encode(text)));
+        pairs.add(new BasicNameValuePair("text", text));
         pairs.add(new BasicNameValuePair("screen_name", screenName));
         return new DirectMessageJSON(postObject(Urls.CREATE_DIRECT_MESSAGE, pairs, null));
     }
@@ -439,7 +439,7 @@ class TwitterBase extends RequestHandler implements Twitter {
     @Override
     public DirectMessage createDirectMessage(long userId, String text) throws Exception {
         List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
-        pairs.add(new BasicNameValuePair("text", encode(text)));
+        pairs.add(new BasicNameValuePair("text", text));
         pairs.add(new BasicNameValuePair("user_id", Long.toString(userId)));
         return new DirectMessageJSON(postObject(Urls.CREATE_DIRECT_MESSAGE, pairs, null));
     }

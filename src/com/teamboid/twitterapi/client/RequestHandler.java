@@ -32,12 +32,19 @@ import java.util.List;
  * Handles web requests for {@link TwitterBase}
  * @author Aidan Follestad
  */
-public class RequestHandler {
+class RequestHandler {
 
     public String _accessToken;
     public String _accessSecret;
     public String _consumer;
     public String _consumerSecret;
+
+    public boolean _debugOn;
+    public boolean _ssl;
+    private String getApiUrl() {
+        if(_ssl) return "https://api.twitter.com/1";
+        else return "http://api.twitter.com/1";
+    }
 
     /**
      * Gets a new OAuthConsumer instance, this must be done for each request because Signpost OAuth isn't thread safe
@@ -52,6 +59,8 @@ public class RequestHandler {
     }
 
     public JSONObject getObject(String url) throws Exception {
+        url = getApiUrl() + url;
+        if(_debugOn) System.out.println("[GET OBJECT]: " + url);
         HttpGet request = new HttpGet(url);
         getConsumer().sign(request);
         HttpClient httpClient = new DefaultHttpClient();
@@ -67,7 +76,8 @@ public class RequestHandler {
     }
 
     public HttpResponse getResponse(String url, boolean expectRedirect) throws Exception {
-        System.out.println("Requesting: " + url);
+        url = getApiUrl() + url;
+        if(_debugOn) System.out.println("[GET RESPONSE]: " + url);
         HttpGet request = new HttpGet(url);
         getConsumer().sign(request);
         HttpParams params = new BasicHttpParams();
@@ -87,6 +97,8 @@ public class RequestHandler {
     }
 
     public JSONArray getArray(String url) throws Exception {
+        url = getApiUrl() + url;
+        if(_debugOn) System.out.println("[GET ARRAY]: " + url);
         HttpGet request = new HttpGet(url);
         getConsumer().sign(request);
         HttpClient httpClient = new DefaultHttpClient();
@@ -102,11 +114,14 @@ public class RequestHandler {
     }
 
     public JSONObject postObject(String url, List<BasicNameValuePair> p, File file) throws Exception {
-        HttpPost request = new HttpPost(url);
         HttpParams params = new BasicHttpParams();
         HttpProtocolParams.setUseExpectContinue(params, false);
         HttpClient httpClient = new DefaultHttpClient(params);
+        HttpPost request = null;
         if(file != null) {
+            url = Urls.BASE_MEDIA_URL + url;
+            request = new HttpPost(url);
+            if(_debugOn) System.out.println("[POST OBJECT]: " + url);
             MultipartEntity entity = new MultipartEntity(HttpMultipartMode.STRICT);
             FileBody imageBody = new FileBody(file, "image/png");
             entity.addPart("media[]", imageBody);
@@ -114,7 +129,12 @@ public class RequestHandler {
                 entity.addPart(pair.getName(), new StringBody(pair.getValue()));
             }
             request.setEntity(entity);
-        } else if(p != null) request.setEntity(new UrlEncodedFormEntity(p, HTTP.UTF_8));
+        } else if(p != null) {
+            url = getApiUrl() + url;
+            request = new HttpPost(url);
+            if(_debugOn) System.out.println("[POST OBJECT]: " + url);
+            request.setEntity(new UrlEncodedFormEntity(p, "UTF-8"));
+        }
         getConsumer().sign(request);
         HttpResponse response = httpClient.execute(request);
         if(response.getStatusLine().getStatusCode() != 200) {
@@ -128,6 +148,8 @@ public class RequestHandler {
     }
 
     public JSONObject deleteObject(String url) throws Exception {
+        url = getApiUrl() + url;
+        if(_debugOn) System.out.println("[DELETE OBJECT]: " + url);
         HttpDelete request = new HttpDelete(url);
         getConsumer().sign(request);
         HttpClient httpClient = new DefaultHttpClient();
@@ -140,25 +162,5 @@ public class RequestHandler {
             throw new TwitterException(new JSONObject(body));
         }
         return new JSONObject(body);
-    }
-
-    public JSONArray postArray(String url) throws Exception {
-        HttpPost request = new HttpPost(url);
-        getConsumer().sign(request);
-        HttpClient httpClient = new DefaultHttpClient();
-        HttpResponse response = httpClient.execute(request);
-        if(response.getStatusLine().getStatusCode() != 200) {
-            throw new Exception("HTTP POST failed; " + response.getStatusLine().getReasonPhrase());
-        }
-        String body = EntityUtils.toString(response.getEntity());
-        if(body.contains("\"error\":")) {
-            throw new TwitterException(new JSONObject(body));
-        }
-        return new JSONArray(body);
-    }
-
-    public static String encode(String value) {
-        //TODO this may need to be re-implemented in the future, but for some reason URL encoding doesn't work with Twitter
-        return value;
     }
 }

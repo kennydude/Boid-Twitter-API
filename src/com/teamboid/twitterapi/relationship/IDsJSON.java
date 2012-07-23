@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * @author Aidan Follestad
  */
-class IDsJSON implements IDs {
+public class IDsJSON implements IDs {
 
     public IDsJSON(JSONObject json) throws Exception {
         _nextCursor = json.optLong("next_cursor");

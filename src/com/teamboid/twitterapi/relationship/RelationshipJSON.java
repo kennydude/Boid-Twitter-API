@@ -5,7 +5,7 @@ import com.teamboid.twitterapi.json.JSONObject;
 /**
  * @author Aidan Follestad
  */
-class RelationshipJSON implements Relationship {
+public class RelationshipJSON implements Relationship {
 
     public RelationshipJSON(JSONObject json) throws Exception {
         JSONObject relationship = json.getJSONObject("relationship");
