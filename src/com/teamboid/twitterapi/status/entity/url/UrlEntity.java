@@ -1,4 +1,4 @@
-package com.teamboid.twitterapi.entity.url;
+package com.teamboid.twitterapi.status.entity.url;
 
 /**
  * Represents a URL entity held inside of a {@link com.teamboid.twitterapi.status.Status} object.

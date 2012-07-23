@@ -7,7 +7,7 @@ import com.teamboid.twitterapi.json.JSONObject;
 /**
  * Handles parsing JSON and assigning values to a {@link Place} interface.
  */
-public class PlaceJSON implements Place {
+class PlaceJSON implements Place {
 
     /**
      * This initialization code is also taken from Twitter4J and slightly modified.

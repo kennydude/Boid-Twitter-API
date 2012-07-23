@@ -1,9 +1,9 @@
 package com.teamboid.twitterapi.status;
 
-import com.teamboid.twitterapi.entity.hashtag.HashtagEntity;
-import com.teamboid.twitterapi.entity.media.MediaEntity;
-import com.teamboid.twitterapi.entity.mention.MentionEntity;
-import com.teamboid.twitterapi.entity.url.UrlEntity;
+import com.teamboid.twitterapi.status.entity.hashtag.HashtagEntity;
+import com.teamboid.twitterapi.status.entity.media.MediaEntity;
+import com.teamboid.twitterapi.status.entity.mention.MentionEntity;
+import com.teamboid.twitterapi.status.entity.url.UrlEntity;
 import com.teamboid.twitterapi.user.User;
 
 import java.util.Calendar;

@@ -1,27 +1,26 @@
-package com.teamboid.twitterapi.entity.mention;
+package com.teamboid.twitterapi.status.entity.url;
 
 import com.teamboid.twitterapi.json.JSONArray;
 import com.teamboid.twitterapi.json.JSONException;
 import com.teamboid.twitterapi.json.JSONObject;
 
 /**
- * Handles parsing JSON and assigning values to a {@link MentionEntity} interface.
- * @author Aidan Follestad
+ * Handles parsing JSON and assigning values to a {@link UrlEntity} interface.
  */
-public class MentionEntityJSON implements MentionEntity {
+public class UrlEntityJSON implements UrlEntity {
 
-    public MentionEntityJSON(JSONObject json) throws JSONException {
-        _id = json.optLong("id");
-        _screenName = json.optString("screen_name");
-        _name = json.optString("name");
+    public UrlEntityJSON(JSONObject json) throws JSONException {
+        _url = json.getString("url");
+        _displayUrl = json.getString("display_url");
+        _expandedUrl = json.getString("expanded_url");
         JSONArray indices = json.getJSONArray("indices");
         _startIndex = indices.getInt(0);
         _endIndex = indices.getInt(1);
     }
 
-    private long _id;
-    private String _screenName;
-    private String _name;
+    private String _url;
+    private String _displayUrl;
+    private String _expandedUrl;
     private int _startIndex;
     private int _endIndex;
 
@@ -29,19 +28,19 @@ public class MentionEntityJSON implements MentionEntity {
      * {@inheritDoc}
      */
     @Override
-    public long getId() { return _id; }
+    public String getUrl() { return _url; }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getScreenName() { return _screenName; }
+    public String getDisplayUrl() { return _displayUrl; }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getName() { return _name; }
+    public String getExpandedUrl() { return _expandedUrl; }
 
     /**
      * {@inheritDoc}

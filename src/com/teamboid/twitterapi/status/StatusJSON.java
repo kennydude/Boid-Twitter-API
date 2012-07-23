@@ -1,13 +1,13 @@
 package com.teamboid.twitterapi.status;
 
-import com.teamboid.twitterapi.entity.hashtag.HashtagEntity;
-import com.teamboid.twitterapi.entity.hashtag.HashtagEntityJSON;
-import com.teamboid.twitterapi.entity.media.MediaEntity;
-import com.teamboid.twitterapi.entity.media.MediaEntityJSON;
-import com.teamboid.twitterapi.entity.mention.MentionEntity;
-import com.teamboid.twitterapi.entity.mention.MentionEntityJSON;
-import com.teamboid.twitterapi.entity.url.UrlEntity;
-import com.teamboid.twitterapi.entity.url.UrlEntityJSON;
+import com.teamboid.twitterapi.status.entity.hashtag.HashtagEntity;
+import com.teamboid.twitterapi.status.entity.hashtag.HashtagEntityJSON;
+import com.teamboid.twitterapi.status.entity.media.MediaEntity;
+import com.teamboid.twitterapi.status.entity.media.MediaEntityJSON;
+import com.teamboid.twitterapi.status.entity.mention.MentionEntity;
+import com.teamboid.twitterapi.status.entity.mention.MentionEntityJSON;
+import com.teamboid.twitterapi.status.entity.url.UrlEntity;
+import com.teamboid.twitterapi.status.entity.url.UrlEntityJSON;
 import com.teamboid.twitterapi.user.User;
 import com.teamboid.twitterapi.user.UserJSON;
 import com.teamboid.twitterapi.utilities.Time;
@@ -22,7 +22,7 @@ import java.util.Calendar;
  *
  * @author Aidan Follestad
  */
-public class StatusJSON implements Status {
+class StatusJSON implements Status {
 
     public StatusJSON(JSONObject json) throws Exception {
         if(!json.isNull("created_at")) {

@@ -1,4 +1,4 @@
-package com.teamboid.twitterapi.entity.mention;
+package com.teamboid.twitterapi.status.entity.mention;
 
 /**
  * Represents a media entity held inside of a {@link com.teamboid.twitterapi.status.Status} object.

@@ -1,4 +1,4 @@
-package com.teamboid.twitterapi.entity.media;
+package com.teamboid.twitterapi.status.entity.media;
 
 import com.teamboid.twitterapi.json.JSONArray;
 import com.teamboid.twitterapi.json.JSONException;

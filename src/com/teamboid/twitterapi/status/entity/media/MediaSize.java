@@ -1,4 +1,4 @@
-package com.teamboid.twitterapi.entity.media;
+package com.teamboid.twitterapi.status.entity.media;
 
 /**
  * Can be used in {@link MediaEntity#getMediaUrl(MediaSize)} or {@link MediaEntity#getMediaUrlHttps(MediaSize)}

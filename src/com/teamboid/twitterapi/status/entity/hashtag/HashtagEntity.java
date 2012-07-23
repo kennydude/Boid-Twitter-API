@@ -1,4 +1,4 @@
-package com.teamboid.twitterapi.entity.hashtag;
+package com.teamboid.twitterapi.status.entity.hashtag;
 
 /**
  * Represents a hashtag entity held inside of a {@link com.teamboid.twitterapi.status.Status} object.

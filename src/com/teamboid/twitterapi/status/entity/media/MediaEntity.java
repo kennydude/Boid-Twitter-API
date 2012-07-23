@@ -1,4 +1,7 @@
-package com.teamboid.twitterapi.entity.media;
+package com.teamboid.twitterapi.status.entity.media;
+
+import com.teamboid.twitterapi.json.JSONException;
+import com.teamboid.twitterapi.json.JSONObject;
 
 /**
  * Represents a media entity held inside of a {@link com.teamboid.twitterapi.status.Status} object.

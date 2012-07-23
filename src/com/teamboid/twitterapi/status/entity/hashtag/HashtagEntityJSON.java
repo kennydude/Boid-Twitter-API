@@ -1,4 +1,4 @@
-package com.teamboid.twitterapi.entity.hashtag;
+package com.teamboid.twitterapi.status.entity.hashtag;
 
 import com.teamboid.twitterapi.json.JSONArray;
 import com.teamboid.twitterapi.json.JSONException;

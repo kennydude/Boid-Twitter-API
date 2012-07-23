@@ -1,13 +1,13 @@
 package com.teamboid.twitterapi.search;
 
-import com.teamboid.twitterapi.entity.hashtag.HashtagEntity;
-import com.teamboid.twitterapi.entity.hashtag.HashtagEntityJSON;
-import com.teamboid.twitterapi.entity.media.MediaEntity;
-import com.teamboid.twitterapi.entity.media.MediaEntityJSON;
-import com.teamboid.twitterapi.entity.mention.MentionEntity;
-import com.teamboid.twitterapi.entity.mention.MentionEntityJSON;
-import com.teamboid.twitterapi.entity.url.UrlEntity;
-import com.teamboid.twitterapi.entity.url.UrlEntityJSON;
+import com.teamboid.twitterapi.status.entity.hashtag.HashtagEntity;
+import com.teamboid.twitterapi.status.entity.hashtag.HashtagEntityJSON;
+import com.teamboid.twitterapi.status.entity.media.MediaEntity;
+import com.teamboid.twitterapi.status.entity.media.MediaEntityJSON;
+import com.teamboid.twitterapi.status.entity.mention.MentionEntity;
+import com.teamboid.twitterapi.status.entity.mention.MentionEntityJSON;
+import com.teamboid.twitterapi.status.entity.url.UrlEntity;
+import com.teamboid.twitterapi.status.entity.url.UrlEntityJSON;
 import com.teamboid.twitterapi.status.GeoLocation;
 import com.teamboid.twitterapi.utilities.Time;
 import com.teamboid.twitterapi.json.JSONArray;
@@ -20,7 +20,7 @@ import java.util.Calendar;
  * Handles parsing JSON and associated values into a {@link Tweet} instance.
  * @author Aidan Follestad
  */
-public class TweetJSON implements Tweet {
+class TweetJSON implements Tweet {
 
     public TweetJSON(JSONObject json) throws Exception {
         _createdAt = Time.getTwitterSearchDate(json.getString("created_at"));

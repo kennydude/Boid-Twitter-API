@@ -30,7 +30,7 @@ import java.util.List;
  *
  * @author Aidan Follestad
  */
-public class TwitterBase extends RequestHandler implements Twitter {
+class TwitterBase extends RequestHandler implements Twitter {
 
     /**
      * {@inheritDoc}
