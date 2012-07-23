@@ -1,1 +1,0 @@
-##See this page for tutorials and generated JavaDoc: http://afollestad.github.com/Boid-Twitter-API/
