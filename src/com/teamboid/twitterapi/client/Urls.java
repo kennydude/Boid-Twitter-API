@@ -57,4 +57,6 @@ public class Urls {
     public final static String DESTROY_FRIENDSHIP = "/friendships/destroy.json";
 
     public final static String UPDATE_PROFILE_IMAGE = "/account/update_profile_image.json";
+
+    public final static String REPORT_SPAM = "/report_spam.json";
 }

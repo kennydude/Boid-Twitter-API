@@ -348,6 +348,20 @@ public interface Twitter {
      */
     User destroyFriendship(String screenName) throws Exception;
 
+    /**
+     * Reports a user for spam, which also blocks the user from the authenticated account.
+     * @param screenName The screen name of the user to report.
+     * @throws  Exception
+     */
+    User reportSpam(String screenName) throws Exception;
+
+    /**
+     * Reports a user for spam, which also blocks the user from the authenticated account.
+     * @param userId The ID of the user to report.
+     * @throws  Exception
+     */
+    User reportSpam(long userId) throws Exception;
+
     //TODO
     void getRelatedResults(long statusId) throws Exception;
 }

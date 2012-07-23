@@ -367,6 +367,26 @@ class TwitterBase extends RequestHandler implements Twitter {
      * {@inheritDoc}
      */
     @Override
+    public User reportSpam(String screenName) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("screen_name", screenName));
+        return new UserJSON(postObject(Urls.REPORT_SPAM, pairs, null));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public User reportSpam(long userId) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("user_id", Long.toString(userId)));
+        return new UserJSON(postObject(Urls.REPORT_SPAM, pairs, null));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Status[] getRetweets(long statusId, int count) throws Exception {
         String url = Urls.RETWEETS.replace("{id}", Long.toString(statusId));
         if(count > 0) url += "&count=" + count;
