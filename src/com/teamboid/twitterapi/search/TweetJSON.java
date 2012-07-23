@@ -16,6 +16,10 @@ import com.teamboid.twitterapi.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+/**
+ * Handles parsing JSON and associated values into a {@link Tweet} instance.
+ * @author Aidan Follestad
+ */
 public class TweetJSON implements Tweet {
 
     public TweetJSON(JSONObject json) throws Exception {
@@ -96,54 +100,101 @@ public class TweetJSON implements Tweet {
     private HashtagEntity[] _hashtagEntities;
     private MentionEntity[] _mentionEntities;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Calendar getCreatedAt() { return _createdAt; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getProfileImageUrl() { return _profileImageUrl; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getFromUserId() { return _fromUserId; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getFromUser() { return _fromUser; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getText() { return _text; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getToUserId() { return _toUserId; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getId() { return _id; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public GeoLocation getGeo() { return _geo; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getIsoLanguageCode() { return _langCode; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getSource() { return _source; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getRecentRetweets() { return _recentRetweets; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SearchQuery.ResultType getResultType() { return _resultType; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UrlEntity[] getUrlEntities() { return _urlEntities; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MediaEntity[] getMediaEntities() { return _mediaEntities; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HashtagEntity[] getHashtagEntities() { return  _hashtagEntities; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MentionEntity[] getMentionEntities() { return _mentionEntities; }
-
 
     public static Tweet[] createStatusList(JSONArray array) throws Exception {
         ArrayList<Tweet> toReturn = new ArrayList<Tweet>();

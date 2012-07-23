@@ -6,6 +6,7 @@ import com.teamboid.twitterapi.json.JSONObject;
 
 /**
  * Represents a coordinate with longitude and latitude.
+ * @author Aidan Follestad
  */
 public class GeoLocation {
 

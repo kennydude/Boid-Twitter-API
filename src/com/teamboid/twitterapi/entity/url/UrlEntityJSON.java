@@ -24,18 +24,33 @@ public class UrlEntityJSON implements UrlEntity {
     private int _startIndex;
     private int _endIndex;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getUrl() { return _url; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDisplayUrl() { return _displayUrl; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getExpandedUrl() { return _expandedUrl; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getStartIndex() { return _startIndex; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getEndIndex() { return _endIndex; }
 }

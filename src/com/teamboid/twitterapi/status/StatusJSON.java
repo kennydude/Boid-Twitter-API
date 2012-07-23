@@ -108,56 +108,107 @@ public class StatusJSON implements Status {
     private String _inReplyToScreenName;
     private long _inReplyToStatusId;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getId() { return _id; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isFavorited() { return _favorited; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setFavorited(boolean isFavorited) { _favorited = isFavorited; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Calendar getCreatedAt() { return _createdAt; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isTruncated() { return _truncated; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UrlEntity[] getUrlEntities() { return _urlEntities; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MediaEntity[] getMediaEntities() { return _mediaEntities; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HashtagEntity[] getHashtagEntities() { return  _hashtagEntities; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MentionEntity[] getMentionEntities() { return _mentionEntities; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User getUser() { return _user; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getText() { return _text; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getSource() { return _source; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getInReplyToStatusId() { return _inReplyToStatusId; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getInReplyToUserId() { return _inReplyToUserId; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getInReplyToScreenName() { return _inReplyToScreenName; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getRetweetCount() { return _retweetCount; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public boolean getRetweeted() { return _retweeted; }
+    public boolean isRetweeted() { return _retweeted; }
 
     public static Status[] createStatusList(JSONArray array) throws Exception {
         ArrayList<Status> toReturn = new ArrayList<Status>();

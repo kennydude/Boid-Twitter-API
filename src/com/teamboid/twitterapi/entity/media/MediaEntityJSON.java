@@ -30,31 +30,55 @@ public class MediaEntityJSON implements MediaEntity {
     private int _startIndex;
     private int _endIndex;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getId() { return _id; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getMediaUrl(MediaSize size) {
         if(size != MediaSize.MEDIUM) {
             return _mediaUrl + ":" + size.name().toLowerCase();
         } else return _mediaUrl;
-   }
+    }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getMediaUrlHttps(MediaSize size) { return _mediaUrlHttps; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getUrl() { return _url; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDisplayUrl() { return _displayUrl; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getExpandedUrl() { return _expandedUrl; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getStartIndex() { return _startIndex; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getEndIndex() { return _endIndex; }
 }

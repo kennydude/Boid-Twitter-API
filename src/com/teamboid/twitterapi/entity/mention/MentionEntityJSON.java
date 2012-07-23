@@ -6,6 +6,7 @@ import com.teamboid.twitterapi.json.JSONObject;
 
 /**
  * Handles parsing JSON and assigning values to a {@link MentionEntity} interface.
+ * @author Aidan Follestad
  */
 public class MentionEntityJSON implements MentionEntity {
 
@@ -24,18 +25,33 @@ public class MentionEntityJSON implements MentionEntity {
     private int _startIndex;
     private int _endIndex;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getId() { return _id; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getScreenName() { return _screenName; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() { return _name; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getStartIndex() { return _startIndex; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getEndIndex() { return _endIndex; }
 }

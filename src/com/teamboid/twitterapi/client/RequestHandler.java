@@ -30,7 +30,6 @@ import java.util.List;
 
 /**
  * Handles web requests for {@link TwitterBase}
- *
  * @author Aidan Follestad
  */
 public class RequestHandler {

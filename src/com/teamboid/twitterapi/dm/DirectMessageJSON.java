@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
+ * Handles parsing JSON and assigning values into a {@link DirectMessage} interface.
  * @author Aidan Follestad
  */
 public class DirectMessageJSON implements DirectMessage {
@@ -36,30 +37,57 @@ public class DirectMessageJSON implements DirectMessage {
     private long _recipientId;
     private long _senderId;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Calendar getCreatedAt() { return _createdAt; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getSenderScreenName() { return _senderScreenName; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User getSender() { return _sender; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getText() { return _text; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getRecipientScreenName() { return _recipientScreenName; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getId() { return _id; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User getRecipient() { return _recipient; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getRecipientId() { return _recipientId; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getSenderId() { return _senderId; }
 

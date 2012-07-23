@@ -30,33 +30,63 @@ public class RelationshipJSON implements Relationship {
     private long sourceUserId;
     private String sourceUserScreenName;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getSourceUserId() { return sourceUserId; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getTargetUserId() { return targetUserId; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSourceBlockingTarget() { return sourceBlockingTarget; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getSourceUserScreenName() { return sourceUserScreenName; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getTargetUserScreenName() { return targetUserScreenName; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSourceFollowingTarget() { return sourceFollowingTarget; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isTargetFollowingSource() { return sourceFollowedByTarget; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSourceFollowedByTarget() { return sourceFollowedByTarget; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isTargetFollowedBySource() { return sourceFollowingTarget; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSourceNotificationsEnabled() { return sourceNotificationsEnabled; }
 }

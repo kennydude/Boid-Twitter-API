@@ -10,6 +10,7 @@ import java.util.Calendar;
 
 /**
  * Represents a Tweet held in search results.
+ * @author Aidan Follestad
  */
 public interface Tweet {
 

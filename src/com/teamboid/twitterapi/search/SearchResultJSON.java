@@ -3,6 +3,7 @@ package com.teamboid.twitterapi.search;
 import com.teamboid.twitterapi.json.JSONObject;
 
 /**
+ * Handles parsing JSON and assigning values to a {@link SearchQuery} interface.
  * @author Aidan Follestad
  */
 public class SearchResultJSON implements SearchResult {
@@ -31,30 +32,57 @@ public class SearchResultJSON implements SearchResult {
     private int _resultsPerPage;
     private long _sinceId;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public double getCompletedIn() { return _completedIn; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getMaxId() { return _maxId; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getNextPage() { return _nextPage; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getPage() { return _page; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getQuery() { return _query; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getRefreshUrl() { return _refreshUrl; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Tweet[] getResults() { return _results; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getResultsPerPage() { return _resultsPerPage; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getSinceId() { return _sinceId; }
 }

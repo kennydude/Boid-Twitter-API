@@ -68,57 +68,111 @@ public class UserJSON implements User {
     private FollowingType _following;
     private long _favoritesCount;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getId() { return _id; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getName() { return _name; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getScreenName() { return _screenName; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Calendar getCreatedAt() { return _createdAt; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getUrl() { return _url; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getLocation() { return _location; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getProfileImageUrl() { return _profileImageUrl; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isVerified() { return _isVerified; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isProtected() { return _isProtected; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isTranslator() { return _isTranslator; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getFriendsCount() { return _friendsCount; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getFollowersCount() { return _followersCount; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getStatusCount() { return _statusCount; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getLanguage() { return _language; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getDescription() { return _description; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public FollowingType getFollowingType() { return _following; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setFollowingType(FollowingType type) { _following = type; }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public long getFavoritesCount() { return _favoritesCount; }
 

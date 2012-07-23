@@ -1,40 +1,43 @@
 package com.teamboid.twitterapi.client;
 
 /**
- * Created with IntelliJ IDEA.
- * User: root
- * Date: 7/21/12
- * Time: 4:59 AM
- * To change this template use File | Settings | File Templates.
+ * Passes paging information to any API functions that can include page, count, since_id, or max_id parameters.
+ * @author Aidan Follestad
  */
 public class Paging {
 
+    /**
+     * Initializes new Paging instance.
+     * @param count The number of results to retrieve.
+     */
     public Paging(int count) {
         _count = count;
     }
-    public Paging(int count, int page) {
-        _count = count;
-        _page = page;
-    }
+    /**
+     * Initializes new Paging instance.
+     * @param count The number of results to retrieve.
+     * @param sinceId Returns results with an ID greater than (that is, more recent than) the specified ID. There are limits to the number of Tweets which can be accessed through the API. If the limit of Tweets has occured since the since_id, the since_id will be forced to the oldest ID available.
+     * @param maxId Returns results with an ID less than (that is, older than) or equal to the specified ID.
+     */
     public Paging(int count, long sinceId, long maxId) {
         _count = count;
         _sinceId = sinceId;
         _maxId = maxId;
     }
-    public Paging(int count, int page, long sinceId, long maxId) {
-        _count = count;
-        _page = page;
-        _sinceId = sinceId;
-        _maxId = maxId;
-    }
+
+    /**
+     * We do not implement the page parameter because it will soon be deprecated.
+     * When paging through results in your app's lists, use since_id and max_id.
+     *
+     * See this link: https://dev.twitter.com/docs/working-with-timelines
+     */
+    private int _page;
 
     private int _count;
-    private int _page;
     private long _sinceId;
     private long _maxId;
 
     public int getCount() { return _count; }
-    public int getPage() { return _page; }
     public long getSinceId() { return _sinceId; }
     public long getMaxId() { return _maxId; }
 
@@ -47,13 +50,6 @@ public class Paging {
                 insertedStarting = true;
             } else toReturn += "&";
             toReturn += "count=" + _count;
-        }
-        if(_page > 0) {
-            if(!insertedStarting) {
-                toReturn += startingCharacter;
-                insertedStarting = true;
-            } else toReturn += "&";
-            toReturn += "page=" + _page;
         }
         if(includeSinceMaxId) {
             if(_sinceId > 0) {

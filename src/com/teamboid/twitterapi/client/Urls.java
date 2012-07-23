@@ -1,5 +1,9 @@
 package com.teamboid.twitterapi.client;
 
+/**
+ * Contains URL constants for the Twitter API functions.
+ * @author Aidan Follestad
+ */
 public class Urls {
 
     public final static String BASE_API_URL = "http://api.twitter.com/1";

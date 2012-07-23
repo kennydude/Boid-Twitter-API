@@ -1,6 +1,7 @@
 package com.teamboid.twitterapi.client;
 
 /**
+ * Used to specify {@link Twitter#getUserProfileImage(String, ProfileImageSize)} image sizes.
  * @author Aidan Follestad
  */
 public enum ProfileImageSize {

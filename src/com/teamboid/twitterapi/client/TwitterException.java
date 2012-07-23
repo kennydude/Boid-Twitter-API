@@ -19,6 +19,9 @@ public class TwitterException extends Exception {
 
     private String _request;
 
+    /**
+     * Gets the URL of the request made that caused this error to occur.
+     */
     public String getRequest() { return _request; }
 
     @Override

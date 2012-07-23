@@ -22,23 +22,41 @@ import org.apache.http.util.EntityUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The base {@link Twitter} client class, contains the actual code content for
+ * the functions called when you use the Twitter interface.
+ *
+ * @author Aidan Follestad
+ */
 public class TwitterBase extends RequestHandler implements Twitter {
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User verifyCredentials() throws Exception {
         return new UserJSON(getObject(Urls.VERIFY_CREDENTIALS));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getAccessToken() {
         return super._accessToken;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getAccessSecret() {
         return super._accessSecret;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status[] getHomeTimeline(Paging paging) throws Exception {
         String url = Urls.HOME_TIMELINE;
@@ -46,6 +64,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return StatusJSON.createStatusList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status[] getMentions(Paging paging) throws Exception {
         String url = Urls.MENTIONS;
@@ -53,6 +74,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return StatusJSON.createStatusList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status[] getUserTimeline(Paging paging) throws Exception {
         String url = Urls.USER_TIMELINE;
@@ -60,6 +84,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return StatusJSON.createStatusList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status[] getUserTimeline(long userId, Paging paging) throws Exception {
         String url = Urls.USER_TIMELINE + "&user_id=" + userId;
@@ -67,6 +94,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return StatusJSON.createStatusList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status[] getUserTimeline(String screenName, Paging paging) throws Exception {
         String url = Urls.USER_TIMELINE + "&screen_name=" + screenName;
@@ -74,6 +104,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return StatusJSON.createStatusList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status[] getRetweetsOfMe(Paging paging) throws Exception {
         String url = Urls.RETWEETS_OF_ME;
@@ -81,31 +114,49 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return StatusJSON.createStatusList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status showStatus(long statusId) throws Exception {
         return new StatusJSON(getObject(Urls.SHOW_STATUS.replace("{id}", Long.toString(statusId))));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status retweetStatus(long statusId) throws Exception {
         return new StatusJSON(getObject(Urls.RETWEET_STATUS.replace("{id}", Long.toString(statusId))));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status destroyStatus(long statusId) throws Exception {
         return new StatusJSON(postObject(Urls.DESTROY_STATUS.replace("{id}", Long.toString(statusId)), null, null));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User showUser(long userId) throws Exception {
         return new UserJSON(getObject(Urls.SHOW_USER + "&user_id=" + Long.toString(userId)));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User showUser(String screenName) throws Exception {
         return new UserJSON(getObject(Urls.SHOW_USER + "&screen_name=" + screenName));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User[] lookupUsers(String[] screenNames) throws Exception {
         String param = "";
@@ -115,6 +166,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return UserJSON.createUserList(getArray(Urls.LOOKUP_USERS + "?screen_name=" + param));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User[] lookupUsers(long[] userIds) throws Exception {
         String param = "";
@@ -124,6 +178,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return UserJSON.createUserList(getArray(Urls.LOOKUP_USERS + "?user_id=" + param));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String getUserProfileImage(String screenName, ProfileImageSize size) throws Exception {
         String url = Urls.GET_PROFILE_IMAGE + "?screen_name=" + screenName;
@@ -134,6 +191,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return response.getHeaders("Location")[0].getValue();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IDs getFriends(String screenName, long cursor) throws Exception {
         String url = Urls.GET_FRIENDS + "?screen_name=" + screenName;
@@ -141,6 +201,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return new IDsJSON(getObject(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IDs getFriends(long userId, long cursor) throws Exception {
         String url = Urls.GET_FRIENDS + "?user_id=" + Long.toString(userId);
@@ -148,6 +211,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return new IDsJSON(getObject(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IDs getFollowers(String screenName, long cursor) throws Exception {
         String url = Urls.GET_FOLLOWERS + "?screen_name=" + screenName;
@@ -155,6 +221,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return new IDsJSON(getObject(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IDs getFollowers(long userId, long cursor) throws Exception {
         String url = Urls.GET_FOLLOWERS + "?user_id=" + Long.toString(userId);
@@ -162,6 +231,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return new IDsJSON(getObject(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean getFriendshipExists(String fromScreenName, String toScreenName) throws Exception {
         HttpResponse response = getResponse(Urls.FRIENDSHIP_EXISTS +
@@ -169,6 +241,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return Boolean.parseBoolean(EntityUtils.toString(response.getEntity()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IDs getFriendshipsIncoming(long cursor) throws Exception {
         String url = Urls.INCOMING_FRIENDSHIPS;
@@ -176,6 +251,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return new IDsJSON(getObject(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IDs getFriendshipsOutgoing(long cursor) throws Exception {
         String url = Urls.OUTGOING_FRIENDSHIPS;
@@ -183,6 +261,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return new IDsJSON(getObject(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Relationship getRelationship(long fromUserId, long toUserId) throws Exception {
         String url = Urls.SHOW_FRIENDSHIP +
@@ -190,6 +271,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return new RelationshipJSON(getObject(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Relationship getRelationship(String fromScreenName, String toScreenName) throws Exception {
         String url = Urls.SHOW_FRIENDSHIP +
@@ -197,6 +281,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return new RelationshipJSON(getObject(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User createFriendship(long userId) throws Exception {
         List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
@@ -209,6 +296,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return toReturn;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User createFriendship(String screenName) throws Exception {
         List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
@@ -221,6 +311,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return toReturn;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User destroyFriendship(long userId) throws Exception {
         List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
@@ -233,6 +326,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return toReturn;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User destroyFriendship(String screenName) throws Exception {
         List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
@@ -245,6 +341,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return toReturn;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status[] getRetweets(long statusId, int count) throws Exception {
         String url = Urls.RETWEETS.replace("{id}", Long.toString(statusId));
@@ -252,6 +351,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return StatusJSON.createStatusList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User[] getRetweetedBy(long statusId, Paging paging) throws Exception {
         String url = Urls.RETWEETED_BY.replace("{id}", Long.toString(statusId));
@@ -259,6 +361,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return UserJSON.createUserList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status updateStatus(StatusUpdate update) throws Exception {
         if(update.getMedia() != null) {
@@ -266,11 +371,17 @@ public class TwitterBase extends RequestHandler implements Twitter {
         } else return new StatusJSON(postObject(Urls.UPDATE_STATUS, update.getBodyParams(), update.getMedia()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SearchResult search(SearchQuery query) throws Exception {
         return new SearchResultJSON(getObject(query.getUrl()));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public User[] searchUsers(String query, int page, int perPage) throws Exception {
         String url = Urls.SEARCH_USERS + "&query=" + encode(query);
@@ -279,6 +390,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return UserJSON.createUserList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DirectMessage[] getDirectMessages(Paging paging) throws Exception {
         String url = Urls.DIRECT_MESSAGES;
@@ -286,6 +400,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return DirectMessageJSON.createMessageList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DirectMessage[] getSentDirectMessages(Paging paging) throws Exception {
         String url = Urls.DIRECT_MESSAGES_SENT;
@@ -293,6 +410,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return DirectMessageJSON.createMessageList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DirectMessage createDirectMessage(String screenName, String text) throws Exception {
         List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
@@ -301,6 +421,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return new DirectMessageJSON(postObject(Urls.CREATE_DIRECT_MESSAGE, pairs, null));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DirectMessage createDirectMessage(long userId, String text) throws Exception {
         List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
@@ -309,16 +432,25 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return new DirectMessageJSON(postObject(Urls.CREATE_DIRECT_MESSAGE, pairs, null));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DirectMessage showDirectMessage(long msgId) throws Exception {
         return new DirectMessageJSON(getObject(Urls.SHOW_DIRECT_MESSAGE.replace("{id}", Long.toString(msgId))));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DirectMessage destroyDirectMessage(long msgId) throws Exception {
         return new DirectMessageJSON(deleteObject(Urls.DESTROY_DIRECT_MESSAGE.replace("{id}", Long.toString(msgId))));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status[] getFavorites(Paging paging) throws Exception {
         String url = Urls.GET_FAVORITES;
@@ -326,6 +458,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return StatusJSON.createStatusList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status[] getFavorites(Paging paging, String screenName) throws Exception {
         String url = Urls.GET_FAVORITES + "&screen_name=" + screenName;
@@ -333,6 +468,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return StatusJSON.createStatusList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status[] getFavorites(Paging paging, long userId) throws Exception {
         String url = Urls.GET_FAVORITES + "&user_id=" + Long.toString(userId);
@@ -340,6 +478,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return StatusJSON.createStatusList(getArray(url));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status createFavorite(long statusId) throws Exception {
         Status toReturn = new StatusJSON(postObject(Urls.CREATE_FAVORITE.replace("{id}", Long.toString(statusId)), null, null));
@@ -350,6 +491,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return toReturn;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Status destroyFavorite(long statusId) throws Exception {
         Status toReturn = new StatusJSON(postObject(Urls.DESTROY_FAVORITE.replace("{id}", Long.toString(statusId)), null, null));
@@ -360,6 +504,9 @@ public class TwitterBase extends RequestHandler implements Twitter {
         return toReturn;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void getRelatedResults(long statusId) throws Exception {
         System.out.println(getArray(Urls.RELATED_RESULTS.replace("{id}", Long.toString(statusId))).toString(4));

@@ -1,7 +1,8 @@
 package com.teamboid.twitterapi.user;
 
 /**
- *
+ * Used by {@link User} to specify whether or not the authenticated user follows another user.
+ * @author Aidan Follestad
  */
 public enum FollowingType {
     /**
