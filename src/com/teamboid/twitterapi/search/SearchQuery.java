@@ -59,7 +59,7 @@ public class SearchQuery {
 
     public String getUrl() {
         try {
-            String url = Urls.SEARCH_QUERY + "?q=" + URLEncoder.encode(_query, "UTF8");
+            String url = "?q=" + URLEncoder.encode(_query, "UTF8");
             if(_geo != null) {
                 url += ("&" + _geo.getLatitude() + "," + _geo.getLongitude() + "," +
                         _geo.getDistance() + _geo.getUnit().name().toLowerCase());
