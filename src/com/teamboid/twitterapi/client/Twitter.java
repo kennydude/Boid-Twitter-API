@@ -1,6 +1,5 @@
 package com.teamboid.twitterapi.client;
 
-import android.provider.ContactsContract;
 import com.teamboid.twitterapi.dm.DirectMessage;
 import com.teamboid.twitterapi.relationship.IDs;
 import com.teamboid.twitterapi.relationship.Relationship;

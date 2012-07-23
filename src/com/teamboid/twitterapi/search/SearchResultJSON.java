@@ -1,6 +1,6 @@
 package com.teamboid.twitterapi.search;
 
-import org.json.JSONObject;
+import com.teamboid.twitterapi.json.JSONObject;
 
 /**
  * @author Aidan Follestad

@@ -3,8 +3,8 @@ package com.teamboid.twitterapi.dm;
 import com.teamboid.twitterapi.user.User;
 import com.teamboid.twitterapi.user.UserJSON;
 import com.teamboid.twitterapi.utilities.Time;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.teamboid.twitterapi.json.JSONArray;
+import com.teamboid.twitterapi.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;

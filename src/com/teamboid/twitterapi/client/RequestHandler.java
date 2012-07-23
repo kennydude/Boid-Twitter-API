@@ -1,5 +1,7 @@
 package com.teamboid.twitterapi.client;
 
+import com.teamboid.twitterapi.json.JSONArray;
+import com.teamboid.twitterapi.json.JSONObject;
 import oauth.signpost.OAuthConsumer;
 import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
 import org.apache.http.HttpResponse;
@@ -20,8 +22,6 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;

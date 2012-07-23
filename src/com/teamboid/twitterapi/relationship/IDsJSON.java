@@ -1,8 +1,8 @@
 package com.teamboid.twitterapi.relationship;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.teamboid.twitterapi.json.JSONArray;
+import com.teamboid.twitterapi.json.JSONException;
+import com.teamboid.twitterapi.json.JSONObject;
 
 import java.util.ArrayList;
 

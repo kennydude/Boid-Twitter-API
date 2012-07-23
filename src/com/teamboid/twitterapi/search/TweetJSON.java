@@ -10,8 +10,8 @@ import com.teamboid.twitterapi.entity.url.UrlEntity;
 import com.teamboid.twitterapi.entity.url.UrlEntityJSON;
 import com.teamboid.twitterapi.status.GeoLocation;
 import com.teamboid.twitterapi.utilities.Time;
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.teamboid.twitterapi.json.JSONArray;
+import com.teamboid.twitterapi.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;

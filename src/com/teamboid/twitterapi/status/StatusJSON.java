@@ -1,6 +1,5 @@
 package com.teamboid.twitterapi.status;
 
-import android.text.Html;
 import com.teamboid.twitterapi.entity.hashtag.HashtagEntity;
 import com.teamboid.twitterapi.entity.hashtag.HashtagEntityJSON;
 import com.teamboid.twitterapi.entity.media.MediaEntity;
@@ -12,9 +11,8 @@ import com.teamboid.twitterapi.entity.url.UrlEntityJSON;
 import com.teamboid.twitterapi.user.User;
 import com.teamboid.twitterapi.user.UserJSON;
 import com.teamboid.twitterapi.utilities.Time;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.teamboid.twitterapi.json.JSONArray;
+import com.teamboid.twitterapi.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
