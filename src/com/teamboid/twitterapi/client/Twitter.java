@@ -9,6 +9,8 @@ import com.teamboid.twitterapi.status.Status;
 import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.user.User;
 
+import java.io.File;
+
 /**
  * The main class used within this library, used for performing API actions on Twitter.
  * Use the {@link com.teamboid.twitterapi.auth.Authorizer} to authenticate an account and
@@ -23,6 +25,13 @@ public interface Twitter {
      * @throws Exception
      */
     User verifyCredentials() throws Exception;
+
+    /**
+     * Updates the authenticated user's profile picture.
+     * @param file The image file to update the profile picture with.
+     * @throws Exception
+     */
+    User updateProfileImage(File file) throws Exception;
 
     /**
      * Gets the access token used to authenticate requests made to Twitter,
@@ -276,7 +285,7 @@ public interface Twitter {
      * @param toScreenName Is this user followed by the other?
      * @throws Exception
      */
-    boolean getFriendshipExists(String fromScreenName, String toScreenName) throws Exception;
+    boolean existsFriendship(String fromScreenName, String toScreenName) throws Exception;
 
     /**
      * Returns {@link IDs} containing every protected user for whom the authenticating user has a pending follow request.

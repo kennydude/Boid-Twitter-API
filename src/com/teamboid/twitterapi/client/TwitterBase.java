@@ -15,10 +15,12 @@ import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.user.FollowingType;
 import com.teamboid.twitterapi.user.User;
 import com.teamboid.twitterapi.user.UserJSON;
+import com.teamboid.twitterapi.utilities.FileUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,16 @@ public class TwitterBase extends RequestHandler implements Twitter {
     @Override
     public User verifyCredentials() throws Exception {
         return new UserJSON(getObject(Urls.VERIFY_CREDENTIALS));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public User updateProfileImage(File file) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("image", FileUtils.getBase64FromFile(file)));
+        return new UserJSON(postObject(Urls.UPDATE_PROFILE_IMAGE, pairs, null));
     }
 
     /**
@@ -235,7 +247,7 @@ public class TwitterBase extends RequestHandler implements Twitter {
      * {@inheritDoc}
      */
     @Override
-    public boolean getFriendshipExists(String fromScreenName, String toScreenName) throws Exception {
+    public boolean existsFriendship(String fromScreenName, String toScreenName) throws Exception {
         HttpResponse response = getResponse(Urls.FRIENDSHIP_EXISTS +
                 "?screen_name_a=" + fromScreenName + "&screen_name_b=" + toScreenName, false);
         return Boolean.parseBoolean(EntityUtils.toString(response.getEntity()));

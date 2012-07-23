@@ -103,11 +103,10 @@ public class RequestHandler {
 
     public JSONObject postObject(String url, List<BasicNameValuePair> p, File file) throws Exception {
         HttpPost request = new HttpPost(url);
-        HttpClient httpClient = null;
+        HttpParams params = new BasicHttpParams();
+        HttpProtocolParams.setUseExpectContinue(params, false);
+        HttpClient httpClient = new DefaultHttpClient(params);
         if(file != null) {
-            HttpParams params = new BasicHttpParams();
-            HttpProtocolParams.setUseExpectContinue(params, false);
-            httpClient = new DefaultHttpClient(params);
             MultipartEntity entity = new MultipartEntity(HttpMultipartMode.STRICT);
             FileBody imageBody = new FileBody(file, "image/png");
             entity.addPart("media[]", imageBody);
@@ -115,10 +114,7 @@ public class RequestHandler {
                 entity.addPart(pair.getName(), new StringBody(pair.getValue()));
             }
             request.setEntity(entity);
-        } else {
-            httpClient = new DefaultHttpClient();
-            if(p != null) request.setEntity(new UrlEncodedFormEntity(p, HTTP.UTF_8));
-        }
+        } else if(p != null) request.setEntity(new UrlEncodedFormEntity(p, HTTP.UTF_8));
         getConsumer().sign(request);
         HttpResponse response = httpClient.execute(request);
         if(response.getStatusLine().getStatusCode() != 200) {
@@ -162,21 +158,7 @@ public class RequestHandler {
     }
 
     public static String encode(String value) {
-        String encoded = null;
-        try { encoded = URLEncoder.encode(value, "UTF-8"); }
-        catch (UnsupportedEncodingException e) { e.printStackTrace(); }
-        StringBuilder buf = new StringBuilder(encoded.length());
-        char focus;
-        for (int i = 0; i < encoded.length(); i++) {
-            focus = encoded.charAt(i);
-            if (focus == '*') buf.append("%2A");
-            else if (focus == '+') buf.append("%20");
-            else if (focus == '%' && (i + 1) < encoded.length()
-                    && encoded.charAt(i + 1) == '7' && encoded.charAt(i + 2) == 'E') {
-                buf.append('~');
-                i += 2;
-            } else buf.append(focus);
-        }
-        return buf.toString();
+        //TODO this may need to be re-implemented in the future, but for some reason URL encoding doesn't work with Twitter
+        return value;
     }
 }

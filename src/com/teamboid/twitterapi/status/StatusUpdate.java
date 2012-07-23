@@ -57,6 +57,8 @@ public class StatusUpdate {
 
     /**
      * Attaches location to the status update.
+     * <br/><b>NOTE</b>: Attaching your location will only work if the current account has enabled
+     * location by checking "Add location to my Tweets" in their account settings on Twitter's website.
      * @param location The coordinates to attach.
      */
     public StatusUpdate setLocation(GeoLocation location) {

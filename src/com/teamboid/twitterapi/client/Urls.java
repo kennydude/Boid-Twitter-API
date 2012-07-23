@@ -53,4 +53,6 @@ public class Urls {
     public final static String SHOW_FRIENDSHIP = BASE_API_URL + "/friendships/show.json";
     public final static String CREATE_FRIENDSHIP = BASE_API_URL + "/friendships/create.json";
     public final static String DESTROY_FRIENDSHIP = BASE_API_URL + "/friendships/destroy.json";
+
+    public final static String UPDATE_PROFILE_IMAGE = BASE_API_URL + "/account/update_profile_image.json";
 }
