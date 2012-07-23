@@ -13,7 +13,7 @@ import java.io.File;
 
 /**
  * The main class used within this library, used for performing API actions on Twitter.
- * Use the {@link com.teamboid.twitterapi.auth.Authorizer} to authenticate an account and
+ * Use the {@link Authorizer} to authenticate an account and
  * get an authorized instance of this class.
  *
  * @author Aidan Follestad
