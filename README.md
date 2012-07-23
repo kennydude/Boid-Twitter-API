@@ -145,7 +145,9 @@ The optional in_reply_to_status_id (the ID of another tweet that this tweet is i
 
 Attaching Location and Media to Tweets
 ------------------------
-Attaching a picture or loxation to a status update only requires one simple additional step to the section above. 
+Attaching a picture or location to a status update only requires one simple additional step to the section above. 
+
+**NOTE**: Attaching your location will only work if the current account has enabled location by checking "Add location to my Tweets" in their account settings on Twitter's website.
 
 ```java
 //Replace 'path_to_file' with the full path to an image file on the current device's local storage.
