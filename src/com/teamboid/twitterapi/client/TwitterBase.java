@@ -387,6 +387,78 @@ class TwitterBase extends RequestHandler implements Twitter {
      * {@inheritDoc}
      */
     @Override
+    public User[] getBlocking(long cursor) throws Exception {
+        return UserJSON.createUserList(getArray(Urls.BLOCKING + "?cursor=" + Long.toString(cursor)));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public IDs getBlockingIds(long cursor) throws Exception {
+        return new IDsJSON(getObject(Urls.BLOCKING_IDS + "?cursor=" + Long.toString(cursor)));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean existsBlock(String screenName) throws Exception {
+        return getNon404(Urls.EXISTS_BLOCK + "?screen_name=" + screenName);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean existsBlock(long userId) throws Exception {
+        return getNon404(Urls.EXISTS_BLOCK + "?user_id=" + Long.toString(userId));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public User createBlock(String screenName) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("screen_name", screenName));
+        return new UserJSON(postObject(Urls.CREATE_BLOCK, pairs, null));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public User createBlock(long userId) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("user_id", Long.toString(userId)));
+        return new UserJSON(postObject(Urls.CREATE_BLOCK, pairs, null));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public User destroyBlock(String screenName) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("screen_name", screenName));
+        return new UserJSON(postObject(Urls.DESTROY_BLOCK, pairs, null));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public User destroyBlock(long userId) throws Exception {
+        List<BasicNameValuePair> pairs = new ArrayList<BasicNameValuePair>();
+        pairs.add(new BasicNameValuePair("user_id", Long.toString(userId)));
+        return new UserJSON(postObject(Urls.DESTROY_BLOCK, pairs, null));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Status[] getRetweets(long statusId, int count) throws Exception {
         String url = Urls.RETWEETS.replace("{id}", Long.toString(statusId));
         if(count > 0) url += "&count=" + count;

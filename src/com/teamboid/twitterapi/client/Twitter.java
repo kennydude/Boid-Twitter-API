@@ -362,6 +362,87 @@ public interface Twitter {
      */
     User reportSpam(long userId) throws Exception;
 
+    /**
+     * Returns an array of user objects that the authenticating user is blocking.
+     * Consider using {@link Twitter#getBlockingIds(long)} with {@link Twitter#lookupUsers(long[])} instead of this method.
+     * @param cursor Causes the list of users to be broken into pages of no more than 5000
+     *               IDs at a time. The number of IDs returned is not guaranteed to be 5000
+     *               as suspended users are filtered out after connections are queried.
+     *               To begin paging provide a value of -1 as the cursor. The response from
+     *               the API will include a previous_cursor and next_cursor to allow paging
+     *               back and forth. If the cursor is not provided the API will attempt to
+     *               return all IDs. For users with many blockings this will probably fail.
+     * @throws Exception
+     */
+    User[] getBlocking(long cursor) throws Exception;
+
+    /**
+     * Returns an {@link IDs} containing user IDs that the authenticating user is blocking.
+     * @param cursor Causes the list of users to be broken into pages of no more than 5000
+     *               IDs at a time. The number of IDs returned is not guaranteed to be 5000
+     *               as suspended users are filtered out after connections are queried.
+     *               To begin paging provide a value of -1 as the cursor. The response from
+     *               the API will include a previous_cursor and next_cursor to allow paging
+     *               back and forth. If the cursor is not provided the API will attempt to
+     *               return all IDs. For users with many blockings this will probably fail.
+     * @throws Exception
+     */
+    IDs getBlockingIds(long cursor) throws Exception;
+
+    /**
+     * Returns if the authenticating user is blocking a target user.
+     * @param screenName The screen name of the user to check if the authenticated user has blocked.
+     * @throws Exception
+     */
+    boolean existsBlock(String screenName) throws Exception;
+
+    /**
+     * Returns if the authenticating user is blocking a target user.
+     * @param userId The ID of the user to check if the authenticated user has blocked.
+     * @throws Exception
+     */
+    boolean existsBlock(long userId) throws Exception;
+
+    /**
+     * Blocks the specified user from following the authenticating user. In addition the
+     * blocked user will not show in the authenticating users mentions or timeline (unless
+     * retweeted by another user). If a follow or friend relationship exists it is destroyed.
+     *
+     * @param screenName The screen name of the user to block.
+     * @throws Exception
+     */
+    User createBlock(String screenName) throws Exception;
+
+    /**
+     * Blocks the specified user from following the authenticating user. In addition the
+     * blocked user will not show in the authenticating users mentions or timeline (unless
+     * retweeted by another user). If a follow or friend relationship exists it is destroyed.
+     *
+     * @param userId The ID of the user to block.
+     * @throws Exception
+     */
+    User createBlock(long userId) throws Exception;
+
+    /**
+     * Un-blocks the specified user for the authenticating user. Returns the un-blocked user
+     * in the requested format when successful. If relationships existed before the block was
+     * instated, they will not be restored.
+     *
+     * @param screenName The screen name of the user to unblock.
+     * @throws Exception
+     */
+    User destroyBlock(String screenName) throws Exception;
+
+    /**
+     * Un-blocks the specified user for the authenticating user. Returns the un-blocked user
+     * in the requested format when successful. If relationships existed before the block was
+     * instated, they will not be restored.
+     *
+     * @param userID The ID of the user to unblock.
+     * @throws Exception
+     */
+    User destroyBlock(long userID) throws Exception;
+
     //TODO
     void getRelatedResults(long statusId) throws Exception;
 }

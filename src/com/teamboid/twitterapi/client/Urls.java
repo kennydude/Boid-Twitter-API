@@ -59,4 +59,9 @@ public class Urls {
     public final static String UPDATE_PROFILE_IMAGE = "/account/update_profile_image.json";
 
     public final static String REPORT_SPAM = "/report_spam.json";
+    public final static String BLOCKING = "/blocks/blocking.json";
+    public final static String BLOCKING_IDS = "/blocks/blocking/ids.json";
+    public final static String EXISTS_BLOCK = "/blocks/exists.json";
+    public final static String CREATE_BLOCK = "/blocks/create.json";
+    public final static String DESTROY_BLOCK = "/blocks/destroy.json";
 }

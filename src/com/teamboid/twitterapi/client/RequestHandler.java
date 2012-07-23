@@ -163,4 +163,14 @@ class RequestHandler {
         }
         return new JSONObject(body);
     }
+
+    public boolean getNon404(String url) throws Exception {
+        url = getApiUrl() + url;
+        if(_debugOn) System.out.println("[GET NON-404]: " + url);
+        HttpClient httpClient = new DefaultHttpClient();
+        HttpGet request = new HttpGet(url);
+        getConsumer().sign(request);
+        HttpResponse response = httpClient.execute(request);
+        return (response.getStatusLine().getStatusCode() != 404);
+    }
 }
