@@ -32,35 +32,35 @@ public class StatusJSON implements Status {
         _favorited = json.optBoolean("favorited");
         if (!json.isNull("entities")) {
             JSONObject entities = json.getJSONObject("entities");
-            JSONArray urls = entities.optJSONArray("urls");
-            if (urls != null) {
+            if (!json.isNull("urls")) {
+                JSONArray urls = entities.optJSONArray("urls");
                 ArrayList<UrlEntity> toSet = new ArrayList<UrlEntity>();
                 for (int i = 0; i < urls.length(); i++) {
                     toSet.add(new UrlEntityJSON(urls.getJSONObject(i)));
                 }
                 _urlEntities = toSet.toArray(new UrlEntity[0]);
             }
-            JSONArray hashtags = entities.optJSONArray("hashtags");
-            if (hashtags != null) {
+            if (!json.isNull("hashtags")) {
+                JSONArray hashtags = entities.optJSONArray("hashtags");
                 ArrayList<HashtagEntity> toSet = new ArrayList<HashtagEntity>();
-                for (int i = 0; i < urls.length(); i++) {
-                    toSet.add(new HashtagEntityJSON(urls.getJSONObject(i)));
+                for (int i = 0; i < hashtags.length(); i++) {
+                    toSet.add(new HashtagEntityJSON(hashtags.getJSONObject(i)));
                 }
                 _hashtagEntities = toSet.toArray(new HashtagEntity[0]);
             }
-            JSONArray mentions = entities.optJSONArray("user_mentions");
-            if (mentions != null) {
+            if (!json.isNull("user_mentions")) {
+                JSONArray mentions = entities.optJSONArray("user_mentions");
                 ArrayList<MentionEntity> toSet = new ArrayList<MentionEntity>();
-                for (int i = 0; i < urls.length(); i++) {
-                    toSet.add(new MentionEntityJSON(urls.getJSONObject(i)));
+                for (int i = 0; i < mentions.length(); i++) {
+                    toSet.add(new MentionEntityJSON(mentions.getJSONObject(i)));
                 }
                 _mentionEntities = toSet.toArray(new MentionEntity[0]);
             }
-            JSONArray media = entities.optJSONArray("media");
-            if (media != null) {
+            if (!json.isNull("media")) {
+                JSONArray media = entities.optJSONArray("media");
                 ArrayList<MediaEntity> toSet = new ArrayList<MediaEntity>();
-                for (int i = 0; i < urls.length(); i++) {
-                    toSet.add(new MediaEntityJSON(urls.getJSONObject(i)));
+                for (int i = 0; i < media.length(); i++) {
+                    toSet.add(new MediaEntityJSON(media.getJSONObject(i)));
                 }
                 _mediaEntities = toSet.toArray(new MediaEntity[0]);
             }
