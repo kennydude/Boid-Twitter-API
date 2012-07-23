@@ -110,7 +110,6 @@ class RequestHandler {
         if(body.contains("\"error\":")) {
             throw new TwitterException(new JSONObject(body));
         }
-        System.out.println("\n" + new JSONArray(body).toString(3) + "\n");
         return new JSONArray(body);
     }
 

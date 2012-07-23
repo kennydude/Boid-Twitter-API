@@ -32,7 +32,7 @@ public class StatusJSON implements Status {
         _favorited = json.optBoolean("favorited");
         if (!json.isNull("entities")) {
             JSONObject entities = json.getJSONObject("entities");
-            if (!json.isNull("urls")) {
+            if (!entities.isNull("urls")) {
                 JSONArray urls = entities.optJSONArray("urls");
                 ArrayList<UrlEntity> toSet = new ArrayList<UrlEntity>();
                 for (int i = 0; i < urls.length(); i++) {
@@ -40,7 +40,7 @@ public class StatusJSON implements Status {
                 }
                 _urlEntities = toSet.toArray(new UrlEntity[0]);
             }
-            if (!json.isNull("hashtags")) {
+            if (!entities.isNull("hashtags")) {
                 JSONArray hashtags = entities.optJSONArray("hashtags");
                 ArrayList<HashtagEntity> toSet = new ArrayList<HashtagEntity>();
                 for (int i = 0; i < hashtags.length(); i++) {
@@ -48,7 +48,7 @@ public class StatusJSON implements Status {
                 }
                 _hashtagEntities = toSet.toArray(new HashtagEntity[0]);
             }
-            if (!json.isNull("user_mentions")) {
+            if (!entities.isNull("user_mentions")) {
                 JSONArray mentions = entities.optJSONArray("user_mentions");
                 ArrayList<MentionEntity> toSet = new ArrayList<MentionEntity>();
                 for (int i = 0; i < mentions.length(); i++) {
@@ -56,7 +56,7 @@ public class StatusJSON implements Status {
                 }
                 _mentionEntities = toSet.toArray(new MentionEntity[0]);
             }
-            if (!json.isNull("media")) {
+            if (!entities.isNull("media")) {
                 JSONArray media = entities.optJSONArray("media");
                 ArrayList<MediaEntity> toSet = new ArrayList<MediaEntity>();
                 for (int i = 0; i < media.length(); i++) {
