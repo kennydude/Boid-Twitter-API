@@ -87,6 +87,9 @@ public class Authorizer {
      * @param verifier The oauth_verifier paramter sent from the browser through the callback.
      */
     public Twitter getAuthorizedInstance(String verifier) throws Exception {
+    	if(requestToken == null) {
+    		throw new Exception("There's no request token in the current Authorizer state, you must call getAuthorizeUrl() first.");
+    	}
         TwitterBase toReturn = new TwitterBase();
         toReturn._debugOn = _debugMode;
         toReturn._ssl = _ssl;
