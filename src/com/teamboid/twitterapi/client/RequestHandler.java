@@ -53,7 +53,11 @@ class RequestHandler {
         	throw new Exception("HTTP GET to " + url + " failed, error code " + response.getCode());
         }
         if (_debugOn == Authorizer.DebugLevel.DEEP) {
-            System.out.println(body + "\n");
+        	if(body.startsWith("{")) {
+        		System.out.println(new JSONObject(body).toString(4) + "\n");
+        	} else if(body.startsWith("[")) {
+        		System.out.println(new JSONArray(body).toString(4) + "\n");
+        	} else System.out.println(body + "\n");
         }
         return response;
     }
@@ -78,7 +82,11 @@ class RequestHandler {
         	throw new Exception("HTTP GET to " + url + " failed, error code " + response.getCode());
         }
         if (_debugOn == Authorizer.DebugLevel.DEEP) {
-            System.out.println(body + "\n");
+        	if(body.startsWith("{")) {
+        		System.out.println(new JSONObject(body).toString(4) + "\n");
+        	} else if(body.startsWith("[")) {
+        		System.out.println(new JSONArray(body).toString(4) + "\n");
+        	} else System.out.println(body + "\n");
         }
         return response;
     }
@@ -110,7 +118,11 @@ class RequestHandler {
         	throw new Exception("HTTP POST to " + url + " failed, error code " + response.getCode());
         }
         if (_debugOn == Authorizer.DebugLevel.DEEP) {
-            System.out.println(body + "\n");
+        	if(body.startsWith("{")) {
+        		System.out.println(new JSONObject(body).toString(4) + "\n");
+        	} else if(body.startsWith("[")) {
+        		System.out.println(new JSONArray(body).toString(4) + "\n");
+        	} else System.out.println(body + "\n");
         }
         return response;
     }
@@ -142,7 +154,11 @@ class RequestHandler {
         	throw new Exception("HTTP POST to " + url + " failed, error code " + response.getCode());
         }
         if (_debugOn == Authorizer.DebugLevel.DEEP) {
-            System.out.println(body + "\n");
+        	if(body.startsWith("{")) {
+        		System.out.println(new JSONObject(body).toString(4) + "\n");
+        	} else if(body.startsWith("[")) {
+        		System.out.println(new JSONArray(body).toString(4) + "\n");
+        	} else System.out.println(body + "\n");
         }
         return response;
     }
@@ -164,7 +180,11 @@ class RequestHandler {
         	throw new Exception("HTTP DELETE to " + url + " failed, error code " + response.getCode());
         }
         if (_debugOn == Authorizer.DebugLevel.DEEP) {
-            System.out.println(body + "\n");
+        	if(body.startsWith("{")) {
+        		System.out.println(new JSONObject(body).toString(4) + "\n");
+        	} else if(body.startsWith("[")) {
+        		System.out.println(new JSONArray(body).toString(4) + "\n");
+        	} else System.out.println(body + "\n");
         }
         return response;
     }

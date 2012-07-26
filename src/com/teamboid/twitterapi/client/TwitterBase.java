@@ -4,6 +4,8 @@ import com.teamboid.twitterapi.config.TwitterAPIConfig;
 import com.teamboid.twitterapi.config.TwitterAPIConfigJSON;
 import com.teamboid.twitterapi.dm.DirectMessage;
 import com.teamboid.twitterapi.dm.DirectMessageJSON;
+import com.teamboid.twitterapi.experimentalapis.RelatedResults;
+import com.teamboid.twitterapi.experimentalapis.RelatedResultsJSON;
 import com.teamboid.twitterapi.list.UserList;
 import com.teamboid.twitterapi.list.UserListJSON;
 import com.teamboid.twitterapi.list.UserListMode;
@@ -920,7 +922,8 @@ class TwitterBase extends RequestHandler implements Twitter {
      * {@inheritDoc}
      */
     @Override
-    public void getRelatedResults(Long statusId) throws Exception {
-        System.out.println(getArray(Urls.RELATED_RESULTS.replace("{id}", Long.toString(statusId))).toString(4));
+    public RelatedResults getRelatedResults(Long statusId) throws Exception {
+        return new RelatedResultsJSON(getArray(Urls.RELATED_RESULTS
+        		.replace("{id}", Long.toString(statusId))));
     }
 }

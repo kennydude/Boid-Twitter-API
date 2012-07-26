@@ -2,6 +2,7 @@ package com.teamboid.twitterapi.client;
 
 import com.teamboid.twitterapi.config.TwitterAPIConfig;
 import com.teamboid.twitterapi.dm.DirectMessage;
+import com.teamboid.twitterapi.experimentalapis.RelatedResults;
 import com.teamboid.twitterapi.list.UserList;
 import com.teamboid.twitterapi.list.UserListMode;
 import com.teamboid.twitterapi.relationship.IDs;
@@ -706,6 +707,12 @@ public interface Twitter {
      */
     Place getPlaceDetails(String placeId) throws Exception;
 
-    //TODO
-    void getRelatedResults(Long statusId) throws Exception;
+    /**
+     * If available, returns an array of replies and mentions related to the specified Tweet. 
+     * There is no guarantee there will be any replies or mentions in the response. This method 
+     * is only available to users who have access to #newtwitter.
+     * <br/><br/>This method has not been finalized and the interface is subject to change in incompatible ways.
+     * @throws Exception
+     */
+    RelatedResults getRelatedResults(Long statusId) throws Exception;
 }
