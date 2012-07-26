@@ -37,9 +37,13 @@ public class Utils {
                 .replace("&gt;", ">").replace("\\/","//");
     }
 
-    public static String stripAnchor(String str) throws Exception {
+    public static String stripAnchor(String str) {
         if(!str.contains("<a")) return str;
-        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(str)));
-        return doc.getDocumentElement().getTextContent();
+        try {
+        	Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(new InputSource(new StringReader(str)));
+        	return doc.getDocumentElement().getTextContent();
+        } catch(Exception e) {
+        	return str.substring(str.indexOf(">"));
+        }
     }
 }

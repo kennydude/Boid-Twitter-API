@@ -44,12 +44,11 @@ class RequestHandler {
             _oauth.signRequest(_oauthToken, request);
         }
         Response response = request.send();
-        if (response.getCode() != 200) {
-            throw new Exception("HTTP GET to " + url + ", error code " + response.getCode());
-        }
         String body = response.getBody();
         if (body.contains("\"error\":")) {
             throw new TwitterException(new JSONObject(body), response.getCode());
+        } else if(response.getCode() != 200) {
+        	throw new Exception("HTTP GET to " + url + " failed, error code " + response.getCode());
         }
         if (_debugOn == Authorizer.DebugLevel.DEEP) {
             System.out.println(body + "\n");
@@ -70,12 +69,11 @@ class RequestHandler {
             _oauth.signRequest(_oauthToken, request);
         }
         Response response = request.send();
-        if (response.getCode() != 200) {
-            throw new Exception("HTTP POST to " + url + ", error code " + response.getCode());
-        }
         String body = response.getBody();
-        if (body.contains("{\"error\":")) {
+        if (body.contains("\"error\":")) {
             throw new TwitterException(new JSONObject(body), response.getCode());
+        } else if(response.getCode() != 200) {
+        	throw new Exception("HTTP GET to " + url + " failed, error code " + response.getCode());
         }
         if (_debugOn == Authorizer.DebugLevel.DEEP) {
             System.out.println(body + "\n");
@@ -103,12 +101,11 @@ class RequestHandler {
 
         _oauth.signRequest(_oauthToken, request);
         Response response = request.send();
-        if (response.getCode() != 200) {
-            throw new Exception("HTTP POST to " + url + ", error code " + response.getCode());
-        }
         String body = response.getBody();
-        if (body.contains("{\"error\":")) {
+        if (body.contains("\"error\":")) {
             throw new TwitterException(new JSONObject(body), response.getCode());
+        } else if(response.getCode() != 200) {
+        	throw new Exception("HTTP POST to " + url + " failed, error code " + response.getCode());
         }
         if (_debugOn == Authorizer.DebugLevel.DEEP) {
             System.out.println(body + "\n");
@@ -126,12 +123,11 @@ class RequestHandler {
             _oauth.signRequest(_oauthToken, request);
         }
         Response response = request.send();
-        if (response.getCode() != 200) {
-            throw new Exception("HTTP DELETE to " + url + ", error code " + response.getCode());
-        }
         String body = response.getBody();
-        if (body.contains("{\"error\":")) {
+        if (body.contains("\"error\":")) {
             throw new TwitterException(new JSONObject(body), response.getCode());
+        } else if(response.getCode() != 200) {
+        	throw new Exception("HTTP DELETE to " + url + " failed, error code " + response.getCode());
         }
         if (_debugOn == Authorizer.DebugLevel.DEEP) {
             System.out.println(body + "\n");

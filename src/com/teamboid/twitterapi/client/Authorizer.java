@@ -88,7 +88,7 @@ public class Authorizer {
      */
     public Twitter getAuthorizedInstance(String verifier) throws Exception {
     	if(requestToken == null) {
-    		throw new Exception("There's no request token in the current Authorizer state, you must call getAuthorizeUrl() first.");
+    		throw new Exception("There's no request token in the current Authorizer state, you must call getAuthorizeUrl() on the same Authorizer first.");
     	}
         TwitterBase toReturn = new TwitterBase();
         toReturn._debugOn = _debugMode;
