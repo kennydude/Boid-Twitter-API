@@ -773,8 +773,14 @@ class TwitterBase extends RequestHandler implements Twitter {
     @Override
     public Status updateStatus(StatusUpdate update) throws Exception {
         if(update.getMedia() != null) {
-            return new StatusJSON(postObject(Urls.UPDATE_STATUS_MEDIA, update.getBodyParams(), update.getMedia()));
-        } else return new StatusJSON(postObject(Urls.UPDATE_STATUS, update.getBodyParams()));
+            return new StatusJSON(postObject(Urls.UPDATE_STATUS_MEDIA, 
+            		update.getBodyParams(), update.getMedia()));
+        } else if(update.getMediaStream() != null) {
+        	return new StatusJSON(postObject(Urls.UPDATE_STATUS_MEDIA, update.getBodyParams(), 
+        			update.getMediaStream(), update.getMediaStreamName()));
+        } else {
+        	return new StatusJSON(postObject(Urls.UPDATE_STATUS, update.getBodyParams()));
+        }
     }
 
     /**

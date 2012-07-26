@@ -3,6 +3,7 @@ package com.teamboid.twitterapi.status;
 import com.teamboid.twitterapi.client.HttpParam;
 
 import java.io.File;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,8 @@ public class StatusUpdate implements Serializable {
     private String _placeId;
     private boolean _displayCoordinates;
     private File _media;
+    private InputStream _mediaStream;
+    private String _mediaStreamName;
 
     /**
      * Builds a StatusUpdate instance to pass in {@link com.teamboid.twitterapi.client.Twitter}.updateStatus().
@@ -40,6 +43,15 @@ public class StatusUpdate implements Serializable {
      */
     public StatusUpdate setMedia(File file) {
         _media = file;
+        return this;
+    }
+    
+    /**
+     * Attaches an image to the status update.
+     * @param file The picture file to attach.
+     */
+    public StatusUpdate setMedia(InputStream stream, String fileName) {
+        _mediaStream = stream;
         return this;
     }
 
@@ -87,6 +99,9 @@ public class StatusUpdate implements Serializable {
     public boolean getDisplayCoordinates() { return _displayCoordinates; }
 
     public File getMedia() { return _media; }
+    
+    public InputStream getMediaStream() { return _mediaStream; }
+    public String getMediaStreamName() { return _mediaStreamName; }
 
     /**
      * Builds the body parameters of an HTTP post.

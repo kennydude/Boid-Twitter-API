@@ -5,6 +5,7 @@ import com.teamboid.twitterapi.json.JSONObject;
 
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
@@ -14,6 +15,7 @@ import org.scribe.oauth.OAuthService;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -112,6 +114,38 @@ class RequestHandler {
         }
         return response;
     }
+    
+    public Response post(String url, List<HttpParam> params, InputStream stream, String fileName) throws Exception {
+        if (_debugOn != Authorizer.DebugLevel.OFF) {
+            System.out.println("[POST]: " + url);
+        }
+        OAuthRequest request = new OAuthRequest(Verb.POST, url);
+
+        MultipartEntity entity = new MultipartEntity();
+        if (params != null) {
+            for (HttpParam p : params) {
+                entity.addPart(p.getName(), new StringBody(p.getValue()));
+            }
+        }
+        entity.addPart("media", new InputStreamBody(stream, fileName));
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        entity.writeTo(out);
+        request.addPayload(out.toByteArray());
+        request.addHeader(entity.getContentType().getName(), entity.getContentType().getValue());
+
+        _oauth.signRequest(_oauthToken, request);
+        Response response = request.send();
+        String body = response.getBody();
+        if (body.contains("\"error\":")) {
+            throw new TwitterException(new JSONObject(body), response.getCode());
+        } else if(response.getCode() != 200) {
+        	throw new Exception("HTTP POST to " + url + " failed, error code " + response.getCode());
+        }
+        if (_debugOn == Authorizer.DebugLevel.DEEP) {
+            System.out.println(body + "\n");
+        }
+        return response;
+    }
 
     public Response delete(String url, boolean apiUrl) throws Exception {
         if (apiUrl) url = getApiUrl() + url;
@@ -155,6 +189,13 @@ class RequestHandler {
     }
     public JSONObject postObject(String url, boolean apiUrl, List<HttpParam> pairs, File file) throws Exception {
         return new JSONObject(post(url, pairs, file).getBody());
+    }
+    
+    public JSONObject postObject(String url, List<HttpParam> params, InputStream stream, String fileName) throws Exception {
+        return postObject(url, true, params, stream, fileName);
+    }
+    public JSONObject postObject(String url, boolean apiUrl, List<HttpParam> pairs, InputStream stream, String fileName) throws Exception {
+        return new JSONObject(post(url, pairs, stream, fileName).getBody());
     }
 
     public JSONArray getArray(String url) throws Exception {
