@@ -177,7 +177,7 @@ class TwitterBase extends RequestHandler implements Twitter {
      */
     @Override
     public Status retweetStatus(Long statusId) throws Exception {
-        return new StatusJSON(getObject(Urls.RETWEET_STATUS.replace("{id}", Long.toString(statusId))));
+        return new StatusJSON(postObject(Urls.RETWEET_STATUS.replace("{id}", Long.toString(statusId)), null));
     }
 
     /**
