@@ -86,7 +86,7 @@ class TweetJSON implements Tweet, Serializable {
         _source = Utils.unescape(json.getString("source"));
         _sourcePlain = Utils.stripAnchor(_source);
         if(!json.isNull("text")) {
-            _text = json.getString("text");
+            _text = Utils.unescape(json.getString("text"));
         }
         if(!json.isNull("to_user_id")) {
             _toUserId = json.getLong("to_user_id");
