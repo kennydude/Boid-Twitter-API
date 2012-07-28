@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<project name="Hello" default="jar">
+	<target name="clean" description="remove intermediate files">
+		<delete dir="classes"/>
+	</target>
+	<target name="clobber" depends="clean" description="remove all artifact files">
+		<delete file="hello.jar"/>
+	</target>
+
+	<property name="sdk-folder" value="/opt/android/platforms/android-16" />
+    <property name="android-tools" value="${sdk-folder}/tools" />
+    <property name="android-jar" value="${sdk-folder}/android.jar" />
+
+	<target name="compile" description="compile the Java source code to class files">
+		<mkdir dir="bin/classes"/>
+		<javac srcdir="src" destdir="bin/classes" includeantruntime="false">
+			<classpath>
+				<fileset dir="libs" includes="*.jar"/>
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="jar" depends="compile" description="create a Jar file for the application">
+		<mkdir dir="bin" />
+		<jar destfile="bin/twitter.jar">
+			<fileset dir="bin/classes" />
+		</jar>
+	</target>
+
+	<target name="android">
+		
+		<mkdir dir="bin/android/src" />
+
+		<copy todir="bin/android/src">
+			<fileset dir="src" />
+		</copy>
+
+		<delete>
+			<fileset dir="bin/android/src/com/teamboid/twitterapi/json" />
+		</delete>
+		<replace>
+			<fileset dir="bin/android/src/" />
+			<replacefilter token="import com.teamboid.twitterapi.json.JSONArray;" value="import org.json.JSONArray;" />
+			<replacefilter token="import com.teamboid.twitterapi.json.JSONException;" value="import org.json.JSONException;" />
+			<replacefilter token="import com.teamboid.twitterapi.json.JSONObject;" value="import org.json.JSONObject;" />
+		</replace>
+
+		<!-- Now compile -->
+		<mkdir dir="bin/android/classes"/>
+		<echo message="${android-jar}" />
+		<javac destdir="bin/android/classes" includeantruntime="false" bootclasspath="${android-jar}" srcdir="bin/android/src/">
+			<classpath>
+				<fileset dir="libs" includes="*.jar"/>
+			</classpath>
+		</javac>
+
+		<jar destfile="bin/twitter-android.jar">
+			<fileset dir="bin/android/classes" />
+		</jar>
+
+		<delete dir="bin/android" />
+	</target>
+</project>
