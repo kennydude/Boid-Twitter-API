@@ -23,11 +23,7 @@ import java.util.List;
  *
  * @author Aidan Follestad
  */
-<<<<<<< HEAD
 public class RequestHandler {
-=======
-class RequestHandler {
->>>>>>> upstream/master
 
     public OAuthService _oauth;
     public Token _oauthToken;

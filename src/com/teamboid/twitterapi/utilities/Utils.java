@@ -30,7 +30,6 @@ public class Utils {
         is.close();
         return org.apache.commons.codec.binary.Base64.encodeBase64String(bytes);
     }
-<<<<<<< HEAD
     
     /**
      * Performs a wildcard matching for the text and pattern 
@@ -66,8 +65,6 @@ public class Utils {
         
         return true;
     }
-=======
->>>>>>> upstream/master
 
     public static String unescape(String str) {
         if(str == null) return null;

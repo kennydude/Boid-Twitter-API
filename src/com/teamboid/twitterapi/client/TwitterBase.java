@@ -717,13 +717,7 @@ class TwitterBase extends RequestHandler implements Twitter {
     @Override
     public TrendLocation[] getTrendsAvailable(GeoLocation location) throws Exception {
         return TrendLocationJSON.createLocationList(
-<<<<<<< HEAD
-                getArray(Urls.AVAILABLE_TRENDS +
-                        "?lat=" + location.getLatitude() +
-                        "&long=" + location.getLongitude()));
-=======
         		getArray(Urls.AVAILABLE_TRENDS + location.getQueryString('?')));
->>>>>>> upstream/master
     }
 
     /**
@@ -802,12 +796,8 @@ class TwitterBase extends RequestHandler implements Twitter {
      */
     @Override
     public User[] searchUsers(String query, int page, int perPage) throws Exception {
-<<<<<<< HEAD
-        String url = Urls.SEARCH_USERS + "&q=" + query;
-=======
         String url = Urls.SEARCH_USERS + "?q=" + query;
         url += "&include_entities=true";
->>>>>>> upstream/master
         if(page > 0) url += "&page=" + page;
         if(perPage > 0) url += "&per_page=" + perPage;
         return UserJSON.createUserList(getArray(url));
@@ -935,7 +925,6 @@ class TwitterBase extends RequestHandler implements Twitter {
         return new RelatedResultsJSON(getArray(Urls.RELATED_RESULTS
         		.replace("{id}", Long.toString(statusId))));
     }
-<<<<<<< HEAD
     
     String consumerKey = null;
 
@@ -947,7 +936,7 @@ class TwitterBase extends RequestHandler implements Twitter {
 	@Override
 	public String getConsumerKey() {
 		return consumerKey;
-=======
+	}
 
     /**
      * {@inheritDoc}
@@ -964,6 +953,5 @@ class TwitterBase extends RequestHandler implements Twitter {
 			url += ("&max_results=" + maxResults);
 		}
 		return PlaceJSON.createPlaceList(getObject(url).getJSONObject("result").getJSONArray("places"));
->>>>>>> upstream/master
 	}
 }

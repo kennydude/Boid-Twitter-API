@@ -11,10 +11,7 @@ import com.teamboid.twitterapi.savedsearch.SavedSearch;
 import com.teamboid.twitterapi.search.SearchQuery;
 import com.teamboid.twitterapi.search.SearchResult;
 import com.teamboid.twitterapi.status.GeoLocation;
-<<<<<<< HEAD
-=======
 import com.teamboid.twitterapi.status.Granularity;
->>>>>>> upstream/master
 import com.teamboid.twitterapi.status.Place;
 import com.teamboid.twitterapi.status.Status;
 import com.teamboid.twitterapi.status.StatusUpdate;
@@ -33,7 +30,6 @@ import java.io.File;
  * @author Aidan Follestad
  */
 public interface Twitter {
-<<<<<<< HEAD
 	
 	/**
 	 * Sets the consumer key for use with OAuth-Echo services
@@ -46,8 +42,6 @@ public interface Twitter {
 	 * @return
 	 */
 	String getConsumerKey();
-=======
->>>>>>> upstream/master
 
     /**
      * Sets whether or not SSL is enabled for network interactions.
@@ -736,8 +730,6 @@ public interface Twitter {
      * @throws Exception
      */
     RelatedResults getRelatedResults(Long statusId) throws Exception;
-<<<<<<< HEAD
-=======
     
     /**
      * Given a latitude and a longitude, searches for up to 20 places that can 
@@ -762,5 +754,4 @@ public interface Twitter {
      * @throws Exception
      */
     Place[] getReverseGeocode(GeoLocation coordinates, String accuracy, Granularity gran, int maxResults) throws Exception;
->>>>>>> upstream/master
 }

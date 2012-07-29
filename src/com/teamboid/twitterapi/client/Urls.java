@@ -26,13 +26,8 @@ public class Urls {
     public final static String RETWEETS_OF_ME = "/statuses/retweets_of_me.json?include_entities=true";
     public final static String RETWEETED_BY = "/statuses/{id}/retweeted_by.json";
 
-<<<<<<< HEAD
-    public final static String SEARCH_QUERY = "http://search.twitter.com/search.json?include_entities=true";
-    public final static String SEARCH_USERS = "/users/search.json?include_entities=true";
-=======
     public final static String SEARCH_QUERY = "http://search.twitter.com/search.json";
     public final static String SEARCH_USERS = "/users/search.json";
->>>>>>> upstream/master
 
     public final static String VERIFY_CREDENTIALS = "/account/verify_credentials.json?include_entities=true";
     public final static String API_CONFIG = "/help/configuration.json";
@@ -96,8 +91,6 @@ public class Urls {
     public final static String LOCATION_TRENDS = "/trends/{woeid}.json";
 
     public final static String PLACE_DETAILS = "/geo/id/{id}.json";
-<<<<<<< HEAD
-=======
+
     public final static String REVERSE_GEOCODE = "/geo/reverse_geocode.json";
->>>>>>> upstream/master
 }
