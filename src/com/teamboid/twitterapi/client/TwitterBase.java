@@ -940,6 +940,6 @@ class TwitterBase extends RequestHandler implements Twitter {
 		if(maxResults > 0) {
 			url += ("&max_results=" + maxResults);
 		}
-		return PlaceJSON.createPlaceList(getArray(url));
+		return PlaceJSON.createPlaceList(getObject(url).getJSONObject("result").getJSONArray("places"));
 	}
 }
