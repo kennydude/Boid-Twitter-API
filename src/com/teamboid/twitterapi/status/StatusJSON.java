@@ -74,8 +74,8 @@ public class StatusJSON implements Status, Serializable {
         }
         _id = json.optLong("id");
         _retweetCount = json.optLong("retweet_count");
-        _retweeted = json.getBoolean("retweeted");
-        if(_retweeted) {
+        if(!json.isNull("retweeted_status")) {
+        	_retweeted = true;
             _retweetedStatus = new StatusJSON(json.getJSONObject("retweeted_status"));
         }
         if(!json.isNull("geo")) {
