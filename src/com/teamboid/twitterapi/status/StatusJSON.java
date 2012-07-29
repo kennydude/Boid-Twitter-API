@@ -13,6 +13,8 @@ import com.teamboid.twitterapi.user.UserJSON;
 import com.teamboid.twitterapi.utilities.Time;
 import com.teamboid.twitterapi.json.JSONArray;
 import com.teamboid.twitterapi.json.JSONObject;
+import com.teamboid.twitterapi.media.ExternalMediaService;
+import com.teamboid.twitterapi.media.MediaServices;
 import com.teamboid.twitterapi.utilities.Utils;
 
 import java.io.Serializable;
@@ -65,6 +67,16 @@ public class StatusJSON implements Status, Serializable {
                 ArrayList<MediaEntity> toSet = new ArrayList<MediaEntity>();
                 for (int i = 0; i < media.length(); i++) {
                     toSet.add(new MediaEntityJSON(media.getJSONObject(i)));
+                }
+                // External Entities
+                for( ExternalMediaService ems : MediaServices.services.values() ){
+                	for(String url : ems.getSupportedUrls()){
+                		for(UrlEntity ue : _urlEntities){
+                			if(Utils.wildCardMatch(ue.getExpandedUrl(), url)){
+                				toSet.add(ems.getEntity(ue));
+                			}
+                		}
+                	}
                 }
                 _mediaEntities = toSet.toArray(new MediaEntity[0]);
             }
