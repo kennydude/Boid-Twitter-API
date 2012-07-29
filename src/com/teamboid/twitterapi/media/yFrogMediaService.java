@@ -1,6 +1,6 @@
 package com.teamboid.twitterapi.media;
 
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +10,7 @@ import com.teamboid.twitterapi.client.HttpParam;
 import com.teamboid.twitterapi.client.RequestHandler;
 import com.teamboid.twitterapi.client.Twitter;
 import com.teamboid.twitterapi.client.TwitterException;
+import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.status.entity.media.MediaEntity;
 import com.teamboid.twitterapi.status.entity.url.UrlEntity;
 
@@ -38,7 +39,7 @@ public class yFrogMediaService extends ExternalMediaService {
 	}
 
 	@Override
-	public MediaEntity uploadFile(Twitter tw, RequestHandler client, FileInputStream file) throws TwitterException {
+	public MediaEntity uploadFile(StatusUpdate tweet, Twitter tw, RequestHandler client, InputStream file) throws TwitterException {
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("key", this.apiKey));
 		params.add(new HttpParam("media", "upload.jpg"));

@@ -19,6 +19,7 @@ import com.teamboid.twitterapi.client.HttpParam;
 import com.teamboid.twitterapi.client.RequestHandler;
 import com.teamboid.twitterapi.client.Twitter;
 import com.teamboid.twitterapi.client.TwitterException;
+import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.status.entity.media.MediaEntity;
 import com.teamboid.twitterapi.status.entity.media.MediaSize;
 import com.teamboid.twitterapi.status.entity.url.UrlEntity;
@@ -133,14 +134,14 @@ public abstract class ExternalMediaService {
 	 * @return
 	 * @throws TwitterException 
 	 */
-	public MediaEntity uploadFile( Twitter client, FileInputStream file ) throws TwitterException{
+	public MediaEntity uploadFile( StatusUpdate tweet, Twitter client, InputStream file ) throws TwitterException{
 		try{
-			return uploadFile( client, (RequestHandler)client, file );
+			return uploadFile( tweet, client, (RequestHandler)client, file );
 		} catch(ClassCastException e){
 			return null;
 		}
 	}
-	public abstract MediaEntity uploadFile( Twitter tw, RequestHandler client, FileInputStream file ) throws TwitterException;
+	public abstract MediaEntity uploadFile( StatusUpdate tweet, Twitter tw, RequestHandler client, InputStream file ) throws TwitterException;
 	
 	/**
 	 * Turn an UrlEntity at this service, to a MediaEntity
