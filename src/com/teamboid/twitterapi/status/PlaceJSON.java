@@ -5,6 +5,7 @@ import com.teamboid.twitterapi.json.JSONException;
 import com.teamboid.twitterapi.json.JSONObject;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Handles parsing JSON and assigning values to a {@link Place} interface.
@@ -151,4 +152,13 @@ public class PlaceJSON implements Place, Serializable {
     public Place[] getContainedWithIn() {
         return containedWithIn;
     }
+
+    public static Place[] createPlaceList(JSONArray array) throws Exception {
+        ArrayList<Place> toReturn = new ArrayList<Place>();
+        for(int i = 0; i < array.length(); i++) {
+            toReturn.add(new PlaceJSON(array.getJSONObject(i)));
+        }
+        return toReturn.toArray(new Place[0]);
+    }
+    
 }

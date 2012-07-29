@@ -11,6 +11,10 @@ import com.teamboid.twitterapi.savedsearch.SavedSearch;
 import com.teamboid.twitterapi.search.SearchQuery;
 import com.teamboid.twitterapi.search.SearchResult;
 import com.teamboid.twitterapi.status.GeoLocation;
+<<<<<<< HEAD
+=======
+import com.teamboid.twitterapi.status.Granularity;
+>>>>>>> upstream/master
 import com.teamboid.twitterapi.status.Place;
 import com.teamboid.twitterapi.status.Status;
 import com.teamboid.twitterapi.status.StatusUpdate;
@@ -29,6 +33,7 @@ import java.io.File;
  * @author Aidan Follestad
  */
 public interface Twitter {
+<<<<<<< HEAD
 	
 	/**
 	 * Sets the consumer key for use with OAuth-Echo services
@@ -41,6 +46,8 @@ public interface Twitter {
 	 * @return
 	 */
 	String getConsumerKey();
+=======
+>>>>>>> upstream/master
 
     /**
      * Sets whether or not SSL is enabled for network interactions.
@@ -729,4 +736,31 @@ public interface Twitter {
      * @throws Exception
      */
     RelatedResults getRelatedResults(Long statusId) throws Exception;
+<<<<<<< HEAD
+=======
+    
+    /**
+     * Given a latitude and a longitude, searches for up to 20 places that can 
+     * be used as a place_id when updating a status.
+     * <br/><br/>
+     * This request is an informative call and will deliver generalized results about geography
+     * 
+     * @param coordinates The current location to find nearby places for.
+     * @param accuracy A hint on the "region" in which to search. If a number, then this is a 
+     * 		radius in meters, but it can also take a string that is suffixed with ft to specify 
+     * 		feet. If this is not passed in, then it is assumed to be 0m. If coming from a device, 
+     * 		in practice, this value is whatever accuracy the device has measuring its location 
+     * 		(whether it be coming from a GPS, WiFi triangulation, etc.).
+     * @param gran This is the minimal granularity of place types to return and must be one of: 
+     * 		poi, neighborhood, city, admin or country. If no granularity is provided for the request 
+     * 		neighborhood is assumed. Setting this to city, for example, will find places which have 
+     * 		a type of city, admin or country.
+     * @param maxResults A hint as to the number of results to return. This does not guarantee that
+     * 		the number of results returned will equal max_results, but instead informs how many "nearby" 
+     * 		results to return. Ideally, only pass in the number of places you intend to display to the 
+     * 		user here.
+     * @throws Exception
+     */
+    Place[] getReverseGeocode(GeoLocation coordinates, String accuracy, Granularity gran, int maxResults) throws Exception;
+>>>>>>> upstream/master
 }

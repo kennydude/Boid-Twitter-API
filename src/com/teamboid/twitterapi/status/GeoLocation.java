@@ -31,6 +31,10 @@ public class GeoLocation implements Serializable {
 
     public double getLongitude() { return longitude; }
 
+    public String getQueryString(char startChar) {
+    	return startChar + "lat=" + getLatitude() + "&long=" + getLongitude();
+    }
+    
     @Override
     public String toString() {
         return latitude + ", " + longitude;
