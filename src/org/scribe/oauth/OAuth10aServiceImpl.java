@@ -15,11 +15,7 @@ public class OAuth10aServiceImpl implements OAuthService {
 	private static final String VERSION = "1.0";
 
 	private OAuthConfig config;
-<<<<<<< HEAD
 	public DefaultApi10a api;
-=======
-	private DefaultApi10a api;
->>>>>>> upstream/master
 
 	/**
 	 * Default constructor
@@ -124,11 +120,7 @@ public class OAuth10aServiceImpl implements OAuthService {
 		return api.getAuthorizationUrl(requestToken);
 	}
 
-<<<<<<< HEAD
 	public String getSignature(OAuthRequest request, Token token) {
-=======
-	private String getSignature(OAuthRequest request, Token token) {
->>>>>>> upstream/master
 		config.log("generating signature...");
 		String baseString = api.getBaseStringExtractor().extract(request);
 		String signature = api.getSignatureService().getSignature(baseString,

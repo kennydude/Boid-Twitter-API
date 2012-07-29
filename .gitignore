@@ -13,13 +13,10 @@ bin/
 gen/
 out/
 .idea/
-<<<<<<< HEAD
 assets/
 
 # Local configuration file (sdk path, etc)
 local.properties
-=======
->>>>>>> upstream/master
 
 # Eclipse project files
 .classpath
@@ -30,7 +27,5 @@ local.properties
 *.properties
 *.iml
 proguard-project.txt
-<<<<<<< HEAD
 AndroidManifest.xml
-=======
->>>>>>> upstream/master
+
