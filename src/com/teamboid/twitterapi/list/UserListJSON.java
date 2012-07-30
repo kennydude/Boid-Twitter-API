@@ -4,6 +4,7 @@ import com.teamboid.twitterapi.json.JSONArray;
 import com.teamboid.twitterapi.json.JSONObject;
 import com.teamboid.twitterapi.user.User;
 import com.teamboid.twitterapi.user.UserJSON;
+import com.teamboid.twitterapi.utilities.Utils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,14 +18,14 @@ public class UserListJSON implements UserList, Serializable {
 
 	public UserListJSON(JSONObject json) throws Exception {
         _slug = json.optString("slug");
-        _name = json.optString("name");
+        _name = Utils.unescape(json.optString("name"));
         _uri = json.optString("uri");
         _subscriberCount = json.optLong("subscriber_count");
         _memberCount = json.optLong("member_count");
         _mode= UserListMode.valueOf(json.optString("mode").toUpperCase());
         _id = json.optLong("id");
-        _fullName = json.optString("full_name");
-        _description = json.optString("description");
+        _fullName = Utils.unescape(json.optString("full_name"));
+        _description = Utils.unescape(json.optString("description"));
         if(!json.isNull("user")) {
             _user = new UserJSON(json.getJSONObject("user"));
         }

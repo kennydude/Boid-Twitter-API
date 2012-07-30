@@ -33,7 +33,7 @@ public class Utils {
 
     public static String unescape(String str) {
         if(str == null) return null;
-        return str.replace("&quot;", "\"").replace("&lt;", "<")
+        return str.replace("&quot;", "\"").replace("&lt;", "<").replace("&amp;", "&")
                 .replace("&gt;", ">").replace("\\/","//");
     }
 

@@ -3,6 +3,7 @@ package com.teamboid.twitterapi.savedsearch;
 import com.teamboid.twitterapi.json.JSONArray;
 import com.teamboid.twitterapi.json.JSONObject;
 import com.teamboid.twitterapi.utilities.Time;
+import com.teamboid.twitterapi.utilities.Utils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class SavedSearchJSON implements SavedSearch, Serializable {
 	private static final long serialVersionUID = 5122274312861363425L;
 
 	public SavedSearchJSON(JSONObject json) throws Exception {
-        _name = json.optString("name");
+        _name = Utils.unescape(json.optString("name"));
         _pos = json.optInt("position");
         _createdAt = Time.getTwitterDate(json.getString("created_at"));
         _id = json.optLong("id");

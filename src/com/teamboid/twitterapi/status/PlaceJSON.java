@@ -3,6 +3,7 @@ package com.teamboid.twitterapi.status;
 import com.teamboid.twitterapi.json.JSONArray;
 import com.teamboid.twitterapi.json.JSONException;
 import com.teamboid.twitterapi.json.JSONObject;
+import com.teamboid.twitterapi.utilities.Utils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class PlaceJSON implements Place, Serializable {
      * This initialization code is also taken from Twitter4J and slightly modified.
      */
     public PlaceJSON(JSONObject json) throws Exception {
-        name = json.getString("name");
+        name = Utils.unescape(json.getString("name"));
         streetAddress = json.optString("street_address");
         countryCode = json.getString("country_code");
         id = json.getString("id");
@@ -27,7 +28,7 @@ public class PlaceJSON implements Place, Serializable {
             placeType = json.getString("place_type");
         } else placeType = json.getString("type");
         url = json.getString("url");
-        fullName = json.getString("full_name");
+        fullName = Utils.unescape(json.getString("full_name"));
         if (!json.isNull("bounding_box")) {
             JSONObject boundingBoxJSON = json.getJSONObject("bounding_box");
             boundingBoxType = boundingBoxJSON.getString("type");
@@ -160,5 +161,4 @@ public class PlaceJSON implements Place, Serializable {
         }
         return toReturn.toArray(new Place[0]);
     }
-
 }

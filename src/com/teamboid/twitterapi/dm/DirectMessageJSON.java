@@ -3,6 +3,7 @@ package com.teamboid.twitterapi.dm;
 import com.teamboid.twitterapi.user.User;
 import com.teamboid.twitterapi.user.UserJSON;
 import com.teamboid.twitterapi.utilities.Time;
+import com.teamboid.twitterapi.utilities.Utils;
 import com.teamboid.twitterapi.json.JSONArray;
 import com.teamboid.twitterapi.json.JSONObject;
 
@@ -22,7 +23,7 @@ public class DirectMessageJSON implements DirectMessage, Serializable {
         _createdAt = Time.getTwitterDate(json.getString("created_at"));
         _senderScreenName = json.getString("sender_screen_name");
         _sender = new UserJSON(json.getJSONObject("sender"));
-        _text = json.getString("text");
+        _text = Utils.unescape(json.getString("text"));
         _recipientScreenName = json.getString("recipient_screen_name");
         _id = json.getLong("id");
         _recipient = new UserJSON(json.getJSONObject("recipient"));
