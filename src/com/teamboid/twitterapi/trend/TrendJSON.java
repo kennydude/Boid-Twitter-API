@@ -2,6 +2,7 @@ package com.teamboid.twitterapi.trend;
 
 import com.teamboid.twitterapi.json.JSONArray;
 import com.teamboid.twitterapi.json.JSONObject;
+import com.teamboid.twitterapi.utilities.Utils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,21 +17,13 @@ public class TrendJSON implements Trend, Serializable {
 
 	public TrendJSON(JSONObject json) {
         _query = json.optString("query");
-        _name = json.optString("name");
+        _name = Utils.unescape(json.optString("name"));
         _url = json.optString("url");
     }
 
     private String _query;
     private String _name;
     private String _url;
-
-//    {
-//        "events": null,
-//        "query": "%23TengoUnDonPara",
-//        "name": "#TengoUnDonPara",
-//        "url": "http://twitter.com/search/%23TengoUnDonPara",
-//        "promoted_content": null
-//    }
 
     /**
      * This function is not functional yet as the the intended value is unknown.

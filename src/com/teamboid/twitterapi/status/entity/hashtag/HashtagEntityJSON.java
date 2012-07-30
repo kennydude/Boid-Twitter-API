@@ -3,6 +3,7 @@ package com.teamboid.twitterapi.status.entity.hashtag;
 import com.teamboid.twitterapi.json.JSONArray;
 import com.teamboid.twitterapi.json.JSONException;
 import com.teamboid.twitterapi.json.JSONObject;
+import com.teamboid.twitterapi.utilities.Utils;
 
 import java.io.Serializable;
 
@@ -17,7 +18,7 @@ public class HashtagEntityJSON implements HashtagEntity, Serializable {
 
 	public HashtagEntityJSON(JSONObject json) throws JSONException {
         if(!json.isNull("text")) {
-            _text = json.getString("text");
+            _text = Utils.unescape(json.getString("text"));
         }
         JSONArray indices = json.getJSONArray("indices");
         _startIndex = indices.getInt(0);

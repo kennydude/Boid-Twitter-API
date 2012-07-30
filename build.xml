@@ -63,6 +63,14 @@
 
 		<jar destfile="bin/twitter-android.jar" index="true" strict="fail">
 			<fileset dir="bin/android/classes" />
+			<restrict>
+				<name name="**/*.class"/>
+				<archives>
+					<zips>
+						<fileset dir="libs/" includes="**/*.jar"/>
+					</zips>
+				</archives>
+			</restrict>
 			<manifest>
 				<!-- Who is building this jar? -->
 				<attribute name="Built-By" value="${user.name}"/>

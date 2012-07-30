@@ -1,7 +1,6 @@
 package com.teamboid.twitterapi.status.entity.media;
 
 import com.teamboid.twitterapi.json.JSONArray;
-import com.teamboid.twitterapi.json.JSONException;
 import com.teamboid.twitterapi.json.JSONObject;
 
 import java.io.Serializable;
@@ -13,8 +12,8 @@ public class MediaEntityJSON implements MediaEntity, Serializable {
 
 	private static final long serialVersionUID = 6368987139014226315L;
 
-	public MediaEntityJSON(JSONObject json) throws JSONException {
-        _id = json.getLong("id");
+	public MediaEntityJSON(JSONObject json) throws Exception {
+        _id = json.optLong("id");
         _mediaUrl = json.getString("media_url");
         _mediaUrlHttps = json.getString("media_url_https");
         _url = json.getString("url");

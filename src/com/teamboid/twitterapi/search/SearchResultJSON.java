@@ -1,6 +1,7 @@
 package com.teamboid.twitterapi.search;
 
 import com.teamboid.twitterapi.json.JSONObject;
+import com.teamboid.twitterapi.utilities.Utils;
 
 import java.io.Serializable;
 
@@ -17,7 +18,7 @@ public class SearchResultJSON implements SearchResult, Serializable {
         _maxId = json.optLong("max_id");
         _nextPage = json.optString("next_page");
         _page = json.optInt("page");
-        _query = json.optString("query");
+        _query = Utils.unescape(json.optString("query"));
         _refreshUrl = json.optString("refresh_url");
         if(!json.isNull("results")) {
             _results = TweetJSON.createStatusList(json.getJSONArray("results"));

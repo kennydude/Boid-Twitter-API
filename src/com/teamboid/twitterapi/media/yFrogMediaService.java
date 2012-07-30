@@ -21,9 +21,6 @@ import com.teamboid.twitterapi.status.entity.url.UrlEntity;
  *
  */
 public class yFrogMediaService extends ExternalMediaService {
-	static{
-		MediaServices.registerService( yFrogMediaService.class );
-	}
 	
 	@Override
 	public String getServiceName() {

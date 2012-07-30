@@ -10,7 +10,14 @@ import java.util.HashMap;
 public class MediaServices {
 	public static HashMap<String, ExternalMediaService> services = new HashMap<String, ExternalMediaService>();
 	
-	public ExternalMediaService getService(String name){
+	public static void setupServices(){
+		if(services.size() != 0) return;
+		registerService( TwitterMediaService.class );
+		registerService( yFrogMediaService.class );
+		registerService( TwitPicMediaService.class );
+	}
+	
+	public static ExternalMediaService getService(String name){
 		return services.get(name);
 	}
 	

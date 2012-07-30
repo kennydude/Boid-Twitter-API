@@ -27,7 +27,7 @@ public class UserJSON implements User, Serializable {
         _createdAt = Time.getTwitterDate(json.getString("created_at"));
         _profileImageUrl = Utils.unescape(json.getString("profile_image_url"));
         if(!json.isNull("location")) {
-            _location = json.getString("location");
+            _location = Utils.unescape(json.getString("location"));
         }
         if(!json.isNull("follow_request_sent")) {
             if(json.getBoolean("follow_request_sent")) {
@@ -41,7 +41,7 @@ public class UserJSON implements User, Serializable {
         _language = json.getString("lang");
         _isVerified = json.getBoolean("verified");
         if(!json.isNull("description")) {
-            _description = json.getString("description");
+            _description = Utils.unescape(json.getString("description"));
         }
         _friendsCount = json.getLong("friends_count");
         _statusCount = json.getLong("statuses_count");
