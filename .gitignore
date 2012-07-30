@@ -29,3 +29,5 @@ local.properties
 proguard-project.txt
 AndroidManifest.xml
 
+# Convience script for Joe :)
+build.sh
