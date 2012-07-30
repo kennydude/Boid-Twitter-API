@@ -107,7 +107,7 @@ public class SearchQuery implements Serializable {
                 url = "?q=geocode:" + _geo.getLatitude() + "," + _geo.getLongitude() + "," +
                         _geo.getDistance() + _geo.getUnit().name().toLowerCase();
             } else {
-                url = "?q=" + URLEncoder.encode(_query, "UTF8");
+                url = "?q=" + URLEncoder.encode(_query, "UTF-8");
                 if(_geo != null) {
                     url += ("&" + _geo.getLatitude() + "," + _geo.getLongitude() + "," +
                             _geo.getDistance() + _geo.getUnit().name().toLowerCase());
