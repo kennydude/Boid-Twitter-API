@@ -53,7 +53,7 @@ public class OAuth10aServiceImpl implements OAuthService {
 		return api.getRequestTokenExtractor().extract(body);
 	}
 
-	private void addOAuthParams(OAuthRequest request, Token token) {
+	public void addOAuthParams(OAuthRequest request, Token token) {
 		request.addOAuthParameter(OAuthConstants.TIMESTAMP, api
 				.getTimestampService().getTimestampInSeconds());
 		request.addOAuthParameter(OAuthConstants.NONCE, api

@@ -39,8 +39,7 @@ public class yFrogMediaService extends ExternalMediaService {
 	public MediaEntity uploadFile(StatusUpdate tweet, Twitter tw, RequestHandler client, InputStream file) throws TwitterException {
 		List<HttpParam> params = new ArrayList<HttpParam>();
 		params.add(new HttpParam("key", this.apiKey));
-		params.add(new HttpParam("media", "upload.jpg"));
-		Response r = this.doOAuthEchoRequest(tw, "https://yfrog.com/api/xauth_upload", client, file, params );
+		Response r = this.doOAuthEchoRequest(ExternalMediaService.TWITTER_XML_PROVIDER, tw, "https://yfrog.com/api/xauth_upload", client, file, params );
 		
 		String b = r.getBody();
 		if (b.contains("<rsp stat=\"fail\">")) {

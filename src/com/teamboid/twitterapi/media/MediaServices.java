@@ -24,7 +24,7 @@ public class MediaServices {
 	public static void registerService(Class<?> cls){
 		try{
 			ExternalMediaService ems = (ExternalMediaService) cls.newInstance();
-			services.put( ems.getServiceName(), ems );
+			services.put( ems.getServiceName().toLowerCase(), ems );
 		}catch(Exception e){
 			e.printStackTrace();
 		}

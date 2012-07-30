@@ -9,6 +9,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
+import org.scribe.model.OAuthConstants;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
 import org.scribe.model.Verb;
@@ -150,7 +151,7 @@ public abstract class ExternalMediaService {
 	 */
 	public abstract MediaEntity getEntity( UrlEntity in );
 	
-	Response doOAuthEchoRequest(Twitter tw, String url, RequestHandler client, InputStream toSend, List<HttpParam> params){
+	Response doOAuthEchoRequest(String provider, Twitter tw, String url, RequestHandler client, InputStream toSend, List<HttpParam> params){
 		try{
 			MultipartEntity entity = new MultipartEntity();
 	        if (params != null) {
@@ -158,33 +159,46 @@ public abstract class ExternalMediaService {
 	                entity.addPart(p.getName(), new StringBody(p.getValue()));
 	            }
 	        }
-	        entity.addPart("media", new InputStreamBody(toSend, "upload.jpg"));
+	        entity.addPart("media", new InputStreamBody(toSend, "BOIDUPLOAD.jpg"));
 	        
-	        return doOAuthEchoRequest(tw, url, client, entity);
+	        return doOAuthEchoRequest(provider, tw, url, client, entity);
 		}catch(Exception e){
 			e.printStackTrace();
 			return null;
 		}
 	}
 	
-	Response doOAuthEchoRequest(Twitter tw, String url, RequestHandler client, HttpEntity toSend){
+	/**
+	 * This requires a few hacks to work properly due to OAuth Echo
+	 * @param tw
+	 * @param url
+	 * @param client
+	 * @param toSend
+	 * @return
+	 */
+	Response doOAuthEchoRequest(String serviceProvider, Twitter tw, String url, RequestHandler client, HttpEntity toSend){
 		try{
 			OAuthRequest r = new OAuthRequest(Verb.POST, url);
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 	        toSend.writeTo(out);
 	        r.addPayload(out.toByteArray());
 	        
-	        TimestampService ts = ((OAuth10aServiceImpl)client._oauth).api.getTimestampService();
-	        String sig = ((OAuth10aServiceImpl)client._oauth).getSignature(r, client._oauthToken);
-	        r.addHeader("X-Auth-Service-Provider","https://api.twitter.com/1/account/verify_credentials.xml");
-	        r.addHeader("X-Verify-Credentials-Authorization", "OAuth realm=\"http://api.twitter.com/\","+
-	        		"oauth_consumer_key=\""+tw.getConsumerKey()+"\","+
-	        		"oauth_signature_method=\"HMAC-SHA1\","+
-	        		"oauth_token=\""+tw.getAccessToken()+"\"," +
-	        		"oauth_timestamp=\""+ ts.getTimestampInSeconds() +"\"," +
-	        		"oauth_nonce=\""+ ts.getNonce() + "\"," +
-	        		"oauth_version=\"1.0\"," +
-	        		"oauth_signature=\""+sig+"\")");
+	        OAuth10aServiceImpl oauth = (OAuth10aServiceImpl)client._oauth;
+	        OAuthRequest sr = new OAuthRequest(Verb.GET, serviceProvider);
+	        sr.addOAuthParameter(OAuthConstants.TOKEN, client._oauthToken.getToken());
+	        oauth.addOAuthParams(sr, client._oauthToken);
+	        
+	        String sig = sr.getOauthParameters().get(OAuthConstants.SIGNATURE);
+	        r.addHeader("X-Auth-Service-Provider",serviceProvider);
+	        r.addHeader("X-Verify-Credentials-Authorization", "OAuth realm=\"http://api.twitter.com/\", "+
+	        		"oauth_consumer_key=\""+tw.getConsumerKey()+"\", "+
+	        		"oauth_signature_method=\"HMAC-SHA1\", "+
+	        		"oauth_token=\""+ sr.getOauthParameters().get(OAuthConstants.TOKEN) +"\", " +
+	        		"oauth_timestamp=\""+ sr.getOauthParameters().get(OAuthConstants.TIMESTAMP) +"\", " +
+	        		"oauth_nonce=\""+ sr.getOauthParameters().get(OAuthConstants.NONCE) + "\", " +
+	        		"oauth_version=\"1.0\", " +
+	        		"oauth_signature=\""+sig+"\"");
+	        System.out.println(r.getHeaders().get("X-Verify-Credentials-Authorization"));
 	        
 	        return r.send();
 		}catch(Exception e){
@@ -192,4 +206,7 @@ public abstract class ExternalMediaService {
 			return null;
 		}
 	}
+	
+	public static final String TWITTER_XML_PROVIDER = "https://api.twitter.com/1/account/verify_credentials.xml";
+	public static final String TWITTER_JSON_PROVIDER = "https://api.twitter.com/1/account/verify_credentials.json";
 }
