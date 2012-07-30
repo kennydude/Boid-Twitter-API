@@ -77,7 +77,7 @@ public class Urls {
     public final static String DESTROY_LIST = "/lists/destroy.json";
     public final static String GET_LIST = "/lists/show.json";
     public final static String GET_ALL_LISTS = "/lists/all.json";
-    public final static String GET_LIST_STATUSES = "/lists/statuses.json?include_rts=true&include_entities=true";
+    public final static String GET_LIST_STATUSES = "/lists/statuses.json";
     public final static String GET_LIST_SUBSCRIBERS = "/lists/subscribers.json";
     public final static String GET_LIST_MEMBERS = "/lists/members.json";
     public final static String CREATE_LIST_SUBSCRIPTION = "/lists/subscribers/create.json";

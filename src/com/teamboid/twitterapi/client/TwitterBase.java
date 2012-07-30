@@ -648,7 +648,8 @@ class TwitterBase extends RequestHandler implements Twitter {
      */
     @Override
     public Status[] getListTimeline(long listId, Paging paging) throws Exception {
-        String url = Urls.GET_LIST_STATUSES + "&list_id=" + Long.toString(listId);
+        String url = Urls.GET_LIST_STATUSES + "?list_id=" + Long.toString(listId);
+        url += "&include_rts=true&include_entities=true";
         if(paging != null) {
             url += paging.getUrlString('&', true).replace("count=", "per_page=");
         }
