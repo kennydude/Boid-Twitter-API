@@ -1,2 +1,1 @@
 ## Visit the [Wiki](https://github.com/afollestad/Boid-Twitter-API/wiki) for tutorials on how to use the library in your applications.
-## [Generated JavaDoc](http://afollestad.github.com/Boid-Twitter-API/JavaDoc/) is also available that I try to keep as up to date as possible.

@@ -27,6 +27,7 @@ import com.teamboid.twitterapi.utilities.Utils;
 import org.scribe.model.Response;
 
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -797,7 +798,7 @@ class TwitterBase extends RequestHandler implements Twitter {
      */
     @Override
     public User[] searchUsers(String query, int page, int perPage) throws Exception {
-        String url = Urls.SEARCH_USERS + "?q=" + query;
+        String url = Urls.SEARCH_USERS + "?q=" + URLEncoder.encode(query, "UTF-8");
         url += "&include_entities=true";
         if(page > 0) url += "&page=" + page;
         if(perPage > 0) url += "&per_page=" + perPage;
