@@ -182,23 +182,15 @@ public abstract class ExternalMediaService {
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 	        toSend.writeTo(out);
 	        r.addPayload(out.toByteArray());
+	        r.addHeader(toSend.getContentType().getName(), toSend.getContentType().getValue());
 	        
 	        OAuth10aServiceImpl oauth = (OAuth10aServiceImpl)client._oauth;
 	        OAuthRequest sr = new OAuthRequest(Verb.GET, serviceProvider);
-	        sr.addOAuthParameter(OAuthConstants.TOKEN, client._oauthToken.getToken());
-	        oauth.addOAuthParams(sr, client._oauthToken);
+	        oauth.signRequest(client._oauthToken, sr);
 	        
-	        String sig = sr.getOauthParameters().get(OAuthConstants.SIGNATURE);
 	        r.addHeader("X-Auth-Service-Provider",serviceProvider);
-	        r.addHeader("X-Verify-Credentials-Authorization", "OAuth realm=\"http://api.twitter.com/\", "+
-	        		"oauth_consumer_key=\""+tw.getConsumerKey()+"\", "+
-	        		"oauth_signature_method=\"HMAC-SHA1\", "+
-	        		"oauth_token=\""+ sr.getOauthParameters().get(OAuthConstants.TOKEN) +"\", " +
-	        		"oauth_timestamp=\""+ sr.getOauthParameters().get(OAuthConstants.TIMESTAMP) +"\", " +
-	        		"oauth_nonce=\""+ sr.getOauthParameters().get(OAuthConstants.NONCE) + "\", " +
-	        		"oauth_version=\"1.0\", " +
-	        		"oauth_signature=\""+sig+"\"");
-	        System.out.println(r.getHeaders().get("X-Verify-Credentials-Authorization"));
+	        String oauthHeader = sr.getHeaders().get("Authorization");
+	        r.addHeader("X-Verify-Credentials-Authorization", oauthHeader);
 	        
 	        return r.send();
 		}catch(Exception e){

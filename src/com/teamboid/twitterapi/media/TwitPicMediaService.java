@@ -40,7 +40,7 @@ public class TwitPicMediaService extends ExternalMediaService {
 			List<HttpParam> params = new ArrayList<HttpParam>();
 			params.add(new HttpParam("key", this.apiKey));
 			params.add(new HttpParam("message", tweet.getStatus()));
-			Response r = this.doOAuthEchoRequest(ExternalMediaService.TWITTER_XML_PROVIDER, tw, "http://api.twitpic.com/2/upload.json", client, file, params);
+			Response r = this.doOAuthEchoRequest(ExternalMediaService.TWITTER_JSON_PROVIDER, tw, "http://api.twitpic.com/2/upload.json", client, file, params);
 		
 			if(!r.isSuccessful()) return null;
 			JSONObject obj = new JSONObject( r.getBody() );
