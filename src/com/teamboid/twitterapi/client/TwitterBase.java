@@ -798,8 +798,8 @@ class TwitterBase extends RequestHandler implements Twitter {
      */
     @Override
     public User[] searchUsers(String query, int page, int perPage) throws Exception {
-        String url = Urls.SEARCH_USERS + "?q=" + URLEncoder.encode(query, "UTF-8");
-        url += "&include_entities=true";
+        String url = Urls.SEARCH_USERS + "?q=" + URLEncoder.encode(query, "UTF-8")
+        	+ "&include_entities=true";
         if(page > 0) url += "&page=" + page;
         if(perPage > 0) url += "&per_page=" + perPage;
         return UserJSON.createUserList(getArray(url));
