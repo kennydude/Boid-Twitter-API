@@ -11,7 +11,6 @@ import com.teamboid.twitterapi.client.RequestHandler;
 import com.teamboid.twitterapi.client.Twitter;
 import com.teamboid.twitterapi.client.TwitterException;
 import com.teamboid.twitterapi.json.JSONObject;
-import com.teamboid.twitterapi.media.ExternalMediaService.ExternalMediaEntity;
 import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.status.entity.media.MediaEntity;
 import com.teamboid.twitterapi.status.entity.url.UrlEntity;

@@ -15,6 +15,9 @@ public class MediaServices {
 		registerService( TwitterMediaService.class );
 		registerService( yFrogMediaService.class );
 		registerService( TwitPicMediaService.class );
+		registerService( PosterousMediaService.class );
+		registerService( LockerzMediaService.class );
+		registerService( ImgurMediaService.class );
 	}
 	
 	public static ExternalMediaService getService(String name){

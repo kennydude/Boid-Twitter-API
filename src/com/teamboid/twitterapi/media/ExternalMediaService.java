@@ -1,7 +1,6 @@
 package com.teamboid.twitterapi.media;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.List;
 
@@ -9,12 +8,12 @@ import org.apache.http.HttpEntity;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
-import org.scribe.model.OAuthConstants;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
+import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuth10aServiceImpl;
-import org.scribe.services.TimestampService;
+import org.scribe.oauth.OAuthService;
 
 import com.teamboid.twitterapi.client.HttpParam;
 import com.teamboid.twitterapi.client.RequestHandler;
@@ -121,6 +120,40 @@ public abstract class ExternalMediaService {
 	public abstract String[] getSupportedUrls();
 	
 	/**
+	 * Gets the OAuth Service required for this Media Service to function correctly.
+	 * @return OAuthService for the correct service, or null if one is not required
+	 */
+	public Class<?> getOAuthService(){
+		return null;
+	}
+	
+	protected Token authToken = null;
+	protected OAuthService authorizedService = null;
+	
+	/**
+	 * Sets an OAuth Token for use by Authorized services, See {@link getOAuthService} for
+	 * which service to use.
+	 * 
+	 * Please Note: You don't use a Twitter token for this, you must get another OAuth token
+	 * from a Third-Party.
+	 * @param token The Token
+	 * @param oas OAuthService w/consumer details
+	 */
+	public void setAuthorized(OAuthService oas, Token token){
+		authToken = token;
+		authorizedService = oas;
+	}
+	
+	/**
+	 * Gets the username of the user logged into this media service, if it requires a
+	 * external user (like imgur)
+	 * @return Username or null if not implemented or it could not be found
+	 */
+	public String getUserName(){
+		return null;
+	}
+	
+	/**
 	 * Set an API key for this image service if it uses one
 	 * @param key
 	 */
@@ -128,6 +161,16 @@ public abstract class ExternalMediaService {
 		apiKey = key;
 	}
 	String apiKey;
+	
+	String attribution = "Uploaded via Boid Twitter Library. Try Boid for Android at http://boidapp.com";
+	/**
+	 * Sets attribution as a string where services support it.
+	 * You should override this with a l18n'd string
+	 * @param i
+	 */
+	public void setAttribution(String i){
+		attribution = i;
+	}
 	
 	/**
 	 * Upload a file to this service
