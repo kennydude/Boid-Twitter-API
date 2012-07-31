@@ -109,6 +109,7 @@ public class StatusUpdate implements Serializable {
     public List<HttpParam> getBodyParams() {
         ArrayList<HttpParam> pairs = new ArrayList<HttpParam>();
         pairs.add(new HttpParam("status", _status));
+        pairs.add(new HttpParam("include_entities", "true"));
         if(_inReplyToStatusId > 0) {
             pairs.add(new HttpParam("in_reply_to_status_id", Long.toString(_inReplyToStatusId)));
         }
