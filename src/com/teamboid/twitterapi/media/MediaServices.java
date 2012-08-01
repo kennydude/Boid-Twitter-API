@@ -18,6 +18,7 @@ public class MediaServices {
 		registerService( PosterousMediaService.class );
 		registerService( LockerzMediaService.class );
 		registerService( ImgurMediaService.class );
+		registerService( FlickrMediaService.class );
 	}
 	
 	public static ExternalMediaService getService(String name){

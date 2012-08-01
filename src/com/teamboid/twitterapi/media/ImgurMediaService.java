@@ -41,20 +41,22 @@ public class ImgurMediaService extends ExternalMediaService {
 			if(this.authToken == null) throw new TwitterException("This requires an OAuth Token");
 			if(this.authorizedService == null) throw new TwitterException("This requires an Authorized Service");
 			
-			OAuthRequest ar = new OAuthRequest(Verb.POST, "http://api.imgur.com/2/upload.json");
+			OAuthRequest ar = new OAuthRequest(Verb.POST, "http://api.imgur.com/2/account/images.json");
 			
 			MultipartEntity entity = new MultipartEntity();
 			entity.addPart("caption", new StringBody(attribution));
 			entity.addPart("title", new StringBody( tweet.getStatus() ));
 			entity.addPart("type", new StringBody("file"));
-			
 			entity.addPart("image", new InputStreamBody(file, "BOIDUPLOAD.jpg"));
+			
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 	        entity.writeTo(out);
 	        ar.addPayload(out.toByteArray());
+	        ar.addHeader(entity.getContentType().getName(), entity.getContentType().getValue());
 	        
 			this.authorizedService.signRequest(authToken, ar);
 			Response r = ar.send();
+			if(!r.isSuccessful()){ System.err.println(r.getBody()); return null; }
 			
 			JSONObject jo = new JSONObject(r.getBody());
             String url = jo.getJSONObject("images").getJSONObject("links").getString("imgur_page");
@@ -65,6 +67,25 @@ public class ImgurMediaService extends ExternalMediaService {
 		} catch(Exception e){
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public String getUserName() throws TwitterException{
+		if(this.authToken == null) throw new TwitterException("This requires an OAuth Token");
+		if(this.authorizedService == null) throw new TwitterException("This requires an Authorized Service");
+		
+		OAuthRequest ar = new OAuthRequest(Verb.GET, "http://api.imgur.com/2/account.json");
+		authorizedService.signRequest(authToken, ar);
+		
+		Response r = ar.send();
+		if(!r.isSuccessful()) throw new TwitterException("Could not get imgur user");
+		
+		try{
+			JSONObject ob = new JSONObject(r.getBody());
+			String url = ob.getJSONObject("account").getString("url");
+			return url;
+		} catch(Exception e){
+			throw new TwitterException("Error with JSON: " + e.getMessage());
 		}
 	}
 	

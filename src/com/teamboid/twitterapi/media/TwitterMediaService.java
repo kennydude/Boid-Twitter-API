@@ -16,7 +16,7 @@ public class TwitterMediaService extends ExternalMediaService {
 
 	@Override
 	public String getServiceName() {
-		return "twitter";
+		return "Twitter";
 	}
 
 	@Override

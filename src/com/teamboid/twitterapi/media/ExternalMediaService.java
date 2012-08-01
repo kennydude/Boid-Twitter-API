@@ -149,7 +149,7 @@ public abstract class ExternalMediaService {
 	 * external user (like imgur)
 	 * @return Username or null if not implemented or it could not be found
 	 */
-	public String getUserName(){
+	public String getUserName() throws TwitterException{
 		return null;
 	}
 	
