@@ -51,6 +51,8 @@ public class UserJSON implements User, Serializable {
             } else _following = FollowingType.NOT_FOLLOWING;
         }
         _screenName = json.getString("screen_name");
+        _profileBgImage = Utils.unescape(json.optString("profile_background_image_url"));
+        _profileBgColor = json.optString("profile_background_color");
     }
 
     private long _id;
@@ -70,6 +72,8 @@ public class UserJSON implements User, Serializable {
     private String _description;
     private FollowingType _following;
     private long _favoritesCount;
+    private String _profileBgImage;
+    private String _profileBgColor;
 
     /**
      * {@inheritDoc}
@@ -186,4 +190,16 @@ public class UserJSON implements User, Serializable {
         }
         return toReturn.toArray(new User[0]);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+	@Override
+	public String getProfileBackgroundImageUrl() { return _profileBgImage; }
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getProfileBackgroundColor() { return _profileBgColor; }
 }
