@@ -103,4 +103,15 @@ public interface User extends Serializable {
      * Gets the number of tweets that this user has favorited.
      */
     long getFavoritesCount();
+    
+    /**
+     * Gets a URL to the profile's background image.
+     */
+    String getProfileBackgroundImageUrl();
+    
+    /**
+     * Gets the HTML color code for the profile's background (good backup if there's no background image
+     * from {@link #getProfileBackgroundImageUrl()}).
+     */
+    String getProfileBackgroundColor();
 }
