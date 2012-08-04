@@ -2,7 +2,6 @@ package com.teamboid.twitterapi.media;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.Map.Entry;
 
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.InputStreamBody;
@@ -15,7 +14,6 @@ import org.scribe.model.Verb;
 import com.teamboid.twitterapi.client.RequestHandler;
 import com.teamboid.twitterapi.client.Twitter;
 import com.teamboid.twitterapi.client.TwitterException;
-import com.teamboid.twitterapi.media.ExternalMediaService.AuthorizationNeeded;
 import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.status.entity.media.MediaEntity;
 import com.teamboid.twitterapi.status.entity.url.UrlEntity;
