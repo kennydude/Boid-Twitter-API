@@ -13,6 +13,10 @@ bin/
 gen/
 out/
 .idea/
+assets/
+
+# Local configuration file (sdk path, etc)
+local.properties
 
 # Eclipse project files
 .classpath
@@ -23,5 +27,9 @@ out/
 *.properties
 *.iml
 proguard-project.txt
-
 AndroidManifest.xml
+
+# Convience script for Joe :)
+build.sh
+
+

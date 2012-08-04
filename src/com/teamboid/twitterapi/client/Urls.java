@@ -91,5 +91,6 @@ public class Urls {
     public final static String LOCATION_TRENDS = "/trends/{woeid}.json";
 
     public final static String PLACE_DETAILS = "/geo/id/{id}.json";
+
     public final static String REVERSE_GEOCODE = "/geo/reverse_geocode.json";
 }

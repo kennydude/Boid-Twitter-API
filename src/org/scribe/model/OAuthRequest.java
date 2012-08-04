@@ -42,7 +42,7 @@ public class OAuthRequest extends Request {
 	}
 
 	private String checkKey(String key) {
-		if (key.startsWith(OAUTH_PREFIX) || key.equals(OAuthConstants.SCOPE)) {
+		if (key.startsWith(OAUTH_PREFIX) || key.equals(OAuthConstants.SCOPE) || key.equals(OAuthConstants.REALM)) {
 			return key;
 		} else {
 			throw new IllegalArgumentException(String.format(

@@ -927,6 +927,18 @@ class TwitterBase extends RequestHandler implements Twitter {
         return new RelatedResultsJSON(getArray(Urls.RELATED_RESULTS
         		.replace("{id}", Long.toString(statusId))));
     }
+    
+    String consumerKey = null;
+
+	@Override
+	public void setConsumerKey(String key) {
+		consumerKey = key;
+	}
+
+	@Override
+	public String getConsumerKey() {
+		return consumerKey;
+	}
 
     /**
      * {@inheritDoc}
