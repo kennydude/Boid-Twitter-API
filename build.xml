@@ -62,7 +62,7 @@
 		<!-- Now compile -->
 		<mkdir dir="bin/android/classes"/>
 		<echo message="${android-jar}" />
-		<javac destdir="bin/android/classes" target="1.7" source="1.7" includeantruntime="false" extdirs="" bootclasspath="${android-jar}" srcdir="bin/android/src/">
+		<javac destdir="bin/android/classes" target="1.6" source="1.6" includeantruntime="false" extdirs="" bootclasspath="${android-jar}" srcdir="bin/android/src/">
 			<classpath>
 				<fileset dir="bin/android/libs" includes="*.jar"/>
 			</classpath>

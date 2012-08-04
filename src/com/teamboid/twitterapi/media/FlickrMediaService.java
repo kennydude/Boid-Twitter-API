@@ -2,6 +2,7 @@ package com.teamboid.twitterapi.media;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.Map.Entry;
 
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.InputStreamBody;
@@ -40,20 +41,22 @@ public class FlickrMediaService extends ExternalMediaService {
 		if(this.authorizedService == null) throw new TwitterException("Not Authorized");
 		if(this.authToken == null) throw new TwitterException("Not Authorized");
 		try{
+			
 			OAuthRequest ar = new OAuthRequest(Verb.POST, "http://api.flickr.com/services/upload/");
 			MultipartEntity entity = new MultipartEntity();
+			
+			ar.addQuerystringParameter("description", attribution);
+			ar.addQuerystringParameter("title", tweet.getStatus());
+			
 			entity.addPart("description", new StringBody(attribution));
 			entity.addPart("title", new StringBody( tweet.getStatus() ));
+			entity.addPart("photo", new InputStreamBody(file, "BOIDUPLOAD.jpg"));
 			
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
-	        entity.writeTo(out);
-	        ar.addPayload(out.toByteArray());
 	        ar.addHeader(entity.getContentType().getName(), entity.getContentType().getValue());
 	        
 			this.authorizedService.signRequest(authToken, ar);
 			
-			entity.addPart("photo", new InputStreamBody(file, "BOIDUPLOAD.jpg"));
-			out = new ByteArrayOutputStream();
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
 	        entity.writeTo(out);
 	        ar.addPayload(out.toByteArray());
 			
