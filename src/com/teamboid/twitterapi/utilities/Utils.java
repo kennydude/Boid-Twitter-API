@@ -1,8 +1,9 @@
 package com.teamboid.twitterapi.utilities;
 
-import org.apache.commons.codec.binary.Base64;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
+
+import android.util.Base64;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
@@ -29,7 +30,7 @@ public class Utils {
 			throw new IOException("Could not read the entire file " + file.getName());
 		}
 		is.close();
-		return Base64.encodeBase64String(bytes);
+		return Base64.encodeToString(bytes, Base64.DEFAULT);
 	}
 
 	public static String unescape(String str) {
@@ -50,7 +51,7 @@ public class Utils {
 
 	public static Object deserializeObject(String input) {
 		try {
-			byte [] data = Base64.decodeBase64(input);
+			byte [] data = Base64.decode(input, Base64.DEFAULT);
 			ObjectInputStream ois = new ObjectInputStream( 
 					new ByteArrayInputStream(data));
 			Object o = ois.readObject();
@@ -68,7 +69,7 @@ public class Utils {
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
 			oos.writeObject(tweet);
 			oos.close();
-			return Base64.encodeBase64String(baos.toByteArray());
+			return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
 		} catch(Exception e){
 			e.printStackTrace();
 			return "";

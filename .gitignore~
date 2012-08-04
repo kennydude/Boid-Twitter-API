@@ -1,0 +1,25 @@
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+out/
+.idea/
+
+# Eclipse project files
+.classpath
+.project
+/.settings/org.eclipse.jdt.core.prefs
+/.settings/org.eclipse.jdt.core.prefs.bak
+*.settings
+*.properties
+*.iml
+proguard-project.txt
