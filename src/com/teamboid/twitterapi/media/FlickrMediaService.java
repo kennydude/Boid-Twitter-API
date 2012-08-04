@@ -15,6 +15,7 @@ import org.scribe.model.Verb;
 import com.teamboid.twitterapi.client.RequestHandler;
 import com.teamboid.twitterapi.client.Twitter;
 import com.teamboid.twitterapi.client.TwitterException;
+import com.teamboid.twitterapi.media.ExternalMediaService.AuthorizationNeeded;
 import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.status.entity.media.MediaEntity;
 import com.teamboid.twitterapi.status.entity.url.UrlEntity;
@@ -130,6 +131,11 @@ public class FlickrMediaService extends ExternalMediaService {
 	
 	public Class<?> getOAuthService(){
 		return FlickrApi.class;
+	}
+	
+	@Override
+	public AuthorizationNeeded getNeededAuthorization(){
+		return AuthorizationNeeded.OAUTH;
 	}
 
 }

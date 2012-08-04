@@ -31,6 +31,17 @@ import com.teamboid.twitterapi.status.entity.url.UrlEntity;
  */
 public abstract class ExternalMediaService {
 	/**
+	 * Authorization needed for the service to work. {@link getNeededAuthorization()}
+	 * @author kennydude
+	 *
+	 */
+	public static enum AuthorizationNeeded{
+		NONE,
+		OAUTH,
+		MAIL_AND_PASSWORD
+	}
+	
+	/**
 	 * A Media Entity from an External Source
 	 * @author kennydude
 	 *
@@ -120,6 +131,24 @@ public abstract class ExternalMediaService {
 	public abstract String[] getSupportedUrls();
 	
 	/**
+	 * Returns any kind of authorization that's needed, if any for the service to work properly
+	 * @return
+	 */
+	public AuthorizationNeeded getNeededAuthorization(){
+		return AuthorizationNeeded.NONE;
+	}
+	
+	/**
+	 * Sets the email and password, if they are required by this service
+	 * @param username
+	 * @param password
+	 */
+	public void setMailAndPassword(String username, String password){
+		authMail = username;
+		authPassword = password;
+	}
+	
+	/**
 	 * Gets the OAuth Service required for this Media Service to function correctly.
 	 * @return OAuthService for the correct service, or null if one is not required
 	 */
@@ -129,6 +158,7 @@ public abstract class ExternalMediaService {
 	
 	protected Token authToken = null;
 	protected OAuthService authorizedService = null;
+	protected String authMail = null, authPassword = null;
 	
 	/**
 	 * Sets an OAuth Token for use by Authorized services, See {@link getOAuthService} for
