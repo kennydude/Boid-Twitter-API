@@ -4,7 +4,7 @@ We use Ant to build for Android, as we remove libraries that are not required an
 
 	sdk-folder=/opt/android/
 
-(Obviously changing the value to where you store the Android SDK. You will also need to install Android API Level 8 from the `android` SDK package manager)
+(Obviously changing the value to where you store the Android SDK. You will also need to install Android API Level 8 (or change the Android path in build.xml if you want to use another API level) from the `android` SDK package manager)
 
 Then to build Boid's Twitter Library for Android, you can run
 
