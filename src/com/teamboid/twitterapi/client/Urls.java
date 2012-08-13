@@ -93,4 +93,6 @@ public class Urls {
     public final static String PLACE_DETAILS = "/geo/id/{id}.json";
 
     public final static String REVERSE_GEOCODE = "/geo/reverse_geocode.json";
+
+    public final static String UPDATE_PROFILE = "/account/update_profile.json";
 }

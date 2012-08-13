@@ -74,6 +74,23 @@ class TwitterBase extends RequestHandler implements Twitter {
      * {@inheritDoc}
      */
     @Override
+    public User updateProfile(String name, String url, String location, String description) throws Exception {
+        if(name == null && url == null && location == null && description == null) {
+            throw new Exception("You must pass at least one parameter that will be updated.");
+        }
+        List<HttpParam> p = new ArrayList<HttpParam>();
+        if(name != null) p.add(new HttpParam("name", name));
+        if(url != null) p.add(new HttpParam("url", url));
+        if(location != null) p.add(new HttpParam("location", location));
+        if(description != null) p.add(new HttpParam("description", description));
+        p.add(new HttpParam("include_entities", "true"));
+        return new UserJSON(postObject(Urls.UPDATE_PROFILE, p));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public User updateProfileImage(File file) throws Exception {
         List<HttpParam> pairs = new ArrayList<HttpParam>();
         pairs.add(new HttpParam("image", Utils.getBase64FromFile(file)));
