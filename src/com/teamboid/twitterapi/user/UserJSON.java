@@ -81,6 +81,8 @@ public class UserJSON implements User, Serializable {
     @Override
     public long getId() { return _id; }
 
+    public void setName(String name) { _name = name; }
+
     /**
      * {@inheritDoc}
      */
@@ -99,11 +101,15 @@ public class UserJSON implements User, Serializable {
     @Override
     public Calendar getCreatedAt() { return _createdAt; }
 
+    public void setUrl(String url) { _url = url; }
+
     /**
      * {@inheritDoc}
      */
     @Override
     public String getUrl() { return _url; }
+
+    public void setLocation(String loc) { _location = loc; }
 
     /**
      * {@inheritDoc}
@@ -158,6 +164,8 @@ public class UserJSON implements User, Serializable {
      */
     @Override
     public String getLanguage() { return _language; }
+
+    public void setDescription(String desc) { _description = desc; }
 
     /**
      * {@inheritDoc}

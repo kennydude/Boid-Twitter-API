@@ -84,7 +84,12 @@ class TwitterBase extends RequestHandler implements Twitter {
         if(location != null) p.add(new HttpParam("location", location));
         if(description != null) p.add(new HttpParam("description", description));
         p.add(new HttpParam("include_entities", "true"));
-        return new UserJSON(postObject(Urls.UPDATE_PROFILE, p));
+        UserJSON toReturn = new UserJSON(postObject(Urls.UPDATE_PROFILE, p));
+        if(name != null) toReturn.setName(name);
+        if(url != null) toReturn.setUrl(url);
+        if(location != null) toReturn.setLocation(location);
+        if(description != null) toReturn.setDescription(description);
+        return toReturn;
     }
 
     /**
