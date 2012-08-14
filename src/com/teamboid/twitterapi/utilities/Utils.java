@@ -1,9 +1,8 @@
 package com.teamboid.twitterapi.utilities;
 
+import org.apache.commons.codec.binary.Base64;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
-
-import android.util.Base64;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
@@ -17,23 +16,20 @@ import java.util.Map.Entry;
 public class Utils {
 
 	@SuppressWarnings("resource")
-	public static String getBase64FromFile(File file) throws Exception {
-		InputStream is = new FileInputStream(file);
-		long length = file.length();
-		if (length > Integer.MAX_VALUE) {
-			throw new IOException("The file " + file.getName() + " is too large!");
-		}
-		byte[] bytes = new byte[(int) length];
-		int offset = 0;
-		int numRead = 0;
-		while (offset < bytes.length && (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
-			offset += numRead;
-		}
-		if (offset < bytes.length) {
-			throw new IOException("Could not read the entire file " + file.getName());
-		}
+	public static String getBase64FromStream(InputStream is) throws Exception {
+        ByteArrayOutputStream o = new ByteArrayOutputStream();
+        copy(is, o);
+		byte[] bytes = o.toByteArray();
 		is.close();
-		return Base64.encodeToString(bytes, Base64.DEFAULT);
+		return Base64.encodeBase64String(bytes);
+    }
+
+    public static String getBase64FromFile(File file) throws Exception {
+        long length = file.length();
+        if (length > Integer.MAX_VALUE) {
+            throw new IOException("The file " + file.getName() + " is too large!");
+        }
+        return getBase64FromStream(new FileInputStream(file));
     }
     
     /**
@@ -384,7 +380,7 @@ public class Utils {
 
 	public static Object deserializeObject(String input) {
 		try {
-			byte [] data = Base64.decode(input, Base64.DEFAULT);
+			byte[] data = Base64.decodeBase64(input);
 			ObjectInputStream ois = new ObjectInputStream( 
 					new ByteArrayInputStream(data));
 			Object o = ois.readObject();
@@ -402,10 +398,58 @@ public class Utils {
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
 			oos.writeObject(tweet);
 			oos.close();
-			return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+			return Base64.encodeBase64String(baos.toByteArray());
 		} catch(Exception e){
 			e.printStackTrace();
 			return "";
 		}
 	}
+
+
+    private static final int DEFAULT_BUFFER_SIZE = 1024 * 4;
+
+    public static int copy(Reader input, Writer output) throws IOException {
+        long count = copyLarge(input, output);
+        if (count > Integer.MAX_VALUE) {
+            return -1;
+        }
+        return (int) count;
+    }
+
+    public static long copyLarge(Reader input, Writer output) throws IOException {
+        char[] buffer = new char[DEFAULT_BUFFER_SIZE];
+        long count = 0;
+        int n = 0;
+        while (-1 != (n = input.read(buffer))) {
+            output.write(buffer, 0, n);
+            count += n;
+        }
+        return count;
+    }
+
+    public static void copy(InputStream input, Writer output)
+            throws IOException {
+        InputStreamReader in = new InputStreamReader(input);
+        copy(in, output);
+    }
+
+    public static int copy(InputStream input, OutputStream output) throws IOException {
+        long count = copyLarge(input, output);
+        if (count > Integer.MAX_VALUE) {
+            return -1;
+        }
+        return (int) count;
+    }
+
+    public static long copyLarge(InputStream input, OutputStream output)
+            throws IOException {
+        byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+        long count = 0;
+        int n = 0;
+        while (-1 != (n = input.read(buffer))) {
+            output.write(buffer, 0, n);
+            count += n;
+        }
+        return count;
+    }
 }

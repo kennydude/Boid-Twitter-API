@@ -21,6 +21,7 @@ import com.teamboid.twitterapi.trend.Trends;
 import com.teamboid.twitterapi.user.User;
 
 import java.io.File;
+import java.io.InputStream;
 
 /**
  * The main class used within this library, used for performing API actions on Twitter.
@@ -83,6 +84,13 @@ public interface Twitter {
      * @throws Exception
      */
     User updateProfileImage(File file) throws Exception;
+
+    /**
+     * Updates the authenticated user's profile picture.
+     * @param imageStream The stream containing a raw image to update the profile picture with.
+     * @throws Exception
+     */
+    User updateProfileImage(InputStream imageStream) throws Exception;
 
     /**
      * Gets the access token used to authenticate requests made to Twitter,

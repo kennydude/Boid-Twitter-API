@@ -27,6 +27,7 @@ import com.teamboid.twitterapi.utilities.Utils;
 import org.scribe.model.Response;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,6 +100,16 @@ class TwitterBase extends RequestHandler implements Twitter {
     public User updateProfileImage(File file) throws Exception {
         List<HttpParam> pairs = new ArrayList<HttpParam>();
         pairs.add(new HttpParam("image", Utils.getBase64FromFile(file)));
+        return new UserJSON(postObject(Urls.UPDATE_PROFILE_IMAGE, pairs));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public User updateProfileImage(InputStream imageStream) throws Exception {
+        List<HttpParam> pairs = new ArrayList<HttpParam>();
+        pairs.add(new HttpParam("image", Utils.getBase64FromStream(imageStream)));
         return new UserJSON(postObject(Urls.UPDATE_PROFILE_IMAGE, pairs));
     }
 
