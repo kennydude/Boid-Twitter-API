@@ -224,6 +224,13 @@ public class RequestHandler {
     public JSONArray getArray(String url, boolean apiUrl) throws Exception {
         return new JSONArray(get(url, apiUrl).getBody());
     }
+    
+    public JSONArray postArray(String url, List<HttpParam> pairs) throws Exception {
+        return postArray(url, true, pairs);
+    }
+    public JSONArray postArray(String url, boolean apiUrl, List<HttpParam> pairs) throws Exception {
+        return new JSONArray(post(url, apiUrl, pairs).getBody());
+    }
 
     public JSONObject deleteObject(String url) throws Exception {
         return deleteObject(url, true);

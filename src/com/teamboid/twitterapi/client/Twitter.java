@@ -32,16 +32,11 @@ import java.io.File;
 public interface Twitter {
 	
 	/**
-	 * Sets the consumer key for use with OAuth-Echo services
-	 * @param key
-	 */
-	void setConsumerKey(String key);
-	
-	/**
-	 * Get the consumer key for use with OAuth-Echo services
+	 * If this instance supports a feature
+	 * @param feature
 	 * @return
 	 */
-	String getConsumerKey();
+	boolean supportsFeature(Feature feature);
 
     /**
      * Sets whether or not SSL is enabled for network interactions.
