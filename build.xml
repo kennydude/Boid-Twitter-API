@@ -6,7 +6,7 @@
 	</target>
 
 	<property file="local.properties" />
-	<property name="android-dir" value="${sdk-folder}/platforms/android-8" />
+	<property name="android-dir" value="${sdk-folder}/platforms/android-16" />
 	<property name="android-tools" value="${android-dir}/tools" />
 	<property name="android-jar" value="${android-dir}/android.jar" />
 
@@ -60,7 +60,7 @@
 
 		<!-- Now compile -->
 		<mkdir dir="bin/android/classes"/>
-		<echo message="Your Android SDK is at ${android-jar} (acording to local.properties)" />
+		<echo message="Your Android SDK is at ${android-jar} (according to local.properties)" />
 		<javac destdir="bin/android/classes" target="1.6" source="1.6" includeantruntime="false" extdirs="" bootclasspath="${android-jar}" srcdir="bin/android/src/">
 			<classpath>
 				<fileset dir="bin/android/libs" includes="*.jar"/>

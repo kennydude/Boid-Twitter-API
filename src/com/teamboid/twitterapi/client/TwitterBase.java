@@ -27,6 +27,7 @@ import com.teamboid.twitterapi.utilities.Utils;
 import org.scribe.model.Response;
 
 import java.io.File;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,9 +75,41 @@ class TwitterBase extends RequestHandler implements Twitter {
      * {@inheritDoc}
      */
     @Override
+    public User updateProfile(String name, String url, String location, String description) throws Exception {
+        if(name == null && url == null && location == null && description == null) {
+            throw new Exception("You must pass at least one parameter that will be updated.");
+        }
+        List<HttpParam> p = new ArrayList<HttpParam>();
+        if(name != null) p.add(new HttpParam("name", name));
+        if(url != null) p.add(new HttpParam("url", url));
+        if(location != null) p.add(new HttpParam("location", location));
+        if(description != null) p.add(new HttpParam("description", description));
+        p.add(new HttpParam("include_entities", "true"));
+        UserJSON toReturn = new UserJSON(postObject(Urls.UPDATE_PROFILE, p));
+        if(name != null) toReturn.setName(name);
+        if(url != null) toReturn.setUrl(url);
+        if(location != null) toReturn.setLocation(location);
+        if(description != null) toReturn.setDescription(description);
+        return toReturn;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public User updateProfileImage(File file) throws Exception {
         List<HttpParam> pairs = new ArrayList<HttpParam>();
         pairs.add(new HttpParam("image", Utils.getBase64FromFile(file)));
+        return new UserJSON(postObject(Urls.UPDATE_PROFILE_IMAGE, pairs));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public User updateProfileImage(InputStream imageStream) throws Exception {
+        List<HttpParam> pairs = new ArrayList<HttpParam>();
+        pairs.add(new HttpParam("image", Utils.getBase64FromStream(imageStream)));
         return new UserJSON(postObject(Urls.UPDATE_PROFILE_IMAGE, pairs));
     }
 

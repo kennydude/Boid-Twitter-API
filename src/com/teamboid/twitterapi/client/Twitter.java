@@ -21,6 +21,7 @@ import com.teamboid.twitterapi.trend.Trends;
 import com.teamboid.twitterapi.user.User;
 
 import java.io.File;
+import java.io.InputStream;
 
 /**
  * The main class used within this library, used for performing API actions on Twitter.
@@ -61,11 +62,30 @@ public interface Twitter {
     TwitterAPIConfig getAPIConfiguration() throws Exception;
 
     /**
+     * Sets values that users are able to set under the "Account" tab of their settings page.
+     * Only the parameters specified will be updated.
+     *
+     * @param name Full name associated with the profile. Maximum of 20 characters.
+     * @param url URL associated with the profile. Will be prepended with "http://" if not present. Maximum of 100 characters.
+     * @param location The city or country describing where the user of the account is located. The contents are not normalized or geocoded in any way. Maximum of 30 characters.
+     * @param description A description of the user owning the account. Maximum of 160 characters.
+     * @throws Exception
+     */
+    User updateProfile(String name, String url, String location, String description) throws Exception;
+
+    /**
      * Updates the authenticated user's profile picture.
      * @param file The image file to update the profile picture with.
      * @throws Exception
      */
     User updateProfileImage(File file) throws Exception;
+
+    /**
+     * Updates the authenticated user's profile picture.
+     * @param imageStream The stream containing a raw image to update the profile picture with.
+     * @throws Exception
+     */
+    User updateProfileImage(InputStream imageStream) throws Exception;
 
     /**
      * Gets the access token used to authenticate requests made to Twitter,
