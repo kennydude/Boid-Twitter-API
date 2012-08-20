@@ -984,4 +984,11 @@ class TwitterBase extends RequestHandler implements Twitter {
 	public boolean supportsFeature(Feature feature) {
 		return true;
 	}
+	
+	@Override
+	public Status[] getUserMediaTimeline(String userName, Paging paging) throws Exception {
+		String url = Urls.MEDIA_TIMELINE;
+        if(paging != null) url += paging.getUrlString('&', true);
+        return StatusJSON.createStatusList(getArray(url));
+	}
 }

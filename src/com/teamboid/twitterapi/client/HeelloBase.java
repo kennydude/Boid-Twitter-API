@@ -1,6 +1,7 @@
 package com.teamboid.twitterapi.client;
 
 import java.io.File;
+import java.io.InputStream;
 
 import com.teamboid.twitterapi.config.TwitterAPIConfig;
 import com.teamboid.twitterapi.dm.DirectMessage;
@@ -22,6 +23,11 @@ import com.teamboid.twitterapi.trend.TrendLocation;
 import com.teamboid.twitterapi.trend.Trends;
 import com.teamboid.twitterapi.user.User;
 
+/**
+ * Testing. DO NOT USE THIS AT ALL PLZ
+ * @author kennydude
+ *
+ */
 public class HeelloBase implements Twitter {
 
 	@Override
@@ -580,6 +586,25 @@ public class HeelloBase implements Twitter {
 	@Override
 	public Place[] getReverseGeocode(GeoLocation coordinates, String accuracy,
 			Granularity gran, int maxResults) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User updateProfile(String name, String url, String location,
+			String description) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User updateProfileImage(InputStream imageStream) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Status[] getUserMediaTimeline(String userName, Paging paging) {
 		// TODO Auto-generated method stub
 		return null;
 	}

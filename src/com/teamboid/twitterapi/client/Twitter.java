@@ -769,4 +769,14 @@ public interface Twitter {
      * @throws Exception
      */
     Place[] getReverseGeocode(GeoLocation coordinates, String accuracy, Granularity gran, int maxResults) throws Exception;
+
+    /**
+     * Gets the user's media timeline. This is a list of statuses Twitter say should contain media,
+     * wether pic.twitter.com or an "parner" service
+     * @param userName The user you wish to lookup
+     * @undocumented
+     * @author kennydude
+     * @return
+     */
+    Status[] getUserMediaTimeline(String userName, Paging paging) throws Exception;
 }

@@ -95,4 +95,5 @@ public class Urls {
     public final static String REVERSE_GEOCODE = "/geo/reverse_geocode.json";
 
     public final static String UPDATE_PROFILE = "/account/update_profile.json";
+	public static final String MEDIA_TIMELINE = "/statuses/media_timeline.json";
 }
