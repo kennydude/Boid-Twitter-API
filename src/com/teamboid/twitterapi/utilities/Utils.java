@@ -15,7 +15,6 @@ import java.util.Map.Entry;
  */
 public class Utils {
 
-	@SuppressWarnings("resource")
 	public static String getBase64FromStream(InputStream is) throws Exception {
         ByteArrayOutputStream o = new ByteArrayOutputStream();
         copy(is, o);
@@ -25,8 +24,7 @@ public class Utils {
     }
 
     public static String getBase64FromFile(File file) throws Exception {
-        long length = file.length();
-        if (length > Integer.MAX_VALUE) {
+        if (file.length() > Integer.MAX_VALUE) {
             throw new IOException("The file " + file.getName() + " is too large!");
         }
         return getBase64FromStream(new FileInputStream(file));
@@ -392,7 +390,7 @@ public class Utils {
 		}
 	}
 
-	public static String serializeObject(Serializable tweet){
+	public static String serializeObject(Serializable tweet) {
 		try{
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
