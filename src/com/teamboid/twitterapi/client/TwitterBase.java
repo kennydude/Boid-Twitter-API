@@ -987,7 +987,7 @@ class TwitterBase extends RequestHandler implements Twitter {
 	
 	@Override
 	public Status[] getUserMediaTimeline(String userName, Paging paging) throws Exception {
-		String url = Urls.MEDIA_TIMELINE;
+		String url = Urls.MEDIA_TIMELINE + "?screen_name=" + userName;
         if(paging != null) url += paging.getUrlString('&', true);
         return StatusJSON.createStatusList(getArray(url));
 	}
