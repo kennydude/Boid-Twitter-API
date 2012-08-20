@@ -45,7 +45,7 @@ public class Urls {
 
     public final static String GET_FAVORITES = "/favorites.json?include_entities=true";
     public final static String CREATE_FAVORITE = "/favorites/create/{id}.json?include_entities=true";
-    public final static String DESTROY_FAVORITE = "/favorites/destroy/{id}.json";
+    public final static String DESTROY_FAVORITE = "/favorites/destroy/{id}.json?include_entities=true";
 
     public final static String GET_FOLLOWERS = "/followers/ids.json";
     public final static String GET_FRIENDS = "/friends/ids.json";
