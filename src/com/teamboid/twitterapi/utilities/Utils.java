@@ -6,6 +6,7 @@ import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
+import java.security.MessageDigest;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -14,6 +15,38 @@ import java.util.Map.Entry;
  * @author Aidan Follestad
  */
 public class Utils {
+	/**
+	 * This function encodes byte[] into a hex
+	 * http://www.java2s.com/Code/Android/Security/SHA1Utils.htm
+	 * 
+	 * @param b
+	 * @return
+	 */
+	public static String byteArrayToHexString(byte[] b){
+		if (b==null) return null;
+
+		StringBuffer sb = new StringBuffer(b.length * 2);
+		for (int i = 0; i < b.length; i++){
+			int v = b[i] & 0xff;
+			if (v < 16) {
+				sb.append('0');
+			}
+			sb.append(Integer.toHexString(v));
+		}
+		return sb.toString().toUpperCase();
+	}
+
+	
+	public static String sha1(String in){
+		try{
+			MessageDigest digest = MessageDigest.getInstance("SHA-1");
+			digest.update(in.getBytes());
+			return byteArrayToHexString(digest.digest());
+		} catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	public static String getBase64FromStream(InputStream is) throws Exception {
         ByteArrayOutputStream o = new ByteArrayOutputStream();

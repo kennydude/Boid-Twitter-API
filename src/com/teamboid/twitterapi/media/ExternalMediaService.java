@@ -192,6 +192,15 @@ public abstract class ExternalMediaService {
 	}
 	String apiKey;
 	
+	/**
+	 * Set an API secret for this image service if it uses one
+	 * @param key
+	 */
+	public void setAPISecret(String key){
+		apiSecret = key;
+	}
+	String apiSecret;
+	
 	String attribution = "Uploaded via Boid Twitter Library. Try Boid for Android at http://boidapp.com";
 	/**
 	 * Sets attribution as a string where services support it.
