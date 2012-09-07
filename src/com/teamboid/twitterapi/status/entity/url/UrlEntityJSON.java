@@ -15,7 +15,7 @@ public class UrlEntityJSON implements UrlEntity, Serializable {
 
 	public UrlEntityJSON(JSONObject json) throws JSONException {
         _url = json.getString("url");
-        _displayUrl = json.getString("display_url");
+        _displayUrl = json.optString("display_url", "");
         _expandedUrl = json.getString("expanded_url");
         JSONArray indices = json.getJSONArray("indices");
         _startIndex = indices.getInt(0);

@@ -90,15 +90,18 @@ public class CloudAppMediaService extends ExternalMediaService {
 				 entity.addPart(key, new StringBody(params.getString(key)));
 		    }
 		    entity.addPart("file", new InputStreamBody(file, "BOIDUPLOAD.jpg"));
-		    amazon.addHeader("Accept", "application/json");
+		    amazon.addHeader("Content-Type", "multipart/form-data");
 		    amazon.setEntity(entity);
 		    
 		    r = dhc.execute(amazon);
-		    if(r.getStatusLine().getStatusCode() != 303) throw new TwitterException("Amazon did not return 303");
+		    if(r.getStatusLine().getStatusCode() != 303)
+		    	throw new TwitterException("Amazon did not return 303. " + r.getStatusLine().getStatusCode() + " - rsp: " + EntityUtils.toString(r.getEntity()));
 			
 		    get = new HttpGet(r.getFirstHeader("Location").getValue());
+		    get.addHeader("Accept", "application/json");
 		    r = dhc.execute(get);
-		    if(r.getStatusLine().getStatusCode() != 200) throw new TwitterException("CloudApp did not acknoledge file. Non-200 response");
+		    if(r.getStatusLine().getStatusCode() != 200)
+		    	throw new TwitterException("CloudApp did not acknoledge file. Non-200 response. " + r.getStatusLine().getStatusCode() + " - rsp: " + EntityUtils.toString(r.getEntity()));
 		    
 		    jo = new JSONObject(EntityUtils.toString(r.getEntity()));
 		    

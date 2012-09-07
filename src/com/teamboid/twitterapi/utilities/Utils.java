@@ -17,23 +17,25 @@ import java.util.Map.Entry;
 public class Utils {
 	/**
 	 * This function encodes byte[] into a hex
-	 * http://www.java2s.com/Code/Android/Security/SHA1Utils.htm
 	 * 
 	 * @param b
 	 * @return
 	 */
-	public static String byteArrayToHexString(byte[] b){
-		if (b==null) return null;
-
-		StringBuffer sb = new StringBuffer(b.length * 2);
-		for (int i = 0; i < b.length; i++){
-			int v = b[i] & 0xff;
-			if (v < 16) {
-				sb.append('0');
-			}
-			sb.append(Integer.toHexString(v));
-		}
-		return sb.toString().toUpperCase();
+	public static String byteArrayToHexString(byte[] data){
+		StringBuilder buf = new StringBuilder();
+        for (byte aData : data) {
+            int halfbyte = (aData >>> 4) & 0x0F;
+            int twoHalfs = 0;
+            do {
+                if ((0 <= halfbyte) && (halfbyte <= 9)) {
+                    buf.append((char) ('0' + halfbyte));
+                } else {
+                    buf.append((char) ('a' + (halfbyte - 10)));
+                }
+                halfbyte = aData & 0x0F;
+            } while (twoHalfs++ < 1);
+        }
+        return buf.toString();
 	}
 
 	

@@ -36,7 +36,7 @@ import com.teamboid.twitterapi.utilities.Utils;
  *
  */
 public class DroplrMediaService extends ExternalMediaService {
-	public static final String ENDPOINT = "https://api.droplr.com";
+	public static final String ENDPOINT = "http://dev.droplr.com:8069/";
 	
 	public HttpClient getClient(){
 		DefaultHttpClient client = new DefaultHttpClient();
@@ -55,7 +55,7 @@ public class DroplrMediaService extends ExternalMediaService {
 	
 	public String getUserName(){ // email in this case
 		try{
-			HttpGet get = new HttpGet(ENDPOINT + "/account.json");
+			HttpGet get = new HttpGet(ENDPOINT + "account.json");
 			authorizeRequest(get);
 			
 			HttpResponse r = getClient().execute(get);
@@ -88,14 +88,14 @@ public class DroplrMediaService extends ExternalMediaService {
 			
 			String accessKey = Base64.encodeToString(
 					new StringBuilder().append(apiKey).append(":").append(authMail).toString().getBytes()
-			, Base64.DEFAULT);
+			, Base64.NO_WRAP);
 			String accessSecret = new StringBuilder().append(apiSecret).append(":").append(password).toString();
 			
 			// Signature
-			// String contentType = request.getFirstHeader("Content-Type").getValue();
-	        //if (contentType == null) {
-	            String contentType = "";
-	        // }
+			String contentType = "";
+	        if (request.containsHeader("Content-Type")) {
+	            contentType = request.getFirstHeader("Content-Type").getValue();
+	        }
 	        String date = request.getFirstHeader("Date").getValue();
 			String stringToSign = new StringBuilder()
 					.append(request.getRequestLine().getMethod())
@@ -153,12 +153,13 @@ public class DroplrMediaService extends ExternalMediaService {
 			RequestHandler client, InputStream file) throws TwitterException {
 		try{
 			HttpPost post = new HttpPost(ENDPOINT + "/files.json?filename=BoidUpload.jpg");
+			post.addHeader("x-droplr-privacy", "PUBLIC");
 			authorizeRequest(post);
 			
 			post.setEntity(new InputStreamEntity(file, 0));
 			
 			HttpResponse r = getClient().execute(post);
-			if(r.getStatusLine().getStatusCode() == 200){
+			if(r.getStatusLine().getStatusCode() == 204){
 				JSONObject jo = new JSONObject(EntityUtils.toString(r.getEntity()));
 				ExternalMediaEntity ema = new ExternalMediaEntity(jo.getString("shortlink"));
 				
