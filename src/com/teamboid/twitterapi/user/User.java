@@ -114,4 +114,14 @@ public interface User extends Serializable {
      * from {@link #getProfileBackgroundImageUrl()}).
      */
     String getProfileBackgroundColor();
+    
+    /**
+     * Get the web version of the profile banner or null if one could not be found
+     */
+    String getProfileBannerWeb();
+    
+    /**
+     * Get the mobile version of the profile banner or null if one could not be found
+     */
+    String getProfileBannerMobile();
 }

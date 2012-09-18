@@ -1,18 +1,24 @@
 package com.teamboid.twitterapi.media;
 
 import java.io.InputStream;
+import java.net.URI;
 import java.util.Iterator;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.ProtocolException;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
+import org.apache.http.client.RedirectHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntity;
 import org.apache.http.entity.mime.content.InputStreamBody;
 import org.apache.http.entity.mime.content.StringBody;
+import org.apache.http.impl.DefaultConnectionReuseStrategy;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpParams;
+import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
 import com.teamboid.twitterapi.client.RequestHandler;
@@ -44,6 +50,7 @@ public class CloudAppMediaService extends ExternalMediaService {
 				new AuthScope("my.cl.ly", 80),
 				new UsernamePasswordCredentials(authMail, authPassword)
 		);
+		dhc.setReuseStrategy(new DefaultConnectionReuseStrategy());
 		return dhc;
 	}
 	
@@ -63,10 +70,25 @@ public class CloudAppMediaService extends ExternalMediaService {
 			return null;
 		}
 	}
+	
+	public class FakeLengthInputStreamBody extends InputStreamBody{
+
+		public FakeLengthInputStreamBody(InputStream in, String filename) {
+			super(in, filename);
+		}
+		long length;
+		public FakeLengthInputStreamBody setLength(long l){ length = l; return this; }
+		
+		@Override
+		public long getContentLength() {
+			return length;
+		}
+		
+	}
 
 	@Override
 	public MediaEntity uploadFile(StatusUpdate tweet, Twitter tw,
-			RequestHandler client, InputStream file) throws TwitterException {
+			InputStream file, long length) throws TwitterException {
 		try{
 			HttpGet get = new HttpGet("http://my.cl.ly/items/new");
 			get.addHeader("Accept", "application/json");
@@ -77,6 +99,7 @@ public class CloudAppMediaService extends ExternalMediaService {
 			
 			// Now we should have a JSON response
 			JSONObject jo = new JSONObject(EntityUtils.toString(r.getEntity()));
+			System.out.println("CloudApp: " + jo.toString());
 			
 			// Send it off to Amazon
 			HttpPost amazon = new HttpPost(jo.getString("url"));
@@ -89,17 +112,12 @@ public class CloudAppMediaService extends ExternalMediaService {
 				 String key = (String) keys.next();
 				 entity.addPart(key, new StringBody(params.getString(key)));
 		    }
-		    entity.addPart("file", new InputStreamBody(file, "BOIDUPLOAD.jpg"));
-		    amazon.addHeader("Content-Type", "multipart/form-data");
+		    entity.addPart("file", new FakeLengthInputStreamBody(file, "BOIDUPLOAD.jpg").setLength(length));
+		    amazon.addHeader("Accept", "application/json");
 		    amazon.setEntity(entity);
 		    
+		    
 		    r = dhc.execute(amazon);
-		    if(r.getStatusLine().getStatusCode() != 303)
-		    	throw new TwitterException("Amazon did not return 303. " + r.getStatusLine().getStatusCode() + " - rsp: " + EntityUtils.toString(r.getEntity()));
-			
-		    get = new HttpGet(r.getFirstHeader("Location").getValue());
-		    get.addHeader("Accept", "application/json");
-		    r = dhc.execute(get);
 		    if(r.getStatusLine().getStatusCode() != 200)
 		    	throw new TwitterException("CloudApp did not acknoledge file. Non-200 response. " + r.getStatusLine().getStatusCode() + " - rsp: " + EntityUtils.toString(r.getEntity()));
 		    
@@ -125,6 +143,12 @@ public class CloudAppMediaService extends ExternalMediaService {
 	
 	public AuthorizationNeeded getNeededAuthorization(){
 		return AuthorizationNeeded.MAIL_AND_PASSWORD;
+	}
+
+	@Override
+	public MediaEntity uploadFile(StatusUpdate tweet, Twitter tw,
+			RequestHandler client, InputStream file) throws TwitterException {
+		return null;
 	}
 
 }

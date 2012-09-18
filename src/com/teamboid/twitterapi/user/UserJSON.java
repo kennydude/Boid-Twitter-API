@@ -19,40 +19,41 @@ public class UserJSON implements User, Serializable {
 	private static final long serialVersionUID = 8223189548035894012L;
 
 	public UserJSON(JSONObject json) throws Exception {
-        _id = json.getInt("id");
-        _name = json.getString("name");
+        _id = json.optInt("id");
+        _name = json.optString("name");
         if(!json.isNull("url")) {
-            _url = json.getString("url");
+            _url = json.optString("url");
         }
-        _createdAt = Time.getTwitterDate(json.getString("created_at"));
-        _profileImageUrl = Utils.unescape(json.getString("profile_image_url"));
+        _createdAt = Time.getTwitterDate(json.optString("created_at"));
+        _profileImageUrl = Utils.unescape(json.optString("profile_image_url"));
         if(!json.isNull("location")) {
-            _location = Utils.unescape(json.getString("location"));
+            _location = Utils.unescape(json.optString("location"));
         }
         if(!json.isNull("follow_request_sent")) {
-            if(json.getBoolean("follow_request_sent")) {
+            if(json.optBoolean("follow_request_sent")) {
                 _following = FollowingType.REQUEST_SENT;
             }
         }
-        _isTranslator = json.getBoolean("is_translator");
-        _favoritesCount = json.getLong("favourites_count");
-        _isProtected = json.getBoolean("protected");
-        _followersCount = json.getLong("followers_count");
-        _language = json.getString("lang");
-        _isVerified = json.getBoolean("verified");
+        _isTranslator = json.optBoolean("is_translator");
+        _favoritesCount = json.optLong("favourites_count");
+        _isProtected = json.optBoolean("protected");
+        _followersCount = json.optLong("followers_count");
+        _language = json.optString("lang");
+        _isVerified = json.optBoolean("verified");
         if(!json.isNull("description")) {
-            _description = Utils.unescape(json.getString("description"));
+            _description = Utils.unescape(json.optString("description"));
         }
-        _friendsCount = json.getLong("friends_count");
-        _statusCount = json.getLong("statuses_count");
+        _friendsCount = json.optLong("friends_count");
+        _statusCount = json.optLong("statuses_count");
         if(_following != FollowingType.REQUEST_SENT && !json.isNull("following")) {
-            if(json.getBoolean("following")) {
+            if(json.optBoolean("following")) {
                 _following = FollowingType.FOLLOWING;
             } else _following = FollowingType.NOT_FOLLOWING;
         }
-        _screenName = json.getString("screen_name");
+        _screenName = json.optString("screen_name");
         _profileBgImage = Utils.unescape(json.optString("profile_background_image_url"));
         _profileBgColor = json.optString("profile_background_color");
+        _profileBannerImage = json.optString("profile_banner_url");
     }
 
     private long _id;
@@ -73,7 +74,7 @@ public class UserJSON implements User, Serializable {
     private FollowingType _following;
     private long _favoritesCount;
     private String _profileBgImage;
-    private String _profileBgColor;
+    private String _profileBgColor, _profileBannerImage;
 
     /**
      * {@inheritDoc}
@@ -194,7 +195,7 @@ public class UserJSON implements User, Serializable {
     public static User[] createUserList(JSONArray array) throws Exception {
         ArrayList<User> toReturn = new ArrayList<User>();
         for(int i = 0; i < array.length(); i++) {
-            toReturn.add(new UserJSON(array.getJSONObject(i)));
+            toReturn.add(new UserJSON(array.optJSONObject(i)));
         }
         return toReturn.toArray(new User[0]);
     }
@@ -210,4 +211,14 @@ public class UserJSON implements User, Serializable {
 	 */
 	@Override
 	public String getProfileBackgroundColor() { return _profileBgColor; }
+
+	@Override
+	public String getProfileBannerWeb() {
+		return _profileBannerImage + "/web";
+	}
+
+	@Override
+	public String getProfileBannerMobile() {
+		return _profileBannerImage + "/mobile";
+	}
 }

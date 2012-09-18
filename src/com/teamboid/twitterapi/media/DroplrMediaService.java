@@ -55,13 +55,13 @@ public class DroplrMediaService extends ExternalMediaService {
 	
 	public String getUserName(){ // email in this case
 		try{
-			HttpGet get = new HttpGet(ENDPOINT + "account.json");
+			HttpGet get = new HttpGet(ENDPOINT + "account");
+			get.addHeader("Content-Length", "0");
 			authorizeRequest(get);
 			
 			HttpResponse r = getClient().execute(get);
 			if(r.getStatusLine().getStatusCode() == 200){
-				JSONObject jo = new JSONObject( EntityUtils.toString(r.getEntity()) );
-				return jo.getString("email");
+				return r.getFirstHeader("x-droplr-email").getValue();
 			} else{
 				throw new Exception("Droplr did not return 200: "+ r.getFirstHeader("x-droplr-errordetails").getValue());
 			}
@@ -150,10 +150,11 @@ public class DroplrMediaService extends ExternalMediaService {
 
 	@Override
 	public MediaEntity uploadFile(StatusUpdate tweet, Twitter tw,
-			RequestHandler client, InputStream file) throws TwitterException {
+			InputStream file, long length) throws TwitterException {
 		try{
 			HttpPost post = new HttpPost(ENDPOINT + "/files.json?filename=BoidUpload.jpg");
 			post.addHeader("x-droplr-privacy", "PUBLIC");
+			post.addHeader("Content-Length", length + "");
 			authorizeRequest(post);
 			
 			post.setEntity(new InputStreamEntity(file, 0));
@@ -180,4 +181,10 @@ public class DroplrMediaService extends ExternalMediaService {
 		return null;
 	}
 
+	@Override
+	public MediaEntity uploadFile(StatusUpdate tweet, Twitter tw,
+			RequestHandler client, InputStream file) throws TwitterException {
+		return null;
+	}
+	
 }

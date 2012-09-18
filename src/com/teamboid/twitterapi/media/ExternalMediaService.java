@@ -211,6 +211,10 @@ public abstract class ExternalMediaService {
 		attribution = i;
 	}
 	
+	public MediaEntity uploadFile( StatusUpdate tweet, Twitter client, InputStream file, long length ) throws TwitterException{
+		return uploadFile( tweet, client, file );
+	}
+	
 	/**
 	 * Upload a file to this service
 	 * @param file
