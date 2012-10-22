@@ -2,6 +2,7 @@ package com.teamboid.twitterapi.test;
 
 import java.util.Properties;
 import com.teamboid.twitterapi.media.*;
+import java.io.*;
 
 public class DroplrTest{
 	public static void main(String[] args){
@@ -23,5 +24,13 @@ public class DroplrTest{
 		System.out.println("Check username");
 
 		System.out.println(dms.getUserName());
+
+		try{
+			File file = new File(Common.path, "test.jpg");
+			System.out.println("test upload... " + file.length() + " bytes");
+			System.out.println("link: " + dms.uploadFile(null, null, new FileInputStream(file), file.length()).getExpandedUrl().toString());
+		} catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 }

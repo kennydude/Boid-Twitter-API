@@ -1,31 +1,20 @@
 package com.teamboid.twitterapi.media;
 
-import java.io.BufferedInputStream;
-import java.io.EOFException;
+import java.io.BufferedOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.security.SignatureException;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.entity.InputStreamEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 
 import android.util.Base64;
 
 import com.teamboid.twitterapi.client.RequestHandler;
 import com.teamboid.twitterapi.client.Twitter;
 import com.teamboid.twitterapi.client.TwitterException;
-import com.teamboid.twitterapi.json.JSONObject;
 import com.teamboid.twitterapi.status.StatusUpdate;
 import com.teamboid.twitterapi.status.entity.media.MediaEntity;
 import com.teamboid.twitterapi.status.entity.url.UrlEntity;
@@ -92,7 +81,7 @@ public class DroplrMediaService extends ExternalMediaService {
 	 */
 	String getDroplrSignature(HttpURLConnection request){
 		try{
-			String password = Utils.sha1(authPassword);
+			String password = Utils.sha1(authPassword + "");
 			
 			// Base64
 			String accessKey = Base64.encodeToString(
@@ -162,26 +151,38 @@ public class DroplrMediaService extends ExternalMediaService {
 	@Override
 	public MediaEntity uploadFile(StatusUpdate tweet, Twitter tw,
 			InputStream file, long length) throws TwitterException {
+		HttpURLConnection client = null;
 		try{
-			/* TODO
-			HttpPost post = new HttpPost(ENDPOINT + "/files.json?filename=BoidUpload.jpg");
-			post.addHeader("x-droplr-privacy", "PUBLIC");
-			post.addHeader("Content-Length", length + "");
-			authorizeRequest(post);
+			URL post = new URL(ENDPOINT + "files");
+			client = (HttpURLConnection) post.openConnection();
+			client.setRequestMethod("POST");
+			client.addRequestProperty("Content-Type", "image/jpg");
+			client.addRequestProperty("x-droplr-privacy", "PUBLIC");
+			client.addRequestProperty("x-droplr-filename", "boid-upload.jpg");
 			
-			post.setEntity(new InputStreamEntity(file, 0));
+			authorizeRequest(client);
 			
-			HttpResponse r = getClient().execute(post);
-			if(r.getStatusLine().getStatusCode() == 204){
-				JSONObject jo = new JSONObject(EntityUtils.toString(r.getEntity()));
-				ExternalMediaEntity ema = new ExternalMediaEntity(jo.getString("shortlink"));
+			client.setDoOutput(true);
+			client.setFixedLengthStreamingMode(length);
+			OutputStream out = new BufferedOutputStream(client.getOutputStream());
+			
+			byte[] b = new byte[1024];
+            int noOfBytes = 0;
+			while( (noOfBytes = file.read(b)) != -1 ) {
+				out.write(b, 0, noOfBytes);
+			}
+			out.close();
+			
+			InputStream ir = client.getInputStream();
+			if(client.getResponseCode() == 201){
+				ExternalMediaEntity ema = new ExternalMediaEntity(client.getHeaderField("x-droplr-shortlink"));
 				
 				return ema;
 			} else{
-				throw new Exception("Droplr did not return 200: "+ r.getFirstHeader("x-droplr-errordetails").getValue());
+				throw new Exception("Droplr did not return 201: "+ client.getHeaderField("x-droplr-errordetails"));
 			}
-			*/
 		} catch(Exception e){
+			showHTTPError(client);
 			e.printStackTrace();
 		}
 		return null;
