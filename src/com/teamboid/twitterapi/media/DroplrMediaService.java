@@ -163,7 +163,7 @@ public class DroplrMediaService extends ExternalMediaService {
 			authorizeRequest(client);
 			
 			client.setDoOutput(true);
-			client.setFixedLengthStreamingMode(length);
+			client.setFixedLengthStreamingMode(new Long(length).intValue());
 			OutputStream out = new BufferedOutputStream(client.getOutputStream());
 			
 			byte[] b = new byte[1024];
