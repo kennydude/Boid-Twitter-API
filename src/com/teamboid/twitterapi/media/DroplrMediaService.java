@@ -158,7 +158,7 @@ public class DroplrMediaService extends ExternalMediaService {
 			client.setRequestMethod("POST");
 			client.addRequestProperty("Content-Type", "image/jpg");
 			client.addRequestProperty("x-droplr-privacy", "PUBLIC");
-			client.addRequestProperty("x-droplr-filename", "boid-upload.jpg");
+			client.addRequestProperty("x-droplr-filename", Base64.encodeToString( "boid-upload.jpg".getBytes(), Base64.NO_WRAP));
 			
 			authorizeRequest(client);
 			
