@@ -12,11 +12,32 @@
 
 	<target name="compile" description="compile the Java source code to class files">
 		<mkdir dir="bin/classes"/>
-		<javac srcdir="src" destdir="bin/classes" includeantruntime="false">
+		<javac sourcepath="" srcdir="." destdir="bin/classes" includeantruntime="false">
+			<include name="src/**/*.java" />
+			<include name="contrib/*.java" />
 			<classpath>
 				<fileset dir="libs" includes="*.jar"/>
 			</classpath>
 		</javac>
+	</target>
+
+	<target name="test">
+		<mkdir dir="bin/classes/test" />
+		<javac srcdir="test" destdir="bin/classes/test" includeantruntime="false">
+			<classpath>
+				<fileset dir="libs" includes="*.jar" />
+				<pathelement location="bin/twitter.jar" />
+			</classpath>
+		</javac>
+	</target>
+	<target name="test-droplr" depends="test">
+		<java classname="com.teamboid.twitterapi.test.DroplrTest">
+			<classpath>
+				<pathelement path="bin/classes/test" />
+				<pathelement path="bin/classes" />
+				<fileset dir="libs" includes="*.jar" />
+			</classpath>
+		</java>
 	</target>
 
 	<target name="jar" depends="compile" description="create a Jar file for the application">

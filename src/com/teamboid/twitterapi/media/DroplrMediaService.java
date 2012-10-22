@@ -1,6 +1,11 @@
 package com.teamboid.twitterapi.media;
 
+import java.io.BufferedInputStream;
+import java.io.EOFException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
 import java.security.SignatureException;
 
 import javax.crypto.Mac;
@@ -37,11 +42,6 @@ import com.teamboid.twitterapi.utilities.Utils;
  */
 public class DroplrMediaService extends ExternalMediaService {
 	public static final String ENDPOINT = "http://dev.droplr.com:8069/";
-	
-	public HttpClient getClient(){
-		DefaultHttpClient client = new DefaultHttpClient();
-		return client;
-	}
 
 	@Override
 	public String getServiceName() {
@@ -54,27 +54,35 @@ public class DroplrMediaService extends ExternalMediaService {
 	}
 	
 	public String getUserName(){ // email in this case
+		HttpURLConnection client = null;
 		try{
-			HttpGet get = new HttpGet(ENDPOINT + "account");
-			get.addHeader("Content-Length", "0");
-			authorizeRequest(get);
+			URL get = new URL(ENDPOINT + "account");
+			client = (HttpURLConnection) get.openConnection();
+			client.addRequestProperty("Content-Length", "0");
+			authorizeRequest(client);
 			
-			HttpResponse r = getClient().execute(get);
-			if(r.getStatusLine().getStatusCode() == 200){
-				return r.getFirstHeader("x-droplr-email").getValue();
+			InputStream ir = client.getInputStream();
+			if(client.getResponseCode() == 200){
+				return client.getHeaderField("x-droplr-email");
 			} else{
-				throw new Exception("Droplr did not return 200: "+ r.getFirstHeader("x-droplr-errordetails").getValue());
+				throw new Exception("Droplr did not return 200: "+ client.getHeaderField("x-droplr-errordetails"));
 			}
 		} catch(Exception e){
+			showHTTPError(client);
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
-	void authorizeRequest(HttpRequestBase request){
-		request.addHeader("Date", System.currentTimeMillis()+"");
-		request.addHeader("User-Agent", "Droplr+Boid+Lib/1.0");
-		request.addHeader("Authorization", getDroplrSignature(request));
+	void showHTTPError(HttpURLConnection client){
+		if(client == null) return;
+		System.out.println(client.getHeaderField("x-droplr-errordetails"));
+	}
+	
+	void authorizeRequest(HttpURLConnection request){
+		request.addRequestProperty("Date", System.currentTimeMillis()+"");
+		request.addRequestProperty("User-Agent", "Droplr+Boid+Lib/1.0");
+		request.addRequestProperty("Authorization", getDroplrSignature(request));
 	}
 	
 	/**
@@ -82,32 +90,35 @@ public class DroplrMediaService extends ExternalMediaService {
 	 * @param request
 	 * @return
 	 */
-	String getDroplrSignature(HttpRequestBase request){
+	String getDroplrSignature(HttpURLConnection request){
 		try{
 			String password = Utils.sha1(authPassword);
 			
+			// Base64
 			String accessKey = Base64.encodeToString(
-					new StringBuilder().append(apiKey).append(":").append(authMail).toString().getBytes()
+					(apiKey + ":" + authMail).getBytes()
 			, Base64.NO_WRAP);
-			String accessSecret = new StringBuilder().append(apiSecret).append(":").append(password).toString();
 			
 			// Signature
+			String accessSecret = apiSecret + ":" + password;
 			String contentType = "";
-	        if (request.containsHeader("Content-Type")) {
-	            contentType = request.getFirstHeader("Content-Type").getValue();
+			
+	        if (request.getRequestProperty("Content-Type") != null) {
+	            contentType = request.getRequestProperty("Content-Type");
 	        }
-	        String date = request.getFirstHeader("Date").getValue();
-			String stringToSign = new StringBuilder()
-					.append(request.getRequestLine().getMethod())
-					.append(' ')
-					.append(request.getURI().getPath())
-					.append(' ').append(request.getRequestLine().getProtocolVersion().toString()).append('\n')
-					.append(contentType).append('\n')
-					.append(date)
-					.toString();
+	        
+	        String date = request.getRequestProperty("Date");
+			String stringToSign =
+					request.getRequestMethod() + ' ' + // GET 
+					request.getURL().getPath() + ' ' + // /account
+					"HTTP/1.1" + '\n' +
+					contentType + '\n' +
+					date;
 			
 			String signature = calculateRfc2104Hmac(stringToSign, accessSecret);
-			return new StringBuilder().append("droplr ").append(accessKey).append(":").append(signature).toString();
+			
+			// Return
+			return ("droplr " + accessKey + ":" + signature).replaceAll("\n", "");
 		} catch(Exception e){
 			e.printStackTrace();
 			return null;
@@ -152,6 +163,7 @@ public class DroplrMediaService extends ExternalMediaService {
 	public MediaEntity uploadFile(StatusUpdate tweet, Twitter tw,
 			InputStream file, long length) throws TwitterException {
 		try{
+			/* TODO
 			HttpPost post = new HttpPost(ENDPOINT + "/files.json?filename=BoidUpload.jpg");
 			post.addHeader("x-droplr-privacy", "PUBLIC");
 			post.addHeader("Content-Length", length + "");
@@ -168,7 +180,7 @@ public class DroplrMediaService extends ExternalMediaService {
 			} else{
 				throw new Exception("Droplr did not return 200: "+ r.getFirstHeader("x-droplr-errordetails").getValue());
 			}
-			
+			*/
 		} catch(Exception e){
 			e.printStackTrace();
 		}

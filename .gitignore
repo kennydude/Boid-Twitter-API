@@ -33,3 +33,5 @@ AndroidManifest.xml
 build.sh
 
 .gitignore~
+
+test/local.properties

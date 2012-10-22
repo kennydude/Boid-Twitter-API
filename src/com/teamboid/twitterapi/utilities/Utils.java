@@ -42,7 +42,7 @@ public class Utils {
 	public static String sha1(String in){
 		try{
 			MessageDigest digest = MessageDigest.getInstance("SHA-1");
-			digest.update(in.getBytes());
+			digest.update(in.getBytes(), 0, in.length());
 			return byteArrayToHexString(digest.digest());
 		} catch(Exception e){
 			e.printStackTrace();
